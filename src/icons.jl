@@ -36,3 +36,9 @@ icon_split_column() = icon_svg(
 icon_chevron_down() = icon_svg(SVG.path(d="M4 6l4 4 4-4"))
 
 icon_close() = icon_svg(SVG.path(d="M4 4l8 8M12 4l-8 8"))
+
+# A panel docking back into a frame (box with an arrow pointing into its base).
+icon_dock() = icon_svg(
+    SVG.rect(x="1.5", y="2.5", width="13", height="11", rx="1.5"),
+    SVG.path(d="M8 4.5v5M5.5 7L8 9.5 10.5 7"),
+)

@@ -79,26 +79,72 @@ end
 
     @testset "Workspace" begin
         ws = Workspace("A" => DOM.div("a"), "B" => DOM.div("b"), "C" => DOM.div("c"))
-        @test ws.layout[] == Dict("type" => "tabs", "panels" => [1, 2, 3], "active" => 1)
-        @test ws.labels == ["A", "B", "C"]
+        @test ws.layout[]["root"] == Dict("type" => "tabs", "panels" => ["A", "B", "C"], "active" => "A")
+        @test ws.layout[]["floating"] == []
+        @test [p.id for p in ws.panels[]] == ["A", "B", "C"]
+        @test ws.meta[]["A"]["label"] == "A" && ws.meta[]["A"]["closable"] == false
         @test_throws ArgumentError Workspace(Pair{String,Any}[])
+        @test_throws ArgumentError Workspace("A" => 1, "A" => 2)  # duplicate ids
 
-        # Layout builders
-        @test tabgroup(2, 3) == Dict("type" => "tabs", "panels" => [2, 3], "active" => 2)
-        @test tabgroup(2, 3; active=3)["active"] == 3
-        @test_throws ArgumentError tabgroup(1, 2; active=5)
-        lt = hsplit(tabgroup(1, 2), tabgroup(3); fractions=[0.7, 0.3])
+        # Layout builders (string-keyed)
+        @test tabgroup("b", "c") == Dict("type" => "tabs", "panels" => ["b", "c"], "active" => "b")
+        @test tabgroup("b", "c"; active="c")["active"] == "c"
+        @test_throws ArgumentError tabgroup("a", "b"; active="z")
+        lt = hsplit(tabgroup("A", "B"), tabgroup("C"); fractions=[0.7, 0.3])
         @test lt["type"] == "row" && lt["fractions"] == [0.7, 0.3]
-        @test vsplit(tabgroup(1), tabgroup(2))["type"] == "column"
-        @test_throws ArgumentError hsplit(tabgroup(1))
-        @test_throws ArgumentError hsplit(tabgroup(1), tabgroup(2); fractions=[1.0])
+        @test vsplit(tabgroup("A"), tabgroup("B"))["type"] == "column"
+        @test_throws ArgumentError hsplit(tabgroup("A"))
+        @test_throws ArgumentError hsplit(tabgroup("A"), tabgroup("B"); fractions=[1.0])
+
+        full = workspacelayout(lt; floating=[floatpanel("C"; x=10, y=20)])
+        @test full["root"] === lt
+        @test full["floating"][1] == Dict("panel" => "C", "x" => 10, "y" => 20, "width" => 480, "height" => 320)
 
         ws2 = Workspace("A" => 1, "B" => 2, "C" => 3; layout=lt)
         @test ws2.layout[] === lt
         html = render_html(ws2)
         @test occursin("class=\"bw-ws ", html)
         @test occursin("class=\"bw-ws-parking", html)
+        @test occursin("class=\"bw-ws-floatlayer", html)
         @test count("class=\"bw-ws-panel", html) == 3
+    end
+
+    @testset "Workspace dynamic API" begin
+        ws = Workspace("A" => DOM.div("a"), "B" => DOM.div("b"))
+
+        add_panel!(ws, Panel("c", DOM.div("c"); label="Log", closable=true))
+        @test "c" in ws.layout[]["root"]["panels"]
+        @test ws.layout[]["root"]["active"] == "c"
+        @test ws.meta[]["c"]["closable"]
+        @test ws.meta[]["c"]["label"] == "Log"
+
+        # add_panel! shorthand + idempotent activate
+        add_panel!(ws, "d" => DOM.div("d"))
+        add_panel!(ws, "d" => DOM.div("dup"); active=false)
+        @test count(==("d"), ws.layout[]["root"]["panels"]) == 1
+
+        float_panel!(ws, "c"; x=5, y=6)
+        @test "c" ∉ ws.layout[]["root"]["panels"]
+        @test only(f["panel"] for f in ws.layout[]["floating"] if f["panel"] == "c") == "c"
+        @test_throws ArgumentError float_panel!(ws, "nope")
+
+        dock_panel!(ws, "c")
+        @test isempty(ws.layout[]["floating"])
+        @test "c" in ws.layout[]["root"]["panels"]
+
+        remove_panel!(ws, "c")
+        @test "c" ∉ ws.layout[]["root"]["panels"]
+        @test "c" ∉ [p.id for p in ws.panels[]]
+
+        # closed-button path removes the panel through ws.closed
+        ws.closed[] = "d"
+        @test "d" ∉ [p.id for p in ws.panels[]]
+
+        # live label updates flow into meta
+        title = Observable("Untitled")
+        add_panel!(ws, Panel("e", DOM.div("e"); label=title))
+        title[] = "Renamed"
+        @test ws.meta[]["e"]["label"] == "Renamed"
     end
 
     @testset "Collapsible" begin

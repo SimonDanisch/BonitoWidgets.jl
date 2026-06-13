@@ -19,7 +19,8 @@ export Tabs
 export SplitContainer
 export Collapsible
 export PanelGroup
-export Workspace, tabgroup, hsplit, vsplit
+export Workspace, Panel, tabgroup, hsplit, vsplit, floatpanel, workspacelayout
+export add_panel!, remove_panel!, float_panel!, dock_panel!, activate_panel!
 export FloatingWindow
 export IconButton, OrientationToggle, CollapseButton
 

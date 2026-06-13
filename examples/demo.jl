@@ -30,13 +30,26 @@ App(; title="BonitoWidgets demo") do
     # out — the remaining tabs stay together (| tabs(Editor, Plot) | Log |).
     # Keep dragging to build | Editor | Plot | Log |, drop tabs onto another
     # group's strip or center to merge them back into tabs (empty groups
-    # dissolve automatically). Gutters between groups drag-resize. The
-    # arrangement lives in ws.layout (plain JSON-able data) for save/restore.
+    # dissolve automatically). DRAG a tab OUT of the docked area to tear it
+    # off into a floating window; drag the window's title bar back onto a
+    # group (or use its dock button) to re-dock it. Gutters between groups
+    # drag-resize. The arrangement lives in ws.layout (plain JSON-able data,
+    # including floats) for save/restore.
     ws = Workspace(
-        "Editor" => placeholder("Editor", "#3b82f6"),
-        "Plot" => placeholder("Plot", "#8b5cf6"),
-        "Log" => placeholder("Log", "#10b981"),
+        Panel("editor", placeholder("Editor", "#3b82f6"); label="Editor", closable=true),
+        Panel("plot", placeholder("Plot", "#8b5cf6"); label="Plot", closable=true),
+        Panel("log", placeholder("Log", "#10b981"); label="Log", closable=true),
     )
+    # Demonstrate dynamic panels + programmatic float: add a panel and pop it
+    # straight into a floating window from Julia.
+    ws_add = Bonito.Button("+ add panel")
+    counter = Observable(0)
+    on(ws_add.value) do _
+        counter[] += 1
+        float_panel!(ws, Panel("dyn$(counter[])", placeholder("Dynamic $(counter[])", "#e11d48");
+                               label="Dynamic $(counter[])", closable=true);
+                     x=120 + 20counter[], y=80 + 20counter[])
+    end
 
     # Flat panel group: the lightweight variant — all panels tabbed OR all
     # side by side, switched via the bar widgets or by dragging a tab into
@@ -70,8 +83,8 @@ App(; title="BonitoWidgets demo") do
 
     DOM.div(
         Theme(),
-        caption("Workspace — drag a tab to an edge to split it out (others stay tabbed), to a strip/center to merge back:"),
-        DOM.div(ws; style=Styles("height" => "300px")),
+        caption("Workspace — drag a tab to an edge to split, off the area to float, a window back onto a group to dock:", ws_add),
+        DOM.div(ws; style=Styles("height" => "340px")),
         caption("PanelGroup (flat) — edge drop splits all panels side by side, center drop re-tabs them:"),
         DOM.div(group; style=Styles("height" => "220px")),
         caption("SplitContainer + OrientationToggle:", OrientationToggle(split.direction)),
