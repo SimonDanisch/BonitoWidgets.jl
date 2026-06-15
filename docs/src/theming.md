@@ -1,8 +1,8 @@
 # Theming
 
-Every color and metric reads a `--bw-*` CSS variable with automatic light/dark
-defaults (`prefers-color-scheme`). Restyle the whole widget set with
-[`Theme`](@ref), or one instance via its `style=Styles(...)` kwarg.
+Colors and sizes come from `--bw-*` CSS variables, with light/dark defaults that
+follow `prefers-color-scheme`. Restyle every widget with [`Theme`](@ref), or one
+widget through its `style=Styles(...)` argument.
 
 ```@setup theme
 using Bonito, BonitoWidgets
@@ -22,10 +22,10 @@ frame(content; height="180px") = DOM.div(content;
 Theme
 ```
 
-`Theme()` (no args) just ships the defaults — components include them
-automatically, so it's only needed for overrides. Keywords map to variables
-(`bg_panel` → `--bw-bg-panel`); `scheme=:light`/`:dark` pins the palette instead
-of following the OS.
+`Theme()` with no arguments ships the defaults. Components already include them,
+so you only need it to override. Keywords map to variables (`bg_panel` becomes
+`--bw-bg-panel`); `scheme=:light` or `:dark` pins the palette instead of
+following the OS.
 
 ```@example theme
 using Bonito, BonitoWidgets
@@ -49,5 +49,5 @@ end
 | `--bw-text`, `--bw-text-muted` | text |
 | `--bw-accent`, `--bw-accent-bg` | active tab/grip highlights |
 | `--bw-border`, `--bw-radius`, `--bw-shadow` | chrome |
-| `--bw-bar-size`, `--bw-gutter-size` | hit-area sizing (auto-grows on touch) |
+| `--bw-bar-size`, `--bw-gutter-size` | hit-area sizing (grows on touch) |
 | `--bw-font`, `--bw-font-size`, `--bw-space-1..4` | typography/spacing |

@@ -1,13 +1,14 @@
-# BonitoWidgets walkthrough — recorded with ElectronCall.Testing.
+# BonitoWidgets walkthrough, recorded with ElectronCall.Testing.
 #
-# A smooth, animated tour of the Workspace: steer live plots, split a layout by
-# dragging a tab to an edge, dock and tear off floating windows. Every gesture
-# is a real pointer event driven through ElectronCall's animated cursor and
-# captured by its frame-pump recorder, so the output is a true 30 fps video.
+# A tour of the Workspace: steer plots, split the layout by dragging a tab to an
+# edge, float a panel and dock it back. Every gesture is a real pointer event
+# from ElectronCall's animated cursor, captured by its frame-pump recorder at
+# 30 fps.
 #
-# Coordinates are never hard-coded: the drag/click targets are BonitoWidgets
-# `Probes` (`Tab`, `GroupBody`, `FloatTitle`) that resolve against the live DOM
-# at play time, so the script keeps working as the layout rearranges itself.
+# No coordinates are hard-coded. The drag and click targets are the BonitoWidgets
+# probes (tab, groupbody, floattitle) wrapped in ElectronCall's JS target; they
+# resolve against the live DOM at play time, so the script keeps working as the
+# layout moves around.
 #
 # Run:  julia --project=. dev/BonitoWidgets/examples/walkthrough.jl
 # Out:  dev/BonitoWidgets/examples/walkthrough.mp4
@@ -124,7 +125,7 @@ function build_app()
 
         header = DOM.div(
             DOM.div("BonitoWidgets"; style=Styles("font-weight"=>"700","color"=>"#e6e8ee","font-size"=>"15px")),
-            DOM.div("Signal Lab — drag tabs, float panels, steer live plots";
+            DOM.div("Signal Lab: drag tabs, float panels, steer live plots";
                 style=Styles("color"=>"#7f8694","font-size"=>"12.5px","margin-left"=>"10px"));
             style=Styles("display"=>"flex","align-items"=>"baseline","gap"=>"4px",
                 "height"=>"46px","padding"=>"0 18px","flex"=>"0 0 auto","border-bottom"=>"1px solid #2a2f3a"))
@@ -138,9 +139,7 @@ function build_app()
 end
 
 # ── the recorded tour ─────────────────────────────────────────────────────────
-# One declarative event sequence. The drag/click targets are BonitoWidgets
-# probes wrapped in ElectronCall's `JS` target, so each one resolves against the
-# live DOM at play time and lands wherever the panel currently is.
+# The whole tour as one event list, played in order.
 function tour(ctx)
     play(ctx, [
         Wait(1.0),

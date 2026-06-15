@@ -1,7 +1,7 @@
 # Components
 
-The lighter-weight building blocks. Reach for these when a full [Workspace](@ref)
-is more than you need.
+Smaller building blocks, for when a full [Workspace](@ref) is more than you
+need.
 
 ```@setup comp
 using Bonito, BonitoWidgets
@@ -19,8 +19,8 @@ frame(content; height="200px") = DOM.div(content;
 
 ## Tabs
 
-Plain tabs: lightweight, no docking, optionally closable. `active` and `closed`
-are observables you can read or set from Julia.
+Tabs with no docking, optionally closable. `active` and `closed` are observables
+you can read or set from Julia.
 
 ```@docs; canonical=false
 Tabs
@@ -42,9 +42,9 @@ end
 
 ## SplitContainer
 
-Two panes with a draggable gutter, optional per-pane headers with collapse
-chevrons. The orientation is an `Observable` — flip it and the panes re-flow
-live, children untouched.
+Two panes with a draggable gutter, optional headers with a collapse chevron per
+pane. The orientation is an `Observable`; change it and the panes re-flow
+without re-rendering their children.
 
 ```@docs; canonical=false
 SplitContainer
@@ -70,9 +70,9 @@ end
 
 ## PanelGroup
 
-VSCode-style pane management for a single flat group: N named panels shown **as
-tabs or side by side**, switched via the built-in bar widgets or by dragging a
-tab into a layout slot (edges → split, centre → back to tabs).
+A single group of N named panels, shown as tabs or side by side. Switch with the
+bar widgets, or drag a tab into the body: the edges make a split, the center
+goes back to tabs.
 
 ```@docs; canonical=false
 PanelGroup
@@ -110,10 +110,9 @@ end
 
 ## FloatingWindow
 
-Draggable/resizable fixed-position window, viewport-clamped. Here it's contained
-in a positioned frame for the docs (a transformed ancestor becomes the
-containing block for its `position: fixed`); in a real app it floats over the
-whole viewport.
+A draggable, resizable, fixed-position window, kept inside the viewport. Below it
+sits in a positioned frame so it stays in the page; in a real app it floats over
+the whole viewport.
 
 ```@docs; canonical=false
 FloatingWindow

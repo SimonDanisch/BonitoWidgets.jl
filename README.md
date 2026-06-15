@@ -1,70 +1,62 @@
 # BonitoWidgets
 
-Reusable, stylable layout components for [Bonito.jl](https://github.com/SimonDanisch/Bonito.jl):
+Layout components for [Bonito.jl](https://github.com/SimonDanisch/Bonito.jl):
 tabs, resizable splits, VSCode-style panel groups, collapsibles, and floating
-windows — optimized for both desktop and mobile.
-
-Distilled from the layout code in ReynKoWebViz, BonitoBook, and BonitoTeam.
+windows. They work the same with mouse and touch.
 
 ## Walkthrough
 
-A tour of the `Workspace` — steering live plots, splitting the layout by
-dragging a tab to a group edge, docking a floating window, then tearing a tab
-back out — recorded straight from a real Electron window with ElectronCall's
-animated-cursor recorder. Source: [`examples/walkthrough.jl`](examples/walkthrough.jl).
+The `Workspace` driven from code in a real Electron window: steering plots,
+splitting the layout by dragging a tab to a group edge, floating a panel and
+docking it back. Recorded with ElectronCall. Source:
+[`examples/walkthrough.jl`](examples/walkthrough.jl).
 
 <video src="examples/walkthrough.mp4" controls loop muted width="100%"></video>
 
-> If the player above doesn't render (e.g. on github.com), see
+> If the player doesn't render (e.g. on github.com), see
 > [`examples/walkthrough.mp4`](examples/walkthrough.mp4).
 
-## Design principles
+## How it works
 
-- **Keep-alive content.** Panels are mounted once and re-flowed with CSS only.
-  Switching tabs, flipping a split's orientation, or toggling a `PanelGroup`
-  between tabs and splits never re-renders children — WebGL contexts, Makie
-  cameras, and widget state survive every layout change. Size-critical layout
-  is set as inline styles, so a WGLMakie figure with `resize_to=:parent`
-  always measures real dimensions at init.
-- **Observables everywhere, bidirectional.** Every piece of layout state
-  (active tab, split fraction, orientation, collapsed, window geometry) is an
-  `Observable`: user gestures notify Julia, and setting it from Julia updates
-  the DOM live. Pass your own observables into constructors to share state
-  between widgets (e.g. one `direction` driving a split and its toggle button).
-- **Touch + mouse from one code path.** All drags use pointer events with
-  pointer capture. On coarse pointers, bars and resize gutters grow
-  (`--bw-bar-size`, `--bw-gutter-size`); tab bars scroll horizontally; below
-  700px viewport width `PanelGroup` forces tab layout (splits are unusable on
-  phones) and restores the chosen split mode when the viewport widens.
-- **Theming via CSS variables.** Every color/metric reads a `--bw-*` variable
-  with automatic light/dark defaults (`prefers-color-scheme`). Restyle the
-  whole widget set with [`Theme`](#theme), or one instance via its
-  `style=Styles(...)` kwarg.
+- Panels are mounted once. Switching tabs, changing a split's orientation, or
+  moving a panel between groups re-flows them with CSS and never re-renders the
+  children, so WebGL contexts, Makie cameras, and widget state survive. Sizes
+  are set as inline styles, so a WGLMakie figure with `resize_to=:parent`
+  measures real dimensions at startup.
+- Layout state (active tab, split fraction, orientation, collapsed, window
+  position) is held in `Observable`s. User actions update them, and writing to
+  them from Julia updates the DOM. Pass your own to share state between widgets,
+  e.g. one `direction` for a split and its toggle button.
+- Drags use pointer events, so mouse and touch take the same path. Hit areas
+  grow on touch (`--bw-bar-size`, `--bw-gutter-size`), tab bars scroll
+  sideways, and below 700px `PanelGroup` falls back to tabs, then restores the
+  split mode when the window widens.
+- Colors and sizes come from `--bw-*` CSS variables with light/dark defaults.
+  Restyle everything with [`Theme`](#theme), or one widget through its
+  `style=Styles(...)` argument.
 
 ## Components
 
 ### Workspace
 
-Full VSCode-style pane/tab management: a **split tree whose leaves are tab
-groups**. Drag a tab to the edge of a group and only that panel splits out —
-the remaining tabs stay together (`| tabs(Editor, Plot) | Log |`); drop a tab
-on another group's strip or center to move it there; a group dissolves when
-its last tab leaves. Panel contents are moved between groups, never
-re-rendered.
+A split tree whose leaves are tab groups. Drag a tab to the edge of a group and
+only that panel splits off; the rest stay together. Drop a tab on another
+group's tab strip or center to move it there. A group disappears when its last
+tab leaves. Moving a panel never re-renders it.
 
 ```julia
 ws = Workspace("Editor" => ed, "Plot" => fig, "Log" => log)   # starts as one tab group
 # or start pre-arranged:
 ws = Workspace("Editor" => ed, "Plot" => fig, "Log" => log;
                layout=hsplit(tabgroup(1, 2), tabgroup(3); fractions=[0.7, 0.3]))
-on(ws.layout) do tree     # plain JSON-able Dict/Vector tree — persist it
+on(ws.layout) do tree     # plain Dict/Vector tree, JSON-able
     save_layout(tree)
 end
 ws.layout[] = saved_tree  # restore an arrangement
 ```
 
-Use `Workspace` for a main application layout; use `PanelGroup` (below) when
-a single flat group — all tabs or all split — is enough.
+Use `Workspace` for the main layout. Use `PanelGroup` (below) for a single
+group that is either all tabs or all split.
 
 ### Tabs
 
@@ -77,14 +69,14 @@ on(tabs.closed) do i; @info "tab $i closed"; end
 
 ### SplitContainer
 
-Two panes with a draggable gutter. Optional per-pane headers with collapse
-chevrons.
+Two panes with a draggable gutter. Optional headers with a collapse chevron per
+pane.
 
 ```julia
 split = SplitContainer(left, right;
     direction=:row,           # or :column (:horizontal/:vertical aliases work)
-    split=0.4,                # fraction for pane a, Observable, drag-updated
-    titles=("Scene", "Controls"),  # nothing (default) → bare panes
+    split=0.4,                # fraction for pane a, an Observable, drag-updated
+    titles=("Scene", "Controls"),  # nothing (default) = bare panes
     collapsible=true,         # chevron per header; collapsed::Observable{Int} (0/1/2)
     min_fraction=0.08,
 )
@@ -93,12 +85,11 @@ split.direction[] = :column   # re-flows live, children untouched
 
 ### PanelGroup
 
-VSCode-style pane management: N named panels shown **as tabs or side by side**,
-switched at runtime via the built-in bar widgets (tabs / split-horizontal /
-split-vertical / collapse) — or by **dragging a tab into a layout slot**:
-drop zones light up over the body (left/right → horizontal split, top/bottom
-→ vertical split, center → back to tabs with that panel active), and dropping
-on another tab in the strip reorders. Gutters between split panels drag-resize.
+N named panels shown as tabs or side by side. Switch with the bar widgets (tabs,
+split-horizontal, split-vertical, collapse), or drag a tab into the body: the
+left/right edges make a horizontal split, top/bottom make a vertical split, the
+center goes back to tabs, and dropping on another tab in the strip reorders.
+Gutters between split panels drag to resize.
 
 ```julia
 group = PanelGroup("Editor" => ed, "Plot" => fig, "Log" => log;
@@ -117,18 +108,18 @@ Collapsible("Settings", settings_dom; expanded=false)
 
 ### FloatingWindow
 
-Draggable/resizable fixed-position window, viewport-clamped.
+A draggable, resizable, fixed-position window, kept inside the viewport.
 
 ```julia
 w = FloatingWindow(tools; title="Tools", x=80, y=80, width=640, height=420)
-on(w.close_trigger) do _; w.visible[] = false; end   # caller decides semantics
+on(w.close_trigger) do _; w.visible[] = false; end   # caller decides what close means
 on(w.x) do x; save_geometry!(...); end               # persist gestures
 ```
 
 ### Small widgets
 
-`IconButton(icon; title, onclick)`, `OrientationToggle(direction_obs)`,
-`CollapseButton(collapsed_obs)` — the bar widgets, exported for custom toolbars.
+`IconButton(icon; title, onclick)`, `OrientationToggle(direction_obs)`, and
+`CollapseButton(collapsed_obs)`: the bar widgets, exported for custom toolbars.
 
 ## Theme
 
@@ -141,10 +132,10 @@ App() do
 end
 ```
 
-`Theme()` (no args) just ships the defaults — components include them
-automatically, so it's only needed for overrides. Keywords map to variables
-(`bg_panel` → `--bw-bg-panel`); `scheme=:light/:dark` pins the palette instead
-of following the OS. Main variables:
+`Theme()` with no arguments ships the defaults. Components already include them,
+so you only need it to override. Keywords map to variables (`bg_panel` becomes
+`--bw-bg-panel`); `scheme=:light` or `:dark` pins the palette instead of
+following the OS.
 
 | Variable | Purpose |
 |---|---|
@@ -152,26 +143,25 @@ of following the OS. Main variables:
 | `--bw-text`, `--bw-text-muted` | text |
 | `--bw-accent`, `--bw-accent-bg` | active tab/grip highlights |
 | `--bw-border`, `--bw-radius`, `--bw-shadow` | chrome |
-| `--bw-bar-size`, `--bw-gutter-size` | hit-area sizing (auto-grows on touch) |
+| `--bw-bar-size`, `--bw-gutter-size` | hit-area sizing (grows on touch) |
 | `--bw-font`, `--bw-font-size`, `--bw-space-1..4` | typography/spacing |
 
 ## Testing layouts
 
-The video above is driven by a handful of unexported probe helpers. Because the
-layout rearranges itself as panels split and float, end-to-end tests can't
-hard-code pixels — a probe builds a tiny JavaScript expression that locates a
-point on a widget *by label*, against the live DOM, returning `[x, y]` (or
-`null`):
+The video above is driven by a few unexported probe helpers. The layout moves as
+panels split and float, so tests can't use fixed pixels. Each probe builds a
+small JavaScript expression that finds a point on a widget by its label and
+returns `[x, y]`, or `null` if nothing matches:
 
-- `tab(label)` — the tab button whose label starts with `label`
-- `groupbody(label; rel=(0.5, 0.9))` — a fractional point in the body of the
-  group holding that tab (the edges are the split drop zones)
-- `floattitle(label)` — the title bar of the floating window titled `label`
+- `tab(label)`: the tab button whose label starts with `label`
+- `groupbody(label; rel=(0.5, 0.9))`: a point in the body of the group that
+  holds that tab (the edges are the drop zones for splitting)
+- `floattitle(label)`: the title bar of the floating window named `label`
 
-`Probes` depends only on the widgets' own CSS classes — no test-driver
-dependency. Any driver that can evaluate JS and return a point can use them;
-with [ElectronCall](https://github.com/SimonDanisch/ElectronCall.jl), wrap the
-expression in its generic `JS` target and it slots straight into the event DSL:
+The helpers only use the widgets' CSS classes, so they don't pull in a test
+driver. Any driver that can run JS and return a point can use them. With
+[ElectronCall](https://github.com/SimonDanisch/ElectronCall.jl), wrap the
+expression in its `JS` target and pass it to the event DSL:
 
 ```julia
 using BonitoWidgets: tab, groupbody, floattitle

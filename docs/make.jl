@@ -9,7 +9,7 @@ makedocs(
     clean = false,
     authors = "Simon Danisch and contributors",
     # Bonito apps export as a single self-contained HTML blob (all assets
-    # inlined), so individual pages can be large — don't cap the size.
+    # inlined), so individual pages can be large. Don't cap the size.
     format = Documenter.HTML(prettyurls = ci, size_threshold = nothing),
     pages = [
         "Home" => "index.md",

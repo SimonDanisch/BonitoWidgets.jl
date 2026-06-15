@@ -1,14 +1,12 @@
 # BonitoWidgets
 
-Reusable, stylable layout components for [Bonito.jl](https://github.com/SimonDanisch/Bonito.jl):
+Layout components for [Bonito.jl](https://github.com/SimonDanisch/Bonito.jl):
 tabs, resizable splits, VSCode-style panel groups, collapsibles, and floating
-windows — optimized for both desktop and mobile.
+windows. They work the same with mouse and touch.
 
-Distilled from the layout code in ReynKoWebViz, BonitoBook, and BonitoTeam.
-
-The widgets below are **live** — they are real Bonito apps exported into this
-page, so go ahead and click tabs, drag gutters, and tear panels off. Here they
-are driven end-to-end in a real Electron window (see [Testing layouts](@ref)):
+The widgets on these pages are real Bonito apps exported into the HTML, so you
+can click tabs, drag gutters, and tear panels off. The video shows them driven
+from code in a real Electron window (see [Testing layouts](@ref)):
 
 ```@raw html
 <video src="assets/walkthrough.mp4" controls loop muted width="100%"></video>
@@ -50,23 +48,20 @@ App() do
 end
 ```
 
-Drag a tab to the edge of a group and only that panel splits out; drop it on
+Drag a tab to the edge of a group and only that panel splits off; drop it on
 another group's tab strip to merge them back. See [Workspace](@ref) for the
-full story, or [Components](@ref) for the lighter-weight building blocks.
+details, or [Components](@ref) for the smaller building blocks.
 
-## Design principles
+## How it works
 
-- **Keep-alive content.** Panels are mounted once and re-flowed with CSS only.
-  Switching tabs, flipping a split's orientation, or toggling a `PanelGroup`
-  between tabs and splits never re-renders children — WebGL contexts, Makie
-  cameras, and widget state survive every layout change.
-- **Observables everywhere, bidirectional.** Every piece of layout state
-  (active tab, split fraction, orientation, collapsed, window geometry) is an
-  `Observable`: user gestures notify Julia, and setting it from Julia updates
-  the DOM live.
-- **Touch + mouse from one code path.** All drags use pointer events with
-  pointer capture; hit areas grow on coarse pointers, and narrow viewports fall
-  back to tab layout automatically.
-- **Theming via CSS variables.** Every color/metric reads a `--bw-*` variable
-  with automatic light/dark defaults. Restyle everything with [`Theme`](@ref),
-  or one instance via its `style=Styles(...)` kwarg. See [Theming](@ref).
+- Panels are mounted once. Switching tabs, changing a split's orientation, or
+  moving a panel between groups re-flows them with CSS and never re-renders the
+  children, so WebGL contexts, Makie cameras, and widget state survive.
+- Layout state (active tab, split fraction, orientation, collapsed, window
+  position) is held in `Observable`s. User actions update them, and writing to
+  them from Julia updates the DOM.
+- Drags use pointer events, so mouse and touch take the same path. Hit areas
+  grow on touch, and narrow windows fall back to tab layout.
+- Colors and sizes come from `--bw-*` CSS variables with light/dark defaults.
+  Restyle everything with [`Theme`](@ref), or one widget through its
+  `style=Styles(...)` argument. See [Theming](@ref).

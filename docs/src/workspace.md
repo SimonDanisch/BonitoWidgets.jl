@@ -14,19 +14,18 @@ frame(content; height="340px") = DOM.div(content;
                  "border-radius" => "var(--bw-radius)", "overflow" => "hidden"))
 ```
 
-Full VSCode-style pane/tab management: a **split tree whose leaves are tab
-groups**. Drag a tab to the edge of a group and only that panel splits out — the
-remaining tabs stay together. Drop a tab on another group's strip or centre to
-move it there; a group dissolves when its last tab leaves. Tear a tab out of the
-docked area to float it; drag a floating window's title bar back onto a group
-(or hit its dock button) to re-dock. Panel contents are *moved* between groups,
-never re-rendered.
+A split tree whose leaves are tab groups. Drag a tab to the edge of a group and
+only that panel splits off; the rest stay together. Drop a tab on another
+group's tab strip or center to move it there. A group disappears when its last
+tab leaves. Drag a tab out of the docked area to float it, and drag a floating
+window's title bar back onto a group (or use its dock button) to dock it again.
+Panels are moved between groups, never re-rendered.
 
 ```@docs; canonical=false
 Workspace
 ```
 
-Try it — drag the tabs around, split the layout, tear off the floating Surface:
+Drag the tabs around, split the layout, or tear off the floating Surface:
 
 ```@example ws
 using Bonito, BonitoWidgets
@@ -62,8 +61,9 @@ Panel
 
 ## Persisting and restoring
 
-`ws.layout` is a plain JSON-able `Dict`/`Vector` tree (including floats) — `on`
-it to persist user rearrangements, set it to restore one:
+`ws.layout` is a plain `Dict`/`Vector` tree (floats included), and it is
+JSON-able. Listen to it with `on` to save rearrangements; assign to it to
+restore one:
 
 ```julia
 on(ws.layout) do tree
