@@ -753,7 +753,12 @@ function Bonito.jsrender(session::Session, ws::Workspace)
         // this to place them.
         wsRoot.__bwScheduleRender = scheduleRender;
 
-        layoutObs.on((v) => { layout = clone(v); if (suppressRender) return; render(); });
+        // A *local* update (e.g. a tab switch) already mutated `layout` in place
+        // and rendered the change itself, so keep the SAME `layout` object: the
+        // live group `_node` references point into it. Re-cloning here would
+        // orphan those references — a later drag would target a stale leaf that
+        // `replaceNode` can't find, silently dropping the panel.
+        layoutObs.on((v) => { if (suppressRender) return; layout = clone(v); render(); });
         metaObs.on((m) => { meta = m || {}; render(); });
         const onNarrow = () => render();
         if (narrow.addEventListener) narrow.addEventListener('change', onNarrow);
