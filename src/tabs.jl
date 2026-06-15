@@ -174,21 +174,27 @@ const TABS_STYLES = Styles(
         "color" => "var(--bw-text)",
         "background-color" => "var(--bw-bg-hover)",
     ),
+    # Active tab carries the panel's own background so it reads as continuous
+    # with the content below it (editor convention), lifted by a thin top
+    # accent — quieter than tinting the whole tab.
     CSS(".bw-tab.bw-active",
-        "color" => "var(--bw-accent)",
-        "background-color" => "var(--bw-accent-bg)",
-        "box-shadow" => "inset 0 -2px 0 var(--bw-accent)",
+        "color" => "var(--bw-text)",
+        "background-color" => "var(--bw-bg-panel)",
+        "box-shadow" => "inset 0 2px 0 var(--bw-accent)",
     ),
     CSS(".bw-tab.bw-closed", "display" => "none"),
+    # Close affordance: hidden until the tab is hovered or active, so a row of
+    # tabs stays calm. Reveal at 55%, full on direct hover.
     CSS(".bw-tab-close",
         "display" => "inline-flex",
         "align-items" => "center",
         "border-radius" => "var(--bw-radius-sm)",
         "padding" => "2px",
-        "opacity" => "0.5",
+        "opacity" => "0",
         "transition" => "opacity var(--bw-transition), background-color var(--bw-transition)",
     ),
-    CSS(".bw-tab-close:hover",
+    CSS(".bw-tab:hover .bw-tab-close, .bw-tab.bw-active .bw-tab-close", "opacity" => "0.55"),
+    CSS(".bw-tab:hover .bw-tab-close:hover, .bw-tab.bw-active .bw-tab-close:hover",
         "opacity" => "1",
         "background-color" => "var(--bw-bg-hover)",
     ),

@@ -1,0 +1,8 @@
+[deps]
+Bonito = "824d6782-a2ef-11e9-3a09-e5662e0c26f8"
+BonitoWidgets = "62a4b9e4-7ee6-4bfa-b661-80bcb0a47665"
+Deno_jll = "04572ae6-984a-583e-9378-9577a1c2574d"
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+
+[compat]
+Documenter = "1"
