@@ -13,6 +13,7 @@ include("collapsible.jl")
 include("panelgroup.jl")
 include("workspace.jl")
 include("floating.jl")
+include("probes.jl")  # unexported JS DOM-probe builders for driver-agnostic UI tests
 
 export Theme
 export Tabs

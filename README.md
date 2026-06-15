@@ -6,6 +6,18 @@ windows — optimized for both desktop and mobile.
 
 Distilled from the layout code in ReynKoWebViz, BonitoBook, and BonitoTeam.
 
+## Walkthrough
+
+A tour of the `Workspace` — steering live plots, splitting the layout by
+dragging a tab to a group edge, docking a floating window, then tearing a tab
+back out — recorded straight from a real Electron window with ElectronCall's
+animated-cursor recorder. Source: [`examples/walkthrough.jl`](examples/walkthrough.jl).
+
+<video src="examples/walkthrough.mp4" controls loop muted width="100%"></video>
+
+> If the player above doesn't render (e.g. on github.com), see
+> [`examples/walkthrough.mp4`](examples/walkthrough.mp4).
+
 ## Design principles
 
 - **Keep-alive content.** Panels are mounted once and re-flowed with CSS only.
@@ -142,6 +154,35 @@ of following the OS. Main variables:
 | `--bw-border`, `--bw-radius`, `--bw-shadow` | chrome |
 | `--bw-bar-size`, `--bw-gutter-size` | hit-area sizing (auto-grows on touch) |
 | `--bw-font`, `--bw-font-size`, `--bw-space-1..4` | typography/spacing |
+
+## Testing layouts
+
+The video above is driven by a handful of unexported probe helpers. Because the
+layout rearranges itself as panels split and float, end-to-end tests can't
+hard-code pixels — a probe builds a tiny JavaScript expression that locates a
+point on a widget *by label*, against the live DOM, returning `[x, y]` (or
+`null`):
+
+- `tab(label)` — the tab button whose label starts with `label`
+- `groupbody(label; rel=(0.5, 0.9))` — a fractional point in the body of the
+  group holding that tab (the edges are the split drop zones)
+- `floattitle(label)` — the title bar of the floating window titled `label`
+
+`Probes` depends only on the widgets' own CSS classes — no test-driver
+dependency. Any driver that can evaluate JS and return a point can use them;
+with [ElectronCall](https://github.com/SimonDanisch/ElectronCall.jl), wrap the
+expression in its generic `JS` target and it slots straight into the event DSL:
+
+```julia
+using BonitoWidgets: tab, groupbody, floattitle
+using ElectronCall.Testing      # JS, Click, Drag, play, ...
+
+play(ctx, [
+    Click(JS(tab("Waveform"))),                                       # switch tabs
+    Drag(JS(tab("Field")), JS(groupbody("Field"; rel=(0.5, 0.9)))),   # split off the bottom
+    Drag(JS(floattitle("Surface")), JS(tab("Phase Portrait"))),       # dock a floating window
+])
+```
 
 ## Demo
 

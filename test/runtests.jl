@@ -184,4 +184,32 @@ end
         @test occursin("bw-collapse-btn", render_html(CollapseButton(collapsed)))
         @test occursin("bw-icon-btn", render_html(IconButton(DOM.span("x"); title="t")))
     end
+
+    @testset "Probes" begin
+        using BonitoWidgets: tab, groupbody, floattitle
+
+        # tab matches the .bw-tab itself; no descendant label/rect lookup.
+        tjs = tab("Field")
+        @test occursin(".bw-tab", tjs)
+        @test occursin("startsWith(\"Field\")", tjs)
+        @test occursin("const labelIn = null", tjs)
+        @test occursin("const rectIn  = null", tjs)
+        @test occursin("0.5 * r.width + 0.0", tjs)   # default centre
+
+        # groupbody finds the group via a child tab, measures the body, and the
+        # fractional point follows `rel` (here: bottom drop zone).
+        gjs = groupbody("Field"; rel=(0.5, 0.9))
+        @test occursin(".bw-ws-group", gjs)
+        @test occursin("const labelIn = \".bw-tab\"", gjs)
+        @test occursin("const rectIn  = \".bw-ws-body\"", gjs)
+        @test occursin("0.9 * r.height", gjs)
+
+        # floattitle defaults to a left-edge grab point (40px offset).
+        fjs = floattitle("Surface")
+        @test occursin(".bw-ws-float", fjs)
+        @test occursin("const labelIn = \".bw-float-title-text\"", fjs)
+        @test occursin("const rectIn  = \".bw-float-title\"", fjs)
+        @test occursin("0.0 * r.width + 40.0", fjs)
+        @test occursin("startsWith(\"Surface\")", fjs)
+    end
 end
