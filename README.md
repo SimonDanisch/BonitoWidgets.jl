@@ -1,5 +1,7 @@
 # BonitoWidgets
 
+![](examples/walkthrough.mp4)
+
 Layout components for [Bonito.jl](https://github.com/SimonDanisch/Bonito.jl):
 tabs, resizable splits, VSCode-style panel groups, collapsibles, and floating
 windows. They work the same with mouse and touch.
@@ -11,10 +13,7 @@ splitting the layout by dragging a tab to a group edge, floating a panel and
 docking it back. Recorded with ElectronCall. Source:
 [`examples/walkthrough.jl`](examples/walkthrough.jl).
 
-<video src="examples/walkthrough.mp4" controls loop muted width="100%"></video>
-
-> If the player doesn't render (e.g. on github.com), see
-> [`examples/walkthrough.mp4`](examples/walkthrough.mp4).
+https://github.com/user-attachments/assets/276c5002-a0ce-40ec-8db5-7cf132ea4038
 
 ## How it works
 
