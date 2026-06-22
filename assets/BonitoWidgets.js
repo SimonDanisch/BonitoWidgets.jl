@@ -124,16 +124,41 @@ export function mountWorkspace(opts) {
     function snapshotScroll() {
         const snap = [];
         wsRoot.querySelectorAll('.bw-ws-panel *').forEach((el) => {
-            if (el.scrollTop || el.scrollLeft) snap.push([el, el.scrollTop, el.scrollLeft]);
+            if (el.scrollTop || el.scrollLeft) {
+                // Record whether the element was pinned to its bottom. A render can
+                // change a panel's viewport height (e.g. a tab bar appears when a
+                // second panel joins the group), which moves the bottom — someone
+                // FOLLOWING the bottom (a chat at the latest message) must stay at
+                // the bottom, not be left frozen at the old pixel offset (now a few
+                // px above it). Anyone scrolled up keeps their exact offset.
+                const atBottom = (el.scrollHeight - el.clientHeight - el.scrollTop) <= 2;
+                snap.push([el, el.scrollTop, el.scrollLeft, atBottom]);
+            }
         });
         return snap;
     }
-    function restoreScroll(snap) {
-        for (const [el, t, l] of snap) {
+    // Restore each saved offset. A just-re-placed panel may not have reflowed to
+    // its full height yet, so writing scrollTop CLAMPS to a transient smaller
+    // max (scrollHeight not recomputed) and lands a few px short. So we read the
+    // value back: if it didn't take, the content hasn't settled — retry on the
+    // next frame until every offset sticks (bounded by `frames`, ~0.3s). This is
+    // what makes the restore pixel-exact under a slow reflow instead of drifting.
+    // Re-assert the saved offsets every frame for the whole budget (don't stop at
+    // the first frame that happens to match). A layout settles in STAGES — the
+    // panel is re-placed, THEN a tab bar appears and shrinks the viewport — so an
+    // early stop can lock in a value from a mid-settle frame (the source of the
+    // ~tab-bar-height drift). Re-anchoring `atBottom` elements to the LIVE bottom
+    // on each pass means the final frames land on the settled geometry. The writes
+    // are no-ops once stable, and a structural render is not something the user is
+    // scrolling through, so re-asserting is safe.
+    function restoreScroll(snap, frames) {
+        for (const [el, t, l, atBottom] of snap) {
             if (!el.isConnected) continue;                 // panel was pruned
-            if (el.scrollTop !== t) el.scrollTop = t;
-            if (el.scrollLeft !== l) el.scrollLeft = l;
+            const want = atBottom ? (el.scrollHeight - el.clientHeight) : t;
+            if (Math.abs(el.scrollTop - want) > 1) el.scrollTop = want;
+            if (Math.abs(el.scrollLeft - l) > 1)   el.scrollLeft = l;
         }
+        if (frames > 0) requestAnimationFrame(() => restoreScroll(snap, frames - 1));
     }
 
     function placePanel(body, id, activeId) {
@@ -346,11 +371,10 @@ export function mountWorkspace(opts) {
         chrome.style.display = 'flex';
         parking.style.display = 'none';
         // Re-placed panels are visibility-toggled (not display:none), so their
-        // scrollHeight is valid again — restore now, then once more after the
-        // browser reflows (a just-shown panel can clamp scrollTop to 0 until its
-        // content height is recomputed).
-        restoreScroll(scrollSnap);
-        requestAnimationFrame(() => restoreScroll(scrollSnap));
+        // scrollHeight is valid again — restore now, and keep retrying over the
+        // next frames until each offset sticks (a just-shown panel can clamp the
+        // write until its content height is recomputed; see restoreScroll).
+        restoreScroll(scrollSnap, 20);
     }
 
     // `local` notifies the layout for persistence but skips the self-render

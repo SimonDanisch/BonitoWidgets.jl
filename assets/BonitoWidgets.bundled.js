@@ -88,20 +88,26 @@ function mountWorkspace(opts) {
     function snapshotScroll() {
         const snap = [];
         wsRoot.querySelectorAll('.bw-ws-panel *').forEach((el)=>{
-            if (el.scrollTop || el.scrollLeft) snap.push([
-                el,
-                el.scrollTop,
-                el.scrollLeft
-            ]);
+            if (el.scrollTop || el.scrollLeft) {
+                const atBottom = el.scrollHeight - el.clientHeight - el.scrollTop <= 2;
+                snap.push([
+                    el,
+                    el.scrollTop,
+                    el.scrollLeft,
+                    atBottom
+                ]);
+            }
         });
         return snap;
     }
-    function restoreScroll(snap) {
-        for (const [el, t, l] of snap){
+    function restoreScroll(snap, frames) {
+        for (const [el, t, l, atBottom] of snap){
             if (!el.isConnected) continue;
-            if (el.scrollTop !== t) el.scrollTop = t;
-            if (el.scrollLeft !== l) el.scrollLeft = l;
+            const want = atBottom ? el.scrollHeight - el.clientHeight : t;
+            if (Math.abs(el.scrollTop - want) > 1) el.scrollTop = want;
+            if (Math.abs(el.scrollLeft - l) > 1) el.scrollLeft = l;
         }
+        if (frames > 0) requestAnimationFrame(()=>restoreScroll(snap, frames - 1));
     }
     function placePanel(body, id, activeId) {
         const p = panelNode(id);
@@ -307,8 +313,7 @@ function mountWorkspace(opts) {
         if (rootEl) rootEl.style.flex = '1 1 0';
         chrome.style.display = 'flex';
         parking.style.display = 'none';
-        restoreScroll(scrollSnap);
-        requestAnimationFrame(()=>restoreScroll(scrollSnap));
+        restoreScroll(scrollSnap, 20);
     }
     function notifyLayout(local) {
         if (local) suppressRender = true;
