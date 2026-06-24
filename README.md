@@ -1,7 +1,5 @@
 # BonitoWidgets
 
-![](examples/walkthrough.mp4)
-
 Layout components for [Bonito.jl](https://github.com/SimonDanisch/Bonito.jl):
 tabs, resizable splits, VSCode-style panel groups, collapsibles, and floating
 windows. They work the same with mouse and touch.
