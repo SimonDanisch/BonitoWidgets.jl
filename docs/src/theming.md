@@ -6,7 +6,6 @@ widget through its `style=Styles(...)` argument.
 
 ```@setup theme
 using Bonito, BonitoWidgets
-Bonito.Page()
 pl(label, color; min_height="60px") = DOM.div(label;
     style=Styles(
         "display" => "flex", "align-items" => "center", "justify-content" => "center",

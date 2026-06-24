@@ -1,5 +1,9 @@
 # BonitoWidgets
 
+[![Docs (dev)](https://img.shields.io/badge/docs-dev-blue.svg)](https://widgets.bonito.sh/dev)
+[![CI](https://github.com/SimonDanisch/BonitoWidgets.jl/actions/workflows/ci.yml/badge.svg)](https://github.com/SimonDanisch/BonitoWidgets.jl/actions/workflows/ci.yml)
+[![Docs build](https://github.com/SimonDanisch/BonitoWidgets.jl/actions/workflows/docs.yml/badge.svg)](https://github.com/SimonDanisch/BonitoWidgets.jl/actions/workflows/docs.yml)
+
 Layout components for [Bonito.jl](https://github.com/SimonDanisch/Bonito.jl):
 tabs, resizable splits, VSCode-style panel groups, collapsibles, and floating
 windows. They work the same with mouse and touch.

@@ -1,9 +1,3 @@
-# BonitoWidgets
-
-Layout components for [Bonito.jl](https://github.com/SimonDanisch/Bonito.jl):
-tabs, resizable splits, VSCode-style panel groups, collapsibles, and floating
-windows. They work the same with mouse and touch.
-
 The widgets on these pages are real Bonito apps exported into the HTML, so you
 can click tabs, drag gutters, and tear panels off. The video shows them driven
 from code in a real Electron window (see [Testing layouts](@ref)):
@@ -14,7 +8,6 @@ from code in a real Electron window (see [Testing layouts](@ref)):
 
 ```@setup 1
 using Bonito, BonitoWidgets
-Bonito.Page()
 
 # A coloured placeholder used throughout the docs to stand in for real content
 # (an editor, a plot, a log view, ...).

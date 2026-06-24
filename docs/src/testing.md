@@ -1,6 +1,6 @@
 # Testing layouts
 
-The [walkthrough video](@ref BonitoWidgets) on the home page is a real Electron
+The [walkthrough video](index.md) on the home page is a real Electron
 window driven from code: steering plots, splitting the layout by dragging a tab
 to a group edge, floating a panel and docking it back. It was recorded with
 [ElectronCall](https://github.com/SimonDanisch/ElectronCall.jl). Source:
