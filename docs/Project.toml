@@ -5,4 +5,10 @@ Deno_jll = "04572ae6-984a-583e-9378-9577a1c2574d"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 
 [compat]
+Bonito = "5"
 Documenter = "1"
+
+# Build the docs against the in-tree BonitoWidgets; Bonito (>= 5, which ships the
+# DocumenterBonito writer) and everything else come from the registry.
+[sources]
+BonitoWidgets = { path = ".." }
