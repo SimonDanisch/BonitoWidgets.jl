@@ -1,7 +1,7 @@
 name = "BonitoWidgets"
 uuid = "62a4b9e4-7ee6-4bfa-b661-80bcb0a47665"
 authors = ["Simon Danisch <sdanisch@protonmail.com>"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 Bonito = "824d6782-a2ef-11e9-3a09-e5662e0c26f8"
