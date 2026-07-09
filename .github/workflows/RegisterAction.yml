@@ -5,6 +5,11 @@ on:
       version:
         description: Version to register or component to bump
         required: true
+# RegisterAction commits the version bump to Project.toml itself, so the
+# workflow token needs write access — newer repos default GITHUB_TOKEN to
+# read-only ("Resource not accessible by integration" without this).
+permissions:
+  contents: write
 jobs:
   register:
     runs-on: ubuntu-latest
