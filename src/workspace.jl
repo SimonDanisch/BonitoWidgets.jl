@@ -58,8 +58,11 @@ states:
 - Dragging a tab onto another group's tab strip (or its center) **moves** the
   panel into that group; a group dissolves when its last tab leaves.
 - Dragging a tab **out of the docked area** (past the chrome) tears it off into
-  a **floating window**. Dragging a floating window's title bar back over a
-  group **docks** it again (as a tab or, at an edge, a split).
+  a **floating window**.
+- A floating window's title bar only **moves** it — dragging one across the
+  workspace never docks it. Docking is the **dock button** in its title bar:
+  click it to send the panel back to the group it was torn out of, or drag from
+  it to aim at any group or edge (same preview a tab drag gets).
 - Gutters between groups drag-resize; floating windows drag-move and
   corner-resize.
 
@@ -90,7 +93,9 @@ Dict(
 
 - `<node>` is either a tab group `Dict("type"=>"tabs", "panels"=>[ids...], "active"=>id)`
   or a split `Dict("type"=>"row"|"column", "children"=>[<node>...], "fractions"=>[...])`.
-- `<float>` is `Dict("panel"=>id, "x"=>, "y"=>, "width"=>, "height"=>)`.
+- `<float>` is `Dict("panel"=>id, "x"=>, "y"=>, "width"=>, "height"=>)`. Tearing a
+  tab out also records `"home"=>id`, a panel left behind in the source group, so
+  the dock button can send it back there; it is optional and safe to omit.
 
 Build trees with the helpers:
 
