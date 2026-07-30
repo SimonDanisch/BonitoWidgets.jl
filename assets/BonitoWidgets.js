@@ -297,7 +297,7 @@ export function mountWorkspace(opts) {
         const dockBtn = document.createElement('button');
         dockBtn.className = 'bw-icon-btn bw-float-dock';
         dockBtn.innerHTML = ICON_DOCK;
-        dockBtn.title = 'Dock';
+        dockBtn.title = 'Dock (drag to choose where)';
         const closeBtn = document.createElement('button');
         closeBtn.className = 'bw-icon-btn bw-float-close';
         closeBtn.innerHTML = ICON_CLOSE;
@@ -325,13 +325,13 @@ export function mountWorkspace(opts) {
             p.style.pointerEvents = 'auto';
         }
 
-        dockBtn.addEventListener('click', (e) => { e.stopPropagation(); dockFloat(f.panel); });
         closeBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (closableOf(f.panel)) closedObs.notify(f.panel);
             else dockFloat(f.panel);
         });
         wireFloatDrag(win, titleBar, f);
+        wireFloatDock(dockBtn, f);
         wireFloatResize(win, resize, f);
         return win;
     }
@@ -523,7 +523,10 @@ export function mountWorkspace(opts) {
             const wr = wsRoot.getBoundingClientRect();
             const x = Math.max(0, Math.round(action.clientX - wr.left - 40));
             const y = Math.max(0, Math.round(action.clientY - wr.top - 16));
-            layout.floating.push({ panel: id, x, y, width: 480, height: 320 });
+            // Remember a panel left behind so the dock button can find this group
+            // again — node references would not survive the next layout clone.
+            layout.floating.push({ panel: id, x, y, width: 480, height: 320,
+                                   home: src.panels[0] || null });
         } else {
             dockInto(id, action);
         }
@@ -576,9 +579,19 @@ export function mountWorkspace(opts) {
     const clampFloatY = (y) => Math.max(0, Math.min(wsRoot.clientHeight - 32, y));
 
     function dockFloat(id, action) {
+        const entry = layout.floating.find(f => f.panel === id);
         layout.floating = layout.floating.filter(f => f.panel !== id);
-        if (action) dockInto(id, action);
-        else { const leaf = firstLeafNode(); leaf.panels.push(id); leaf.active = id; }
+        if (action) {
+            dockInto(id, action);
+        } else {
+            // No aim given: go back to the group this was torn out of, tracked by
+            // a panel that stayed behind. Falls back to the first group when that
+            // panel is gone, or when the float came from Julia's `float_panel!`.
+            const home = entry && entry.home ? leafOf(layout.root, entry.home) : null;
+            const leaf = home || firstLeafNode();
+            leaf.panels.push(id);
+            leaf.active = id;
+        }
         layout.root = normalize(layout.root) || { type: 'tabs', panels: [id], active: id };
         notifyLayout();
     }
@@ -588,6 +601,9 @@ export function mountWorkspace(opts) {
         return node;
     }
 
+    // Moving a window only moves it. Docking is a separate gesture on the dock
+    // button, so dragging a window across the workspace can never swallow it
+    // into a group by accident.
     function wireFloatDrag(win, titleBar, f) {
         titleBar.addEventListener('pointerdown', (ev) => {
             if (ev.target.closest('.bw-float-close, .bw-float-dock')) return;
@@ -596,31 +612,69 @@ export function mountWorkspace(opts) {
             const rect = wsRect();
             const offX = ev.clientX - (f.x + rect.left);
             const offY = ev.clientY - (f.y + rect.top);
-            let lastX = f.x, lastY = f.y, action = null;
+            let lastX = f.x, lastY = f.y;
             const onMove = (e2) => {
                 const r = wsRect();
                 lastX = clampFloatX(e2.clientX - r.left - offX);
                 lastY = clampFloatY(e2.clientY - r.top - offY);
                 win.style.left = lastX + 'px';
                 win.style.top = lastY + 'px';
-                // Docking preview only when over a strip or an edge zone.
-                const a = dropActionAt(e2, false);
-                action = (a && a.kind !== 'center') ? a : null;
-                showAction(action);
             };
             const onUp = () => {
                 window.removeEventListener('pointermove', onMove);
                 window.removeEventListener('pointerup', onUp);
-                overlay.style.display = 'none';
-                clearMark();
                 win.classList.remove('bw-float-active');
-                if (action) { dockFloat(f.panel, action); return; }
                 f.x = Math.round(lastX); f.y = Math.round(lastY);
                 notifyLayout();
             };
             window.addEventListener('pointermove', onMove);
             window.addEventListener('pointerup', onUp);
             ev.preventDefault();
+        });
+    }
+
+    // Click the dock button to send the panel home; drag from it to aim at a
+    // group or an edge, with the same preview a tab drag gets.
+    function wireFloatDock(dockBtn, f) {
+        dockBtn.addEventListener('pointerdown', (ev) => {
+            if (ev.button !== undefined && ev.button !== 0) return;
+            ev.stopPropagation();
+            ev.preventDefault();
+            const startX = ev.clientX, startY = ev.clientY;
+            let engaged = false, ghost = null, action = null;
+            const onMove = (e2) => {
+                if (!engaged) {
+                    if (Math.hypot(e2.clientX - startX, e2.clientY - startY) < 6) return;
+                    engaged = true;
+                    dockBtn.classList.add('bw-active');
+                    ghost = document.createElement('div');
+                    ghost.className = 'bw-drag-ghost';
+                    ghost.textContent = labelOf(f.panel);
+                    document.body.appendChild(ghost);
+                }
+                ghost.style.left = (e2.clientX + 10) + 'px';
+                ghost.style.top = (e2.clientY + 14) + 'px';
+                action = dropActionAt(e2, false);
+                showAction(action);
+            };
+            const finish = (apply) => {
+                window.removeEventListener('pointermove', onMove);
+                window.removeEventListener('pointerup', onUp);
+                window.removeEventListener('pointercancel', onCancel);
+                dockBtn.classList.remove('bw-active');
+                if (ghost) ghost.remove();
+                overlay.style.display = 'none';
+                clearMark();
+                if (!apply) return;
+                // Released without aiming anywhere: treat it as a plain click.
+                if (!engaged) dockFloat(f.panel);
+                else if (action) dockFloat(f.panel, action);
+            };
+            const onUp = () => finish(true);
+            const onCancel = () => finish(false);
+            window.addEventListener('pointermove', onMove);
+            window.addEventListener('pointerup', onUp);
+            window.addEventListener('pointercancel', onCancel);
         });
     }
 
