@@ -1,0 +1,15 @@
+Èk”Ù$6044194d-572a-49e0-a137-11fce57df98e¤rootÇ2Ç/j“Ù$6044194d-572a-49e0-a137-11fce57df98e¤rootÔÈ³’È0k”Ù$6044194d-572a-49e0-a137-11fce57df98e¤rootÇ2Ç/j“Ù$6044194d-572a-49e0-a137-11fce57df98e¤rootÔÇÌ‚§payloadÇµf“€Ùcif (typeof Bonito !== 'undefined' && Bonito.set_no_connection) {
+    Bonito.set_no_connection();
+}
+ÙL/home/runner/.julia/packages/Bonito/XhGx7/src/connection/no-connection.jl:13¨msg_type¡2Èzk”Ù$6044194d-572a-49e0-a137-11fce57df98e¤rootÈ-È)j“Ù$6044194d-572a-49e0-a137-11fce57df98e¤rootÇú“ÇXe’¢46ƒ£log‚¥label£Log¨closableÃ¤plot‚¥label¤Plot¨closableÃ¦editor‚¥label¦Editor¨closableÃÇ“e’¢44‚¤rootƒ©fractionsØffffffæ?333333Ó?¤type£row¨children’ƒ¦active¦editor¦panels’¦editor¤plot¤type¤tabsƒ¦active£log¦panels‘£log¤type¤tabs¨floatingÇe’¢47 È‚§payloadÈf“ƒ´13993316936514870577Çh¢46³9947712075064749255Çh¢44´14637183843700733694Çh¢47Úb((root) => {
+    import('./BonitoWidgets.bundled11494338994228967036.js').then(lib => lib.mountWorkspace({
+        chrome: document.querySelector('[data-jscall-id="61"]'),
+        parking: document.querySelector('[data-jscall-id="62"]'),
+        floatlayer: document.querySelector('[data-jscall-id="69"]'),
+        layout: __lookup_interpolated('9947712075064749255'),
+        meta: __lookup_interpolated('13993316936514870577'),
+        closed: __lookup_interpolated('14637183843700733694'),
+        minFraction: 0.1,
+        hideSingleTab: false,
+    }));
+})(document.querySelector('[data-jscall-id="60"]'));ÙH/home/runner/work/BonitoWidgets.jl/BonitoWidgets.jl/src/workspace.jl:466¨msg_type¡2
