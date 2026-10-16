@@ -101,13 +101,25 @@ function mountWorkspace(opts) {
         return snap;
     }
     function restoreScroll(snap, frames) {
-        for (const [el, t, l, atBottom] of snap){
+        const kept = [];
+        for (const [el, t, l, atBottom, left] of snap){
             if (!el.isConnected) continue;
+            if (left && (Math.abs(el.scrollTop - left[0]) > 1 || Math.abs(el.scrollLeft - left[1]) > 1)) continue;
             const want = atBottom ? el.scrollHeight - el.clientHeight : t;
             if (Math.abs(el.scrollTop - want) > 1) el.scrollTop = want;
             if (Math.abs(el.scrollLeft - l) > 1) el.scrollLeft = l;
+            kept.push([
+                el,
+                t,
+                l,
+                atBottom,
+                [
+                    el.scrollTop,
+                    el.scrollLeft
+                ]
+            ]);
         }
-        if (frames > 0) requestAnimationFrame(()=>restoreScroll(snap, frames - 1));
+        if (frames > 0 && kept.length) requestAnimationFrame(()=>restoreScroll(kept, frames - 1));
     }
     function placePanel(body, id, activeId) {
         const p = panelNode(id);
