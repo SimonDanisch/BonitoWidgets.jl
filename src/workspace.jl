@@ -32,12 +32,12 @@ end
 function Bonito.jsrender(session::Session, pv::PanelView)
     node = DOM.div(pv.panel.content;
         class="bw-ws-panel", dataPanelId=pv.panel.id,
+        dataBwVisible="false", var"aria-hidden"="true",
         style=Styles(
             "position" => "absolute", "inset" => "0",
             "display" => "flex", "flex-direction" => "column",
             "min-width" => "0", "min-height" => "0",
             "overflow" => "hidden", "box-sizing" => "border-box",
-            "visibility" => "hidden",
         ))
     return Bonito.jsrender(session, node)
 end
@@ -346,6 +346,7 @@ end
 function _activate!(node, id)
     if node["type"] == "tabs"
         if id in String.(node["panels"])
+            node["active"] == id && return false
             node["active"] = id
             return true
         end
@@ -415,7 +416,7 @@ function Bonito.jsrender(session::Session, ws::Workspace)
     # re-renders them. Panels added later are shipped in via `dom_in_js` and
     # appended to the pool; removed panels are pruned by the wire's render().
     parking = DOM.div(
-        (PanelView(p) for p in ws.panels[])...;
+        (PanelView(p) for p in ws.panels[]);
         class="bw-ws-parking",
         style=Styles("flex" => "1 1 0", "position" => "relative",
                      "min-width" => "0", "min-height" => "0"))
@@ -484,6 +485,11 @@ function Bonito.jsrender(session::Session, ws::Workspace)
 end
 
 const WORKSPACE_STYLES = Styles(
+    CSS(".bw-ws-panel[data-bw-visible=false]",
+        "visibility" => "hidden", "pointer-events" => "none"),
+    CSS("@supports (content-visibility: hidden)",
+        CSS(".bw-ws-panel[data-bw-visible=false]",
+            "visibility" => "visible", "content-visibility" => "hidden")),
     CSS(".bw-ws-chrome > *", "min-width" => "0", "min-height" => "0"),
     CSS(".bw-ws-group",
         "display" => "flex", "flex-direction" => "column",

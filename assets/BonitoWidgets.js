@@ -91,8 +91,25 @@ export function mountWorkspace(opts) {
     // every panel through the display:none pool, which collapses scrollable
     // content (chat, editors) to height 0 and resets its scrollTop. An
     // in-place visibility toggle preserves scroll + is far cheaper.
+    function setPanelVisible(panel, visible) {
+        const was = panel.dataset.bwVisible === 'true';
+        if (was === visible) return;
+        // Snapshot before hiding/parking; restore only after the panel has
+        // its live parent and the visibility styles have been updated.
+        if (!visible) panel.dispatchEvent(new CustomEvent('bw-panel-visibility', {detail:false}));
+        panel.dataset.bwVisible = String(visible);
+        panel.setAttribute('aria-hidden', String(!visible));
+        if (visible) panel.dispatchEvent(new CustomEvent('bw-panel-visibility', {detail:true}));
+    }
+
     function setActiveLocal(leaf, id) {
         leaf.active = id;
+        // Narrow mode renders a merged tab strip with a synthetic leaf. Keep
+        // the actual layout in sync so server-side activation sees this click.
+        if (narrow.matches) {
+            const actual = leafOf(layout.root, id);
+            if (actual) actual.active = id;
+        }
         for (const g of chrome.querySelectorAll('.bw-ws-group')) {
             if (g._node !== leaf) continue;
             for (const b of g._strip.children) b.classList.toggle('bw-active', b._panelId === id);
@@ -100,16 +117,69 @@ export function mountWorkspace(opts) {
                 const node = panelNode(pid);
                 if (node && g._body.contains(node)) {
                     const on = pid === id;
-                    node.style.visibility = on ? 'visible' : 'hidden';
-                    node.style.pointerEvents = on ? 'auto' : 'none';
+                    setPanelVisible(node, on);
                 }
             });
             return;
         }
     }
 
+    // A server-side activation changes visibility, just like a local tab click.
+    // Keep the live tree objects: group._node and drag handlers refer to them.
+    function sameStructure(a, b) {
+        if (a.type !== b.type) return false;
+        if (isLeaf(a)) return a.panels.length === b.panels.length &&
+            a.panels.every((id, i) => id === b.panels[i]);
+        return a.children.length === b.children.length &&
+            a.fractions.every((f, i) => f === b.fractions[i]) &&
+            a.children.every((c, i) => sameStructure(c, b.children[i]));
+    }
+    function updateActive(node, next) {
+        if (isLeaf(node)) {
+            if (node.active !== next.active) {
+                if (narrow.matches) node.active = next.active;
+                else setActiveLocal(node, next.active);
+            }
+        } else node.children.forEach((c, i) => updateActive(c, next.children[i]));
+    }
+
+    function tabClose(id) {
+        const close = document.createElement('button');
+        close.className = 'bw-tab-close';
+        close.innerHTML = ICON_CLOSE;
+        close.title = 'Close';
+        close.addEventListener('pointerdown', (e) => e.stopPropagation());
+        close.addEventListener('click', (e) => { e.stopPropagation(); closedObs.notify(id); });
+        return close;
+    }
+
+    // Labels and close affordances belong to the chrome. Rebuilding panels for
+    // a label update destroys their scroll positions and forces a full layout.
+    function updateMeta() {
+        for (const g of chrome.querySelectorAll('.bw-ws-group')) {
+            if (g.closest('.bw-ws') !== wsRoot) continue;
+            for (const tab of g._strip.children) {
+                const id = tab._panelId;
+                const text = tab.querySelector('.bw-tab-label');
+                const label = labelOf(id);
+                if (text.textContent !== label) text.textContent = label;
+                const close = tab.querySelector('.bw-tab-close');
+                if (closableOf(id)) { if (!close) tab.appendChild(tabClose(id)); }
+                else if (close) close.remove();
+            }
+        }
+        for (const win of floatlayer.children) {
+            const id = win._float.panel;
+            const text = win.querySelector('.bw-float-title-text');
+            const label = labelOf(id);
+            if (text.textContent !== label) text.textContent = label;
+            win.querySelector('.bw-float-close').title = closableOf(id) ? 'Close' : 'Dock';
+        }
+    }
+
     function parkAll() {
         wsRoot.querySelectorAll('.bw-ws-panel').forEach(p => {
+            setPanelVisible(p, false);
             if (p.parentNode !== parking) parking.appendChild(p);
         });
     }
@@ -172,8 +242,7 @@ export function mountWorkspace(opts) {
         if (!p) return;
         body.appendChild(p);
         const on = id === activeId;
-        p.style.visibility = on ? 'visible' : 'hidden';
-        p.style.pointerEvents = on ? 'auto' : 'none';
+        setPanelVisible(p, on);
     }
 
     function buildLeaf(leaf, bare) {
@@ -203,15 +272,7 @@ export function mountWorkspace(opts) {
             text.className = 'bw-tab-label';
             text.textContent = labelOf(id);
             btn.appendChild(text);
-            if (closableOf(id)) {
-                const close = document.createElement('button');
-                close.className = 'bw-tab-close';
-                close.innerHTML = ICON_CLOSE;
-                close.title = 'Close';
-                close.addEventListener('pointerdown', (e) => e.stopPropagation());
-                close.addEventListener('click', (e) => { e.stopPropagation(); closedObs.notify(id); });
-                btn.appendChild(close);
-            }
+            if (closableOf(id)) btn.appendChild(tabClose(id));
             btn.addEventListener('click', () => {
                 if (suppressClick) { suppressClick = false; return; }
                 if (leaf.active === id) return;
@@ -327,8 +388,7 @@ export function mountWorkspace(opts) {
         const p = panelNode(f.panel);
         if (p) {
             body.appendChild(p);
-            p.style.visibility = 'visible';
-            p.style.pointerEvents = 'auto';
+            setPanelVisible(p, true);
         }
 
         closeBtn.addEventListener('click', (e) => {
@@ -383,12 +443,14 @@ export function mountWorkspace(opts) {
         restoreScroll(scrollSnap, 20);
     }
 
-    // `local` notifies the layout for persistence but skips the self-render
-    // (the caller already updated the DOM in place — e.g. a tab switch).
+    // Gestures mutate `layout` before notifying, so their structural changes
+    // must render here. The observer cannot compare against the previous tree
+    // after that mutation. `local` callers already updated the DOM in place.
     function notifyLayout(local) {
-        if (local) suppressRender = true;
-        layoutObs.notify(clone(layout));
-        suppressRender = false;
+        if (!local) render();
+        suppressRender = true;
+        try { layoutObs.notify(clone(layout)); }
+        finally { suppressRender = false; }
     }
 
     let renderQueued = false;
@@ -406,8 +468,21 @@ export function mountWorkspace(opts) {
     // live group `_node` references point into it. Re-cloning here would
     // orphan those references — a later drag would target a stale leaf that
     // `replaceNode` can't find, silently dropping the panel.
-    layoutObs.on((v) => { if (suppressRender) return; layout = clone(v); render(); });
-    metaObs.on((m) => { meta = m || {}; render(); });
+    layoutObs.on((v) => {
+        if (suppressRender) return;
+        if (sameStructure(layout.root, v.root) &&
+            JSON.stringify(layout.floating) === JSON.stringify(v.floating)) {
+            updateActive(layout.root, v.root);
+            if (narrow.matches) {
+                const group = chrome.firstElementChild;
+                if (group) setActiveLocal(group._node, firstActive());
+            }
+            return;
+        }
+        layout = clone(v);
+        render();
+    });
+    metaObs.on((m) => { meta = m || {}; updateMeta(); });
     const onNarrow = () => render();
     if (narrow.addEventListener) narrow.addEventListener('change', onNarrow);
     else narrow.addListener(onNarrow);

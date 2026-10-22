@@ -49,7 +49,7 @@ function Bonito.jsrender(session::Session, t::Tabs)
         if t.closable
             push!(children, DOM.span(icon_close(); class="bw-tab-close", title="Close"))
         end
-        DOM.button(children...; class=(i == init ? "bw-tab bw-active" : "bw-tab"))
+        DOM.button(children; class=(i == init ? "bw-tab bw-active" : "bw-tab"))
     end
     tab_bar = DOM.div(
         tab_buttons...;

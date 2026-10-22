@@ -70,7 +70,7 @@ function split_pane_header(title::String, collapsible::Bool)
         push!(items, DOM.button(DOM.span(icon_chevron_down(); class="bw-split-chevron");
                                 class="bw-split-collapse", title="Collapse / expand"))
     end
-    return DOM.div(items...; class="bw-split-header")
+    return DOM.div(items; class="bw-split-header")
 end
 
 function Bonito.jsrender(session::Session, sc::SplitContainer)
@@ -101,7 +101,7 @@ function Bonito.jsrender(session::Session, sc::SplitContainer)
         children = Any[]
         isnothing(sc.titles) || push!(children, split_pane_header(sc.titles[title_idx], sc.collapsible))
         push!(children, DOM.div(content; class="bw-split-body", style=body_style))
-        return DOM.div(children...; class="bw-split-pane $class", style=pane_style(flex))
+        return DOM.div(children; class="bw-split-pane $class", style=pane_style(flex))
     end
     pane_a = pane(sc.a, 1, "bw-split-a", flex_a)
     pane_b = pane(sc.b, 2, "bw-split-b", flex_b)

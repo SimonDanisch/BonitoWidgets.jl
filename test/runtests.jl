@@ -145,6 +145,21 @@ end
         add_panel!(ws, Panel("e", DOM.div("e"); label=title))
         title[] = "Renamed"
         @test ws.meta[]["e"]["label"] == "Renamed"
+
+        # Activating the current tab must not notify a new layout. A redundant
+        # notification used to rebuild the entire live workspace on navigation.
+        changes = Ref(0)
+        on(ws.layout) do _
+            changes[] += 1
+        end
+        activate_panel!(ws, "e")
+        @test changes[] == 0
+        activate_panel!(ws, "A")
+        @test changes[] == 1
+        @test ws.layout[]["root"]["active"] == "A"
+        activate_panel!(ws, "A")
+        activate_panel!(ws, "absent")
+        @test changes[] == 1
     end
 
     @testset "Collapsible" begin

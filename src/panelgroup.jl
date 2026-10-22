@@ -90,7 +90,7 @@ function Bonito.jsrender(session::Session, g::PanelGroup)
                    class=(i == init_active ? "bw-tab bw-active" : "bw-tab"))
         for i in 1:n
     ]
-    tabs_strip = DOM.div(tab_buttons...; class="bw-group-tabs")
+    tabs_strip = DOM.div(tab_buttons; class="bw-group-tabs")
 
     actions = Any[]
     if g.mode_buttons
@@ -106,7 +106,7 @@ function Bonito.jsrender(session::Session, g::PanelGroup)
         push!(actions, DOM.button(DOM.span(icon_chevron_down(); class="bw-group-chevron");
                                   class="bw-icon-btn bw-group-collapse", title="Collapse / expand"))
     end
-    bar = DOM.div(tabs_strip, DOM.div(actions...; class="bw-group-actions");
+    bar = DOM.div(tabs_strip, DOM.div(actions; class="bw-group-actions");
                   class="bw-group-bar")
 
     # Panels keep one set of DOM nodes; mode switches only rewrite inline
@@ -143,7 +143,7 @@ function Bonito.jsrender(session::Session, g::PanelGroup)
         push!(body_children, gutters[i - 1], panels[i])
     end
     push!(body_children, overlay)
-    body = DOM.div(body_children...;
+    body = DOM.div(body_children;
         class="bw-group-body",
         style=Styles(
             "position" => "relative",
