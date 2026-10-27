@@ -190,6 +190,8 @@ end
         base = render_html(DOM.div(Theme()))
         @test occursin("prefers-color-scheme: dark", base)
         @test occursin("pointer: coarse", base)
+        # Every palette variable exists in both schemes.
+        @test first.(BonitoWidgets.LIGHT_PALETTE) == first.(BonitoWidgets.DARK_PALETTE)
     end
 
     @testset "Widget buttons" begin
@@ -198,6 +200,53 @@ end
         collapsed = Observable(false)
         @test occursin("bw-collapse-btn", render_html(CollapseButton(collapsed)))
         @test occursin("bw-icon-btn", render_html(IconButton(DOM.span("x"); title="t")))
+    end
+
+    @testset "Menu" begin
+        m = Menu([DOM.button("Rename"; class="bw-menu-item")]; title="Actions",
+                 class=Observable("extra"), trigger_class="bw-btn-sm custom")
+        @test m.open[] == false
+        @test m.close_on_pick
+        html = render_html(m)
+        @test occursin("class=\"bw-menu extra\"", html)
+        @test occursin("class=\"bw-btn bw-menu-trigger bw-btn-sm custom\"", html)
+        @test occursin("class=\"bw-menu-list\"", html)
+        @test occursin("Rename", html)
+        # The trigger is a bw-btn, so the button styles come along.
+        @test occursin(".bw-btn-secondary", html)
+        # An open observable passed in is the menu's state, not a copy.
+        open = Observable(true)
+        @test Menu(DOM.div(); open=open, close_on_pick=false).open === open
+    end
+
+    @testset "Modal" begin
+        open = Observable(false)
+        built = Ref(0)
+        md = Modal(open; title="Add account") do
+            built[] += 1
+            DOM.div("the form"; class="probe-form")
+        end
+        html = render_html(md)
+        @test occursin("class=\"bw-modal-overlay\"", html)
+        @test occursin("Add account", html)
+        # The body is built on open, not before.
+        @test built[] == 0
+        @test !occursin("probe-form", html)
+        open[] = true
+        @test built[] == 1                     # the live render built it
+        @test occursin("probe-form", render_html(md))
+        open[] = false
+        open[] = true                          # every open builds it anew
+        @test built[] == 4                     # 2 live renders, one more open each
+    end
+
+    @testset "Button styles" begin
+        html = render_html(DOM.div(BUTTON_STYLES, DOM.button("Save"; class="bw-btn")))
+        for cls in (".bw-btn-secondary", ".bw-btn-ghost", ".bw-btn-danger", ".bw-btn-sm")
+            @test occursin(cls, html)
+        end
+        # Colors come from the theme, so a Theme override restyles buttons.
+        @test occursin("var(--bw-accent)", html)
     end
 
     @testset "Probes" begin
