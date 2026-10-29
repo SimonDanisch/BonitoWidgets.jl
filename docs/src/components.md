@@ -168,6 +168,30 @@ Menu
 Modal
 ```
 
+## InfiniteList
+
+An endless list: rows load in chunks as they scroll into reach, and rows far
+out of view leave the page, so a list of any length stays light. The source is
+anything with a [`BonitoWidgets.items`](@ref) method (vectors have one); rows
+render through [`BonitoWidgets.row`](@ref) to static HTML. Its engine,
+`RowBlock` in `assets/row_block.js`, is the one BonitoAgents' chat transcript
+scrolls on.
+
+```@example comp
+App() do
+    list = InfiniteList(["Row $i" for i in 1:100_000]; class = "demo-list")
+    DOM.div(list; style = Styles("height" => "240px", "display" => "flex",
+                                 "flex-direction" => "column",
+                                 "border" => "1px solid var(--bw-border)"))
+end
+```
+
+```@docs; canonical=false
+InfiniteList
+BonitoWidgets.items
+BonitoWidgets.row
+```
+
 ## Small widgets
 
 The bar widgets, exported for custom toolbars:

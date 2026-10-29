@@ -11,6 +11,11 @@ function render_html(component)
     return sprint(io -> show(io, MIME"text/html"(), dom))
 end
 
+# A InfiniteList source of its own: the squares of the positions.
+struct Squares end
+BonitoWidgets.items(::Squares, r::UnitRange{Int}) = collect(r) .^ 2
+BonitoWidgets.row(::Squares, x) = DOM.li(string(x); class = "sq")
+
 @testset "BonitoWidgets" begin
     @testset "string_bridge" begin
         dir = Observable(:row)
@@ -238,6 +243,38 @@ end
         open[] = false
         open[] = true                          # every open builds it anew
         @test built[] == 4                     # 2 live renders, one more open each
+    end
+
+    @testset "InfiniteList" begin
+        using BonitoWidgets: items, row, handle_request!
+        @test items(1:10 |> collect, 3:5) == [3, 4, 5]
+        @test items(collect(1:10), 9:20) == [9, 10]           # fewer at the end
+        @test isempty(items(collect(1:10), 11:20))
+        @test_throws ArgumentError InfiniteList(1:10; chunk = 50, window = 50)
+
+        list = InfiniteList(["a<b", "c"]; chunk = 2, window = 8, class = "my-list")
+        @test occursin("class=\"bw-infinite-list my-list\"", render_html(list))
+        # A request for 0-based positions 0..1 answers with both rows as HTML;
+        # a string row is escaped, not markup.
+        handle_request!(list, Dict{String,Any}("type" => "request", "epoch" => 3, "req" => 7,
+                                               "start" => 0, "stop" => 1))
+        reply = list.to_js[]
+        @test (reply["type"], reply["epoch"], reply["req"], reply["start"]) == ("rows", 3, 7, 0)
+        @test reply["rows"] == ["<div>a&#60;b</div>", "<div>c</div>"]
+        # Past the end: fewer rows than asked for is how the browser sees the end.
+        handle_request!(list, Dict{String,Any}("type" => "request", "epoch" => 3, "req" => 8,
+                                               "start" => 1, "stop" => 4))
+        @test list.to_js[]["rows"] == ["<div>c</div>"]
+        # A new source starts the list over.
+        list.source[] = ["x"]
+        @test list.to_js[]["type"] == "reset"
+        @test_throws ErrorException handle_request!(list, Dict{String,Any}("type" => "bogus"))
+
+        # A source of your own: `items` and `row` methods (top of this file).
+        sq = InfiniteList(Squares())
+        handle_request!(sq, Dict{String,Any}("type" => "request", "epoch" => 0, "req" => 1,
+                                             "start" => 2, "stop" => 3))
+        @test sq.to_js[]["rows"] == ["<li class=\"sq\">9</li>", "<li class=\"sq\">16</li>"]
     end
 
     @testset "Button styles" begin

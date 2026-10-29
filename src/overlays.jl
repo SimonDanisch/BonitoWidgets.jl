@@ -57,10 +57,12 @@ function Bonito.jsrender(session::Session, m::Menu)
     trigger = DOM.button(m.label; type = "button", title = m.title,
                          class = join_class(session, "bw-btn bw-menu-trigger", m.trigger_class))
     list = DOM.div(m.items; class = "bw-menu-list")
-    root = DOM.div(THEME_STYLES, BUTTON_STYLES, MENU_STYLES, trigger, list;
+    # The menu itself is the trigger's parent: a script can't name the node it
+    # sits in.
+    wire = js"""$(OVERLAYS_LIB).then(lib => new lib.Menu($(trigger).parentElement, $(trigger),
+        $(list), $(m.open), $(m.close_on_pick)))"""
+    root = DOM.div(THEME_STYLES, BUTTON_STYLES, MENU_STYLES, trigger, list, wire;
                    class = join_class(session, "bw-menu", m.class))
-    Bonito.onload(session, root, js"""root => $(OVERLAYS_LIB).then(lib =>
-        new lib.Menu(root, $(trigger), $(list), $(m.open), $(m.close_on_pick)))""")
     return Bonito.jsrender(session, root)
 end
 
@@ -135,14 +137,14 @@ function Bonito.jsrender(session::Session, m::Modal)
     body = map(session, m.open) do open
         DOM.div(open ? m.content() : nothing; class = "bw-modal-body")
     end
-    overlay = DOM.div(THEME_STYLES, BUTTON_STYLES, MODAL_STYLES,
-        DOM.div(DOM.div(DOM.span(m.title; class = "bw-modal-title"), close;
-                        class = "bw-modal-head"),
-                body;
-                class = "bw-modal-card", role = "dialog", var"aria-modal" = "true");
-        class = "bw-modal-overlay")
-    Bonito.onload(session, overlay, js"""overlay => $(OVERLAYS_LIB).then(lib =>
-        new lib.Modal(overlay, $(close), $(m.open)))""")
+    card = DOM.div(DOM.div(DOM.span(m.title; class = "bw-modal-title"), close;
+                           class = "bw-modal-head"),
+                   body;
+                   class = "bw-modal-card", role = "dialog", var"aria-modal" = "true")
+    # The overlay is the card's parent: a script can't name the node it sits in.
+    wire = js"""$(OVERLAYS_LIB).then(lib => new lib.Modal($(card).parentElement, $(close), $(m.open)))"""
+    overlay = DOM.div(THEME_STYLES, BUTTON_STYLES, MODAL_STYLES, card, wire;
+                      class = "bw-modal-overlay")
     return Bonito.jsrender(session, overlay)
 end
 

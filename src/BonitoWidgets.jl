@@ -9,6 +9,7 @@ include("icons.jl")
 include("widgets.jl")
 include("buttons.jl")
 include("overlays.jl")
+include("infinite_list.jl")
 include("tabs.jl")
 include("split.jl")
 include("collapsible.jl")
@@ -27,5 +28,6 @@ export add_panel!, remove_panel!, float_panel!, dock_panel!, activate_panel!
 export FloatingWindow
 export IconButton, OrientationToggle, CollapseButton
 export BUTTON_STYLES, Menu, Modal
+export InfiniteList
 
 end
