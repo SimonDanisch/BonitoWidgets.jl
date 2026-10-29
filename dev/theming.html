@@ -54,37 +54,66 @@
   --bw-bg-hover: rgba(0, 0, 0, 0.06);
   --bw-text-muted: #6b7280;
   --bw-font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --bw-space-4: 16px;
+  --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --bw-border-strong: rgba(0, 0, 0, 0.2);
+  --bw-bg-subtle: #f9f9fa;
   --bw-font-size-sm: 0.75rem;
+  --bw-space-4: 16px;
   --bw-bg-panel: #ffffff;
   --bw-radius-sm: 4px;
   --bw-space-1: 4px;
+  --bw-text-faint: #9ca3af;
+  --bw-font-size-ui: 0.8125rem;
   --bw-gutter-size: 9px;
+  --bw-error: #cf222e;
+  --bw-warning: #9a6700;
   --bw-radius: 8px;
   --bw-bg-bar: #ececee;
+  --bw-font-size-2xs: 0.625rem;
   --bw-bg: #f4f4f5;
+  --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10);
+  --bw-accent-hover: #0858b9;
+  --bw-font-size-lg: 1rem;
   --bw-transition: 0.15s ease;
   --bw-bar-size: 32px;
-  --bw-space-3: 12px;
+  --bw-backdrop: rgba(0, 0, 0, 0.35);
   --bw-font-size: 0.875rem;
-  --bw-z-float: 1000;
+  --bw-space-3: 12px;
+  --bw-space-5: 24px;
+  --bw-space-6: 32px;
   --bw-border: rgba(0, 0, 0, 0.12);
+  --bw-success: #1a7f37;
+  --bw-z-float: 1000;
   --bw-accent: #0969da;
+  --bw-accent-fg: #ffffff;
+  --bw-font-size-xs: 0.6875rem;
   --bw-accent-bg: rgba(9, 105, 218, 0.10);
-  --bw-space-2: 8px;
+  --bw-font-size-xl: 1.375rem;
   --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  --bw-space-2: 8px;
   --bw-text: #1f2328;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bw-border: rgba(255, 255, 255, 0.12);
     --bw-bg-hover: rgba(255, 255, 255, 0.07);
     --bw-text-muted: #9a9aa3;
-    --bw-accent: #4daafc;
-    --bw-bg-bar: #242429;
-    --bw-accent-bg: rgba(77, 170, 252, 0.12);
-    --bw-bg: #18181b;
+    --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --bw-border-strong: rgba(255, 255, 255, 0.2);
+    --bw-bg-subtle: #222226;
+    --bw-text-faint: #71717a;
+    --bw-warning: #d29922;
     --bw-bg-panel: #1e1e22;
+    --bw-error: #f85149;
+    --bw-bg-bar: #242429;
+    --bw-bg: #18181b;
+    --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+    --bw-accent-hover: #79bdfd;
+    --bw-backdrop: rgba(0, 0, 0, 0.6);
+    --bw-success: #3fb950;
+    --bw-border: rgba(255, 255, 255, 0.12);
+    --bw-accent: #4daafc;
+    --bw-accent-fg: #ffffff;
+    --bw-accent-bg: rgba(77, 170, 252, 0.12);
     --bw-text: #e4e4e7;
     --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
   }
@@ -96,14 +125,25 @@
   }
 }
 :root:root {
-  --bw-border: rgba(255, 255, 255, 0.12);
   --bw-bg-hover: rgba(255, 255, 255, 0.07);
   --bw-text-muted: #9a9aa3;
-  --bw-accent: #00d4ff;
-  --bw-bg-bar: #242429;
-  --bw-accent-bg: rgba(77, 170, 252, 0.12);
-  --bw-bg: #18181b;
+  --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --bw-border-strong: rgba(255, 255, 255, 0.2);
+  --bw-bg-subtle: #222226;
+  --bw-text-faint: #71717a;
+  --bw-warning: #d29922;
   --bw-bg-panel: #0b0f17;
+  --bw-error: #f85149;
+  --bw-bg-bar: #242429;
+  --bw-bg: #18181b;
+  --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --bw-accent-hover: #79bdfd;
+  --bw-backdrop: rgba(0, 0, 0, 0.6);
+  --bw-success: #3fb950;
+  --bw-border: rgba(255, 255, 255, 0.12);
+  --bw-accent: #00d4ff;
+  --bw-accent-fg: #ffffff;
+  --bw-accent-bg: rgba(77, 170, 252, 0.12);
   --bw-text: #e4e4e7;
   --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
 }
@@ -111,37 +151,66 @@
   --bw-bg-hover: rgba(0, 0, 0, 0.06);
   --bw-text-muted: #6b7280;
   --bw-font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --bw-space-4: 16px;
+  --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --bw-border-strong: rgba(0, 0, 0, 0.2);
+  --bw-bg-subtle: #f9f9fa;
   --bw-font-size-sm: 0.75rem;
+  --bw-space-4: 16px;
   --bw-bg-panel: #ffffff;
   --bw-radius-sm: 4px;
   --bw-space-1: 4px;
+  --bw-text-faint: #9ca3af;
+  --bw-font-size-ui: 0.8125rem;
   --bw-gutter-size: 9px;
+  --bw-error: #cf222e;
+  --bw-warning: #9a6700;
   --bw-radius: 8px;
   --bw-bg-bar: #ececee;
+  --bw-font-size-2xs: 0.625rem;
   --bw-bg: #f4f4f5;
+  --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10);
+  --bw-accent-hover: #0858b9;
+  --bw-font-size-lg: 1rem;
   --bw-transition: 0.15s ease;
   --bw-bar-size: 32px;
-  --bw-space-3: 12px;
+  --bw-backdrop: rgba(0, 0, 0, 0.35);
   --bw-font-size: 0.875rem;
-  --bw-z-float: 1000;
+  --bw-space-3: 12px;
+  --bw-space-5: 24px;
+  --bw-space-6: 32px;
   --bw-border: rgba(0, 0, 0, 0.12);
+  --bw-success: #1a7f37;
+  --bw-z-float: 1000;
   --bw-accent: #0969da;
+  --bw-accent-fg: #ffffff;
+  --bw-font-size-xs: 0.6875rem;
   --bw-accent-bg: rgba(9, 105, 218, 0.10);
-  --bw-space-2: 8px;
+  --bw-font-size-xl: 1.375rem;
   --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  --bw-space-2: 8px;
   --bw-text: #1f2328;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bw-border: rgba(255, 255, 255, 0.12);
     --bw-bg-hover: rgba(255, 255, 255, 0.07);
     --bw-text-muted: #9a9aa3;
-    --bw-accent: #4daafc;
-    --bw-bg-bar: #242429;
-    --bw-accent-bg: rgba(77, 170, 252, 0.12);
-    --bw-bg: #18181b;
+    --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --bw-border-strong: rgba(255, 255, 255, 0.2);
+    --bw-bg-subtle: #222226;
+    --bw-text-faint: #71717a;
+    --bw-warning: #d29922;
     --bw-bg-panel: #1e1e22;
+    --bw-error: #f85149;
+    --bw-bg-bar: #242429;
+    --bw-bg: #18181b;
+    --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+    --bw-accent-hover: #79bdfd;
+    --bw-backdrop: rgba(0, 0, 0, 0.6);
+    --bw-success: #3fb950;
+    --bw-border: rgba(255, 255, 255, 0.12);
+    --bw-accent: #4daafc;
+    --bw-accent-fg: #ffffff;
+    --bw-accent-bg: rgba(77, 170, 252, 0.12);
     --bw-text: #e4e4e7;
     --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
   }
@@ -215,37 +284,66 @@
   --bw-bg-hover: rgba(0, 0, 0, 0.06);
   --bw-text-muted: #6b7280;
   --bw-font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --bw-space-4: 16px;
+  --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --bw-border-strong: rgba(0, 0, 0, 0.2);
+  --bw-bg-subtle: #f9f9fa;
   --bw-font-size-sm: 0.75rem;
+  --bw-space-4: 16px;
   --bw-bg-panel: #ffffff;
   --bw-radius-sm: 4px;
   --bw-space-1: 4px;
+  --bw-text-faint: #9ca3af;
+  --bw-font-size-ui: 0.8125rem;
   --bw-gutter-size: 9px;
+  --bw-error: #cf222e;
+  --bw-warning: #9a6700;
   --bw-radius: 8px;
   --bw-bg-bar: #ececee;
+  --bw-font-size-2xs: 0.625rem;
   --bw-bg: #f4f4f5;
+  --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10);
+  --bw-accent-hover: #0858b9;
+  --bw-font-size-lg: 1rem;
   --bw-transition: 0.15s ease;
   --bw-bar-size: 32px;
-  --bw-space-3: 12px;
+  --bw-backdrop: rgba(0, 0, 0, 0.35);
   --bw-font-size: 0.875rem;
-  --bw-z-float: 1000;
+  --bw-space-3: 12px;
+  --bw-space-5: 24px;
+  --bw-space-6: 32px;
   --bw-border: rgba(0, 0, 0, 0.12);
+  --bw-success: #1a7f37;
+  --bw-z-float: 1000;
   --bw-accent: #0969da;
+  --bw-accent-fg: #ffffff;
+  --bw-font-size-xs: 0.6875rem;
   --bw-accent-bg: rgba(9, 105, 218, 0.10);
-  --bw-space-2: 8px;
+  --bw-font-size-xl: 1.375rem;
   --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  --bw-space-2: 8px;
   --bw-text: #1f2328;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bw-border: rgba(255, 255, 255, 0.12);
     --bw-bg-hover: rgba(255, 255, 255, 0.07);
     --bw-text-muted: #9a9aa3;
-    --bw-accent: #4daafc;
-    --bw-bg-bar: #242429;
-    --bw-accent-bg: rgba(77, 170, 252, 0.12);
-    --bw-bg: #18181b;
+    --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --bw-border-strong: rgba(255, 255, 255, 0.2);
+    --bw-bg-subtle: #222226;
+    --bw-text-faint: #71717a;
+    --bw-warning: #d29922;
     --bw-bg-panel: #1e1e22;
+    --bw-error: #f85149;
+    --bw-bg-bar: #242429;
+    --bw-bg: #18181b;
+    --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+    --bw-accent-hover: #79bdfd;
+    --bw-backdrop: rgba(0, 0, 0, 0.6);
+    --bw-success: #3fb950;
+    --bw-border: rgba(255, 255, 255, 0.12);
+    --bw-accent: #4daafc;
+    --bw-accent-fg: #ffffff;
+    --bw-accent-bg: rgba(77, 170, 252, 0.12);
     --bw-text: #e4e4e7;
     --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
   }
@@ -257,14 +355,25 @@
   }
 }
 :root:root {
-  --bw-border: rgba(0, 0, 0, 0.12);
   --bw-bg-hover: rgba(0, 0, 0, 0.06);
   --bw-text-muted: #6b7280;
-  --bw-accent: #e11d48;
-  --bw-bg-bar: #ececee;
-  --bw-accent-bg: rgba(9, 105, 218, 0.10);
-  --bw-bg: #f4f4f5;
+  --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --bw-border-strong: rgba(0, 0, 0, 0.2);
+  --bw-bg-subtle: #f9f9fa;
+  --bw-text-faint: #9ca3af;
+  --bw-warning: #9a6700;
   --bw-bg-panel: #ffffff;
+  --bw-error: #cf222e;
+  --bw-bg-bar: #ececee;
+  --bw-bg: #f4f4f5;
+  --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10);
+  --bw-accent-hover: #0858b9;
+  --bw-backdrop: rgba(0, 0, 0, 0.35);
+  --bw-success: #1a7f37;
+  --bw-border: rgba(0, 0, 0, 0.12);
+  --bw-accent: #e11d48;
+  --bw-accent-fg: #ffffff;
+  --bw-accent-bg: rgba(9, 105, 218, 0.10);
   --bw-text: #1f2328;
   --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
 }
@@ -333,10 +442,10 @@ html .noUi-value {
     window.require = window.__require;
     window.__define = undefined;
     window.__require = undefined;
-</script></head><body><script type="module">Bonito.init_session("b5e552bf-247d-4595-be4a-222f0eb65a7b", Bonito.fetch_binary('bonito/bin/fe1812b8b74bedd72bd55af3a594052aa3c53479-13853780005304885667.bin'), "root", false);
-</script><div data-jscall-id="root" id="b5e552bf-247d-4595-be4a-222f0eb65a7b"><div data-jscall-id="1" class="bonito-docs vp-layout"><div data-jscall-id="2" class="VPNav"><div data-jscall-id="3" class="container"><a data-jscall-id="4" class="title" href="index.html"><span data-jscall-id="5">BonitoWidgets</span></a><div data-jscall-id="6" class="content"><button data-jscall-id="7" type="button" class="search-btn" data-open-search="true"><span data-jscall-id="8" style="display:inline-flex"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span><span data-jscall-id="9">Search</span><span data-jscall-id="10" class="kbd">Ctrl K</span></button><div data-jscall-id="11" class="VPVersion"><script data-jscall-id="12" src="../versions.js"></script><button data-jscall-id="13" type="button" class="trigger"><span data-jscall-id="14">dev</span><span data-jscall-id="15">▾</span></button><div data-jscall-id="16" data-versions="true" class="menu"></div></div><a data-jscall-id="17" title="GitHub" class="icon-btn" href="https://github.com/SimonDanisch/BonitoWidgets.jl" target="_blank"><span data-jscall-id="18" style="display:inline-flex"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg></span></a><button data-jscall-id="19" data-toggle-theme="true" type="button" title="Toggle theme" class="icon-btn"><span data-jscall-id="20" style="display:inline-flex"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span></button><button data-jscall-id="21" data-toggle-sidebar="true" type="button" title="Menu" class="icon-btn hamburger"><span data-jscall-id="22" style="display:inline-flex"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></span></button></div></div></div><div data-jscall-id="23" class="VPContent"><nav data-jscall-id="24" class="VPSidebar"><a data-jscall-id="25" class="link top-link" href="index.html">Home</a><a data-jscall-id="26" class="link top-link" href="workspace.html">Workspace</a><a data-jscall-id="27" class="link top-link" href="components.html">Components</a><a data-jscall-id="28" class="link top-link active" href="theming.html">Theming</a><a data-jscall-id="29" class="link top-link" href="testing.html">Testing layouts</a><a data-jscall-id="30" class="link top-link" href="api.html">API</a></nav><div data-jscall-id="31" class="VPSidebar-backdrop"></div><div data-jscall-id="32" class="VPMain"><div data-jscall-id="33" class="VPDoc"><div data-jscall-id="34" class="doc-container"><div data-jscall-id="35" class="doc-content"><div data-jscall-id="36" class="vp-doc"><h1 data-jscall-id="37" id="Theming">Theming<a data-jscall-id="38" class="header-anchor" aria-label="Permalink" href="#Theming">​#</a></h1><p data-jscall-id="39">Colors and sizes come from <code data-jscall-id="40">--bw-*</code> CSS variables, with light/dark defaults that follow <code data-jscall-id="41">prefers-color-scheme</code>. Restyle every widget with <a data-jscall-id="42" href="api.html#BonitoWidgets.Theme-Tuple{}"><code data-jscall-id="43">Theme</code></a>, or one widget through its <code data-jscall-id="44">style&#61;Styles&#40;...&#41;</code> argument.</p><details data-jscall-id="45" open="true" class="jldocstring custom-block"><summary data-jscall-id="46"><a data-jscall-id="47" id="BonitoWidgets.Theme-theming" href="#BonitoWidgets.Theme-theming"><span data-jscall-id="48" class="jlbinding">BonitoWidgets.Theme</span></a><span data-jscall-id="49" class="VPBadge info">Function</span></summary><div data-jscall-id="50" class="docstring-body"><div data-jscall-id="51" class="language-julia"><span data-jscall-id="52" class="lang"><span>julia</span></span><button data-jscall-id="53" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="54"><code data-jscall-id="55" class="language-julia">Theme&#40;; scheme&#61;:auto, vars...&#41;</code></pre></div><p data-jscall-id="56">Returns a <code data-jscall-id="57">Styles</code> overriding the BonitoWidgets CSS variables. Place it anywhere in your app&#39;s DOM &#40;after-the-fact, it wins over the built-in defaults via selector specificity&#41;.</p><ul data-jscall-id="58"><li data-jscall-id="59"><p data-jscall-id="60"><code data-jscall-id="61">scheme</code> — <code data-jscall-id="62">:auto</code> &#40;follow OS, default&#41;, <code data-jscall-id="63">:light</code>, or <code data-jscall-id="64">:dark</code> to force one.</p></li><li data-jscall-id="65"><p data-jscall-id="66"><code data-jscall-id="67">vars</code> — keyword overrides for individual variables; underscores map to dashes, e.g. <code data-jscall-id="68">accent&#61;&#34;#00d4ff&#34;</code> sets <code data-jscall-id="69">--bw-accent</code>, <code data-jscall-id="70">bg_panel&#61;&#34;black&#34;</code> sets <code data-jscall-id="71">--bw-bg-panel</code>.</p></li></ul><div data-jscall-id="72" class="language-julia"><span data-jscall-id="73" class="lang"><span>julia</span></span><button data-jscall-id="74" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="75"><code data-jscall-id="76" class="language-julia">app &#61; App&#40;&#41; do
+</script></head><body><script type="module">Bonito.init_session("533d1fca-3b2b-41eb-93fc-b4b6395365bc", Bonito.fetch_binary('bonito/bin/de52e81b3786f7566fb32ddd859aeed7ab07d111-9749231523439817720.bin'), "root", false);
+</script><div data-jscall-id="root" id="533d1fca-3b2b-41eb-93fc-b4b6395365bc"><div data-jscall-id="1" class="bonito-docs vp-layout"><div data-jscall-id="2" class="VPNav"><div data-jscall-id="3" class="container"><a data-jscall-id="4" class="title" href="index.html"><span data-jscall-id="5">BonitoWidgets</span></a><div data-jscall-id="6" class="content"><button data-jscall-id="7" type="button" class="search-btn" data-open-search="true"><span data-jscall-id="8" style="display:inline-flex"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span><span data-jscall-id="9">Search</span><span data-jscall-id="10" class="kbd">Ctrl K</span></button><div data-jscall-id="11" class="VPVersion"><script data-jscall-id="12" src="../versions.js"></script><button data-jscall-id="13" type="button" class="trigger"><span data-jscall-id="14">dev</span><span data-jscall-id="15">▾</span></button><div data-jscall-id="16" data-versions="true" class="menu"></div></div><a data-jscall-id="17" title="GitHub" class="icon-btn" href="https://github.com/SimonDanisch/BonitoWidgets.jl" target="_blank"><span data-jscall-id="18" style="display:inline-flex"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg></span></a><button data-jscall-id="19" data-toggle-theme="true" type="button" title="Toggle theme" class="icon-btn"><span data-jscall-id="20" style="display:inline-flex"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span></button><button data-jscall-id="21" data-toggle-sidebar="true" type="button" title="Menu" class="icon-btn hamburger"><span data-jscall-id="22" style="display:inline-flex"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></span></button></div></div></div><div data-jscall-id="23" class="VPContent"><nav data-jscall-id="24" class="VPSidebar"><a data-jscall-id="25" class="link top-link" href="index.html">Home</a><a data-jscall-id="26" class="link top-link" href="workspace.html">Workspace</a><a data-jscall-id="27" class="link top-link" href="components.html">Components</a><a data-jscall-id="28" class="link top-link active" href="theming.html">Theming</a><a data-jscall-id="29" class="link top-link" href="testing.html">Testing layouts</a><a data-jscall-id="30" class="link top-link" href="api.html">API</a></nav><div data-jscall-id="31" class="VPSidebar-backdrop"></div><div data-jscall-id="32" class="VPMain"><div data-jscall-id="33" class="VPDoc"><div data-jscall-id="34" class="doc-container"><div data-jscall-id="35" class="doc-content"><div data-jscall-id="36" class="vp-doc"><h1 data-jscall-id="37" id="Theming">Theming<a data-jscall-id="38" class="header-anchor" aria-label="Permalink" href="#Theming">​#</a></h1><p data-jscall-id="39">Colors and sizes come from <code data-jscall-id="40">--bw-*</code> CSS variables, with light/dark defaults that follow <code data-jscall-id="41">prefers-color-scheme</code>. Restyle every widget with <a data-jscall-id="42" href="api.html#BonitoWidgets.Theme-Tuple{}"><code data-jscall-id="43">Theme</code></a>, or one widget through its <code data-jscall-id="44">style&#61;Styles&#40;...&#41;</code> argument.</p><details data-jscall-id="45" open="true" class="jldocstring custom-block"><summary data-jscall-id="46"><a data-jscall-id="47" id="BonitoWidgets.Theme-theming" href="#BonitoWidgets.Theme-theming"><span data-jscall-id="48" class="jlbinding">BonitoWidgets.Theme</span></a><span data-jscall-id="49" class="VPBadge info">Function</span></summary><div data-jscall-id="50" class="docstring-body"><div data-jscall-id="51" class="language-julia"><span data-jscall-id="52" class="lang"><span>julia</span></span><button data-jscall-id="53" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="54"><code data-jscall-id="55" class="language-julia">Theme&#40;; scheme&#61;:auto, vars...&#41;</code></pre></div><p data-jscall-id="56">Returns a <code data-jscall-id="57">Styles</code> overriding the BonitoWidgets CSS variables. Place it anywhere in your app&#39;s DOM &#40;after-the-fact, it wins over the built-in defaults via selector specificity&#41;.</p><ul data-jscall-id="58"><li data-jscall-id="59"><p data-jscall-id="60"><code data-jscall-id="61">scheme</code> — <code data-jscall-id="62">:auto</code> &#40;follow OS, default&#41;, <code data-jscall-id="63">:light</code>, or <code data-jscall-id="64">:dark</code> to force one.</p></li><li data-jscall-id="65"><p data-jscall-id="66"><code data-jscall-id="67">vars</code> — keyword overrides for individual variables; underscores map to dashes, e.g. <code data-jscall-id="68">accent&#61;&#34;#00d4ff&#34;</code> sets <code data-jscall-id="69">--bw-accent</code>, <code data-jscall-id="70">bg_panel&#61;&#34;black&#34;</code> sets <code data-jscall-id="71">--bw-bg-panel</code>.</p></li></ul><div data-jscall-id="72" class="language-julia"><span data-jscall-id="73" class="lang"><span>julia</span></span><button data-jscall-id="74" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="75"><code data-jscall-id="76" class="language-julia">app &#61; App&#40;&#41; do
     DOM.div&#40;Theme&#40;scheme&#61;:dark, accent&#61;&#34;#00d4ff&#34;&#41;, my_widgets...&#41;
-end</code></pre></div><a data-jscall-id="77" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/c92cb61b915b19de0ce2710c13eddf4e473bca3a/src/theme.jl#L65-L82" target="_blank">source</a></div></details><p data-jscall-id="78"><code data-jscall-id="79">Theme&#40;&#41;</code> with no arguments ships the defaults. Components already include them, so you only need it to override. Keywords map to variables &#40;<code data-jscall-id="80">bg_panel</code> becomes <code data-jscall-id="81">--bw-bg-panel</code>&#41;; <code data-jscall-id="82">scheme&#61;:light</code> or <code data-jscall-id="83">:dark</code> pins the palette instead of following the OS.</p><div data-jscall-id="84" class="language-julia"><span data-jscall-id="85" class="lang">julia</span><button data-jscall-id="86" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="87"><code data-jscall-id="88" class="language-julia">using Bonito, BonitoWidgets
+end</code></pre></div><a data-jscall-id="77" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/03c1adcbb1468310de7779875631743ba9a26979/src/theme.jl#L100-L117" target="_blank">source</a></div></details><p data-jscall-id="78"><code data-jscall-id="79">Theme&#40;&#41;</code> with no arguments ships the defaults. Components already include them, so you only need it to override. Keywords map to variables &#40;<code data-jscall-id="80">bg_panel</code> becomes <code data-jscall-id="81">--bw-bg-panel</code>&#41;; <code data-jscall-id="82">scheme&#61;:light</code> or <code data-jscall-id="83">:dark</code> pins the palette instead of following the OS.</p><div data-jscall-id="84" class="language-julia"><span data-jscall-id="85" class="lang">julia</span><button data-jscall-id="86" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="87"><code data-jscall-id="88" class="language-julia">using Bonito, BonitoWidgets
 
 App&#40;&#41; do
     tabs&#40;&#41; &#61; Tabs&#40;&#34;Scene&#34; &#61;&#62; pl&#40;&#34;Scene&#34;, &#34;#1118&#34;&#41;, &#34;Log&#34; &#61;&#62; pl&#40;&#34;Log&#34;, &#34;#1118&#34;&#41;&#41;
@@ -346,4 +455,4 @@ App&#40;&#41; do
         DOM.div&#40;Theme&#40;scheme&#61;:light, accent&#61;&#34;#e11d48&#34;, bg_panel&#61;&#34;#ffffff&#34;&#41;, tabs&#40;&#41;;
             style&#61;Styles&#40;&#34;flex&#34;&#61;&#62;&#34;1&#34;&#41;&#41;;
         style&#61;Styles&#40;&#34;display&#34;&#61;&#62;&#34;flex&#34;, &#34;gap&#34;&#61;&#62;&#34;16px&#34;&#41;&#41;
-end</code></pre></div><div data-jscall-id="89" class="bonito-output"><div data-jscall-id="90" class=" style_9" style=""><div data-jscall-id="91" class=" style_8" style=""><div data-jscall-id="92" class="bw-tabs style_7" style=""><div data-jscall-id="93" class="bw-tab-bar style_2" style=""><button data-jscall-id="94" class="bw-tab bw-active"><span data-jscall-id="95" class="bw-tab-label">Scene</span></button><button data-jscall-id="96" class="bw-tab"><span data-jscall-id="97" class="bw-tab-label">Log</span></button></div><div data-jscall-id="98" class="bw-tab-panels style_6" style=""><div data-jscall-id="99" class="bw-tab-panel bw-active style_4" style=""><div data-jscall-id="100" class=" style_3" style="">Scene</div></div><div data-jscall-id="101" class="bw-tab-panel style_5" style=""><div data-jscall-id="102" class=" style_3" style="">Log</div></div></div><script data-jscall-id="103"></script></div></div><div data-jscall-id="104" class=" style_8" style=""><div data-jscall-id="105" class="bw-tabs style_7" style=""><div data-jscall-id="106" class="bw-tab-bar style_2" style=""><button data-jscall-id="107" class="bw-tab bw-active"><span data-jscall-id="108" class="bw-tab-label">Scene</span></button><button data-jscall-id="109" class="bw-tab"><span data-jscall-id="110" class="bw-tab-label">Log</span></button></div><div data-jscall-id="111" class="bw-tab-panels style_6" style=""><div data-jscall-id="112" class="bw-tab-panel bw-active style_4" style=""><div data-jscall-id="113" class=" style_3" style="">Scene</div></div><div data-jscall-id="114" class="bw-tab-panel style_5" style=""><div data-jscall-id="115" class=" style_3" style="">Log</div></div></div><script data-jscall-id="116"></script></div></div></div></div><h2 data-jscall-id="117" id="Main-variables">Main variables<a data-jscall-id="118" class="header-anchor" aria-label="Permalink" href="#Main-variables">​#</a></h2><table data-jscall-id="119"><thead data-jscall-id="120"><tr data-jscall-id="121"><th data-jscall-id="122" style="text-align:right">Variable</th><th data-jscall-id="123" style="text-align:right">Purpose</th></tr></thead><tbody data-jscall-id="124"><tr data-jscall-id="125"><td data-jscall-id="126" style="text-align:right"><code data-jscall-id="127">--bw-bg</code>, <code data-jscall-id="128">--bw-bg-panel</code>, <code data-jscall-id="129">--bw-bg-bar</code>, <code data-jscall-id="130">--bw-bg-hover</code></td><td data-jscall-id="131" style="text-align:right">surfaces</td></tr><tr data-jscall-id="132"><td data-jscall-id="133" style="text-align:right"><code data-jscall-id="134">--bw-text</code>, <code data-jscall-id="135">--bw-text-muted</code></td><td data-jscall-id="136" style="text-align:right">text</td></tr><tr data-jscall-id="137"><td data-jscall-id="138" style="text-align:right"><code data-jscall-id="139">--bw-accent</code>, <code data-jscall-id="140">--bw-accent-bg</code></td><td data-jscall-id="141" style="text-align:right">active tab/grip highlights</td></tr><tr data-jscall-id="142"><td data-jscall-id="143" style="text-align:right"><code data-jscall-id="144">--bw-border</code>, <code data-jscall-id="145">--bw-radius</code>, <code data-jscall-id="146">--bw-shadow</code></td><td data-jscall-id="147" style="text-align:right">chrome</td></tr><tr data-jscall-id="148"><td data-jscall-id="149" style="text-align:right"><code data-jscall-id="150">--bw-bar-size</code>, <code data-jscall-id="151">--bw-gutter-size</code></td><td data-jscall-id="152" style="text-align:right">hit-area sizing &#40;grows on touch&#41;</td></tr><tr data-jscall-id="153"><td data-jscall-id="154" style="text-align:right"><code data-jscall-id="155">--bw-font</code>, <code data-jscall-id="156">--bw-font-size</code>, <code data-jscall-id="157">--bw-space-1..4</code></td><td data-jscall-id="158" style="text-align:right">typography/spacing</td></tr></tbody></table></div><footer data-jscall-id="159" class="VPDocFooter"><div data-jscall-id="160" class="edit-info"><div data-jscall-id="161" class="edit-link"><a data-jscall-id="162" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/main/docs/src/theming.md" target="_blank">Edit this page</a></div></div><nav data-jscall-id="163" class="prev-next"><a data-jscall-id="164" class="pager-link prev" href="components.html"><span data-jscall-id="165" class="desc">Previous</span><span data-jscall-id="166" class="title">Components</span></a><a data-jscall-id="167" class="pager-link next" href="testing.html"><span data-jscall-id="168" class="desc">Next</span><span data-jscall-id="169" class="title">Testing layouts</span></a></nav></footer></div><div data-jscall-id="170" class="VPAside"><div data-jscall-id="171" class="aside-inner"><div data-jscall-id="172" class="outline-title">On this page</div><nav data-jscall-id="173" class="outline"><a data-jscall-id="174" class="lvl-2" href="#Main-variables">Main variables</a></nav></div></div></div></div></div></div><div data-jscall-id="175" class="VPSearch-backdrop"><div data-jscall-id="176" class="VPSearch"><div data-jscall-id="177" class="search-bar"><span data-jscall-id="178" style="display:inline-flex"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span><input data-jscall-id="179" placeholder="Search docs" spellcheck="false" type="text" autocomplete="off" /></div><div data-jscall-id="180" class="results"></div></div></div><script data-jscall-id="640">window.__DOCS_SEARCH__ = [{"title":"Home","text":"The widgets on these pages are real Bonito apps exported into the HTML, so you can click tabs, drag gutters, and tear panels off. The video shows them driven from code in a real Electron window (see Testing layouts):\n\n<video src=\"assets/walkthrough.mp4\" controls loop muted width=\"100%\"></video>\n\n\n\nQuickstart\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    ws = Workspace(\n        Panel(\"editor\", pl(\"Editor\", \"#3b82f6\"); label=\"Editor\", closable=true),\n        Panel(\"plot\",   pl(\"Plot\",   \"#8b5cf6\"); label=\"Plot\",   closable=true),\n        Panel(\"log\",    pl(\"Log\",    \"#10b981\"); label=\"Log\",    closable=true);\n        layout = workspacelayout(\n            hsplit(tabgroup(\"editor\", \"plot\"), tabgroup(\"log\"); fractions=[0.7, 0.3])),\n    )\n    DOM.div(Theme(), frame(ws))\nend\n\nDrag a tab to the edge of a group and only that panel splits off; drop it on another group's tab strip to merge them back. See Workspace for the details, or Components for the smaller building blocks.\n\nHow it works\n\nPanels are mounted once. Switching tabs, changing a split's orientation, or moving a panel between groups re-flows them with CSS and never re-renders the children, so WebGL contexts, Makie cameras, and widget state survive.\nLayout state (active tab, split fraction, orientation, collapsed, window position) is held in Observables. User actions update them, and writing to them from Julia updates the DOM.\nDrags use pointer events, so mouse and touch take the same path. Hit areas grow on touch, and narrow w","url":"index.html"},{"title":"Quickstart","text":"Home › Quickstart","url":"index.html#Quickstart"},{"title":"How it works","text":"Home › How it works","url":"index.html#How-it-works"},{"title":"Workspace","text":"Workspace\n\n\n\nA split tree whose leaves are tab groups. Drag a tab to the edge of a group and only that panel splits off; the rest stay together. Drop a tab on another group's tab strip or center to move it there. A group disappears when its last tab leaves. Drag a tab out of the docked area to float it, and drag a floating window's title bar back onto a group (or use its dock button) to dock it again. Panels are moved between groups, never re-rendered.\n\nWorkspace\n\nDrag the tabs around, split the layout, or tear off the floating Surface:\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    ws = Workspace(\n        Panel(\"controls\", pl(\"Controls\", \"#1f2937\"); label=\"Controls\", closable=false),\n        Panel(\"phase\",    pl(\"Phase Portrait\", \"#3b82f6\"); label=\"Phase Portrait\", closable=true),\n        Panel(\"wave\",     pl(\"Waveform\", \"#8b5cf6\"); label=\"Waveform\", closable=true),\n        Panel(\"field\",    pl(\"Field\", \"#0ea5e9\"); label=\"Field\", closable=true),\n        Panel(\"surface\",  pl(\"Surface\", \"#7c3aed\"); label=\"Surface\", closable=true);\n        layout = workspacelayout(\n            hsplit(tabgroup(\"controls\"),\n                   tabgroup(\"phase\", \"wave\", \"field\"; active=\"phase\"); fractions=[0.26, 0.74]);\n            floating=[floatpanel(\"surface\"; x=520, y=30, width=240, height=180)]),\n    )\n    DOM.div(Theme(), frame(ws))\nend\n\nBuilding a layout\n\nThe starting arrangement is built from a handful of constructors:\n\nworkspacelayout\ntabgroup\nhsplit\nvsplit\nfloatpanel\nPanel\n\nPersisting and res","url":"workspace.html"},{"title":"Building a layout","text":"Workspace › Building a layout","url":"workspace.html#Building-a-layout"},{"title":"Persisting and restoring","text":"Workspace › Persisting and restoring","url":"workspace.html#Persisting-and-restoring"},{"title":"Driving it from Julia","text":"Workspace › Driving it from Julia","url":"workspace.html#Driving-it-from-Julia"},{"title":"Components","text":"Components\n\nSmaller building blocks, for when a full Workspace is more than you need.\n\n\n\nTabs\n\nTabs with no docking, optionally closable. active and closed are observables you can read or set from Julia.\n\nTabs\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    tabs = Tabs(\n        \"First\"  => pl(\"First tab\",  \"#0ea5e9\"),\n        \"Second\" => pl(\"Second tab\", \"#64748b\"),\n        \"Third\"  => pl(\"Third tab\",  \"#dc2626\");\n        closable = true,\n    )\n    DOM.div(Theme(), frame(tabs; height=\"160px\"))\nend\n\nSplitContainer\n\nTwo panes with a draggable gutter, optional headers with a collapse chevron per pane. The orientation is an Observable; change it and the panes re-flow without re-rendering their children.\n\nSplitContainer\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    split = SplitContainer(\n        pl(\"Scene\", \"#f59e0b\"), pl(\"Controls\", \"#ef4444\");\n        titles = (\"Scene\", \"Controls\"), split = 0.4, collapsible = true,\n    )\n    DOM.div(\n        Theme(),\n        DOM.div(\"Toggle orientation:\", OrientationToggle(split.direction);\n            style=Styles(\"display\"=>\"flex\",\"gap\"=>\"8px\",\"align-items\"=>\"center\",\n                         \"margin-bottom\"=>\"8px\",\"font-family\"=>\"var(--bw-font)\")),\n        frame(split),\n    )\nend\n\nPanelGroup\n\nA single group of N named panels, shown as tabs or side by side. Switch with the bar widgets, or drag a tab into the body: the edges make a split, the center goes back to tabs.\n\nPanelGroup\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    group = PanelGroup(\n        \"","url":"components.html"},{"title":"Tabs","text":"Components › Tabs","url":"components.html#Tabs"},{"title":"SplitContainer","text":"Components › SplitContainer","url":"components.html#SplitContainer"},{"title":"PanelGroup","text":"Components › PanelGroup","url":"components.html#PanelGroup"},{"title":"Collapsible","text":"Components › Collapsible","url":"components.html#Collapsible"},{"title":"FloatingWindow","text":"Components › FloatingWindow","url":"components.html#FloatingWindow"},{"title":"Small widgets","text":"Components › Small widgets","url":"components.html#Small-widgets"},{"title":"Theming","text":"Theming\n\nColors and sizes come from --bw-* CSS variables, with light/dark defaults that follow prefers-color-scheme. Restyle every widget with Theme, or one widget through its style=Styles(...) argument.\n\n\n\nTheme\n\nTheme() with no arguments ships the defaults. Components already include them, so you only need it to override. Keywords map to variables (bg_panel becomes --bw-bg-panel); scheme=:light or :dark pins the palette instead of following the OS.\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    tabs() = Tabs(\"Scene\" => pl(\"Scene\", \"#1118\"), \"Log\" => pl(\"Log\", \"#1118\"))\n    DOM.div(\n        DOM.div(Theme(scheme=:dark, accent=\"#00d4ff\", bg_panel=\"#0b0f17\"), tabs();\n            style=Styles(\"flex\"=>\"1\")),\n        DOM.div(Theme(scheme=:light, accent=\"#e11d48\", bg_panel=\"#ffffff\"), tabs();\n            style=Styles(\"flex\"=>\"1\"));\n        style=Styles(\"display\"=>\"flex\", \"gap\"=>\"16px\"))\nend\n\nMain variables\n\nVariable Purpose\n--bw-bg, --bw-bg-panel, --bw-bg-bar, --bw-bg-hover surfaces\n--bw-text, --bw-text-muted text\n--bw-accent, --bw-accent-bg active tab/grip highlights\n--bw-border, --bw-radius, --bw-shadow chrome\n--bw-bar-size, --bw-gutter-size hit-area sizing (grows on touch)\n--bw-font, --bw-font-size, --bw-space-1..4 typography/spacing\n\n","url":"theming.html"},{"title":"Main variables","text":"Theming › Main variables","url":"theming.html#Main-variables"},{"title":"Testing layouts","text":"Testing layouts\n\nThe walkthrough video on the home page is a real Electron window driven from code: steering plots, splitting the layout by dragging a tab to a group edge, floating a panel and docking it back. It was recorded with ElectronCall. Source: examples/walkthrough.jl.\n\nProbes\n\nThe layout moves as panels split and float, so tests can't use fixed pixels. BonitoWidgets ships a few unexported probe helpers that build a small JavaScript expression to find a point on a widget by its label, against the live DOM, and return [x, y], or null if nothing matches:\n\ntab(label): the tab button whose label starts with label\ngroupbody(label; rel=(0.5, 0.9)): a point in the body of the group that holds that tab (the edges are the drop zones for splitting)\nfloattitle(label): the title bar of the floating window named label\n\nThey only use the widgets' CSS classes, so they don't pull in a test driver. Pull them in explicitly:\n\nusing BonitoWidgets: tab, groupbody, floattitle\n\nWith ElectronCall\n\nAny driver that can run JS and return a point can use a probe. With ElectronCall, wrap the expression in its JS target and pass it to the event DSL:\n\nusing BonitoWidgets: tab, groupbody, floattitle\nusing ElectronCall.Testing      # JS, Click, Drag, play, ...\n\nplay(ctx, [\n    Click(JS(tab(\"Waveform\"))),                                       # switch tabs\n    Drag(JS(tab(\"Field\")), JS(groupbody(\"Field\"; rel=(0.5, 0.9)))),   # split off the bottom\n    Drag(JS(floattitle(\"Surface\")), JS(tab(\"Phase Port","url":"testing.html"},{"title":"Probes","text":"Testing layouts › Probes","url":"testing.html#Probes"},{"title":"With ElectronCall","text":"Testing layouts › With ElectronCall","url":"testing.html#With-ElectronCall"},{"title":"API","text":"API\n\nPublic\n\nModules = [BonitoWidgets]\nOrder   = [:module, :constant, :type, :function, :macro]\nPublic  = true\nPrivate = false\n\nInternal\n\nIncluding the unexported test probes (tab, groupbody, floattitle).\n\nModules = [BonitoWidgets]\nOrder   = [:module, :constant, :type, :function, :macro]\nPublic  = false\nPrivate = true\n\n","url":"api.html"},{"title":"Public","text":"API › Public","url":"api.html#Public"},{"title":"Internal","text":"API › Internal","url":"api.html#Internal"}];</script></div></div></body></html>
+end</code></pre></div><div data-jscall-id="89" class="bonito-output"><div data-jscall-id="90" class=" style_9" style=""><div data-jscall-id="91" class=" style_8" style=""><div data-jscall-id="92" class="bw-tabs style_7" style=""><div data-jscall-id="93" class="bw-tab-bar style_2" style=""><button data-jscall-id="94" class="bw-tab bw-active"><span data-jscall-id="95" class="bw-tab-label">Scene</span></button><button data-jscall-id="96" class="bw-tab"><span data-jscall-id="97" class="bw-tab-label">Log</span></button></div><div data-jscall-id="98" class="bw-tab-panels style_6" style=""><div data-jscall-id="99" class="bw-tab-panel bw-active style_4" style=""><div data-jscall-id="100" class=" style_3" style="">Scene</div></div><div data-jscall-id="101" class="bw-tab-panel style_5" style=""><div data-jscall-id="102" class=" style_3" style="">Log</div></div></div><script data-jscall-id="103"></script></div></div><div data-jscall-id="104" class=" style_8" style=""><div data-jscall-id="105" class="bw-tabs style_7" style=""><div data-jscall-id="106" class="bw-tab-bar style_2" style=""><button data-jscall-id="107" class="bw-tab bw-active"><span data-jscall-id="108" class="bw-tab-label">Scene</span></button><button data-jscall-id="109" class="bw-tab"><span data-jscall-id="110" class="bw-tab-label">Log</span></button></div><div data-jscall-id="111" class="bw-tab-panels style_6" style=""><div data-jscall-id="112" class="bw-tab-panel bw-active style_4" style=""><div data-jscall-id="113" class=" style_3" style="">Scene</div></div><div data-jscall-id="114" class="bw-tab-panel style_5" style=""><div data-jscall-id="115" class=" style_3" style="">Log</div></div></div><script data-jscall-id="116"></script></div></div></div></div><h2 data-jscall-id="117" id="Main-variables">Main variables<a data-jscall-id="118" class="header-anchor" aria-label="Permalink" href="#Main-variables">​#</a></h2><table data-jscall-id="119"><thead data-jscall-id="120"><tr data-jscall-id="121"><th data-jscall-id="122" style="text-align:right">Variable</th><th data-jscall-id="123" style="text-align:right">Purpose</th></tr></thead><tbody data-jscall-id="124"><tr data-jscall-id="125"><td data-jscall-id="126" style="text-align:right"><code data-jscall-id="127">--bw-bg</code>, <code data-jscall-id="128">--bw-bg-panel</code>, <code data-jscall-id="129">--bw-bg-bar</code>, <code data-jscall-id="130">--bw-bg-hover</code>, <code data-jscall-id="131">--bw-bg-subtle</code></td><td data-jscall-id="132" style="text-align:right">surfaces</td></tr><tr data-jscall-id="133"><td data-jscall-id="134" style="text-align:right"><code data-jscall-id="135">--bw-text</code>, <code data-jscall-id="136">--bw-text-muted</code>, <code data-jscall-id="137">--bw-text-faint</code></td><td data-jscall-id="138" style="text-align:right">text</td></tr><tr data-jscall-id="139"><td data-jscall-id="140" style="text-align:right"><code data-jscall-id="141">--bw-accent</code>, <code data-jscall-id="142">--bw-accent-bg</code>, <code data-jscall-id="143">--bw-accent-hover</code>, <code data-jscall-id="144">--bw-accent-fg</code></td><td data-jscall-id="145" style="text-align:right">highlights, the filled button</td></tr><tr data-jscall-id="146"><td data-jscall-id="147" style="text-align:right"><code data-jscall-id="148">--bw-success</code>, <code data-jscall-id="149">--bw-error</code>, <code data-jscall-id="150">--bw-warning</code></td><td data-jscall-id="151" style="text-align:right">status, the danger button and menu item</td></tr><tr data-jscall-id="152"><td data-jscall-id="153" style="text-align:right"><code data-jscall-id="154">--bw-border</code>, <code data-jscall-id="155">--bw-border-strong</code>, <code data-jscall-id="156">--bw-radius</code>, <code data-jscall-id="157">--bw-radius-sm</code></td><td data-jscall-id="158" style="text-align:right">chrome</td></tr><tr data-jscall-id="159"><td data-jscall-id="160" style="text-align:right"><code data-jscall-id="161">--bw-shadow</code>, <code data-jscall-id="162">--bw-shadow-sm</code>, <code data-jscall-id="163">--bw-shadow-md</code>, <code data-jscall-id="164">--bw-backdrop</code></td><td data-jscall-id="165" style="text-align:right">floating windows, popovers, the modal backdrop</td></tr><tr data-jscall-id="166"><td data-jscall-id="167" style="text-align:right"><code data-jscall-id="168">--bw-bar-size</code>, <code data-jscall-id="169">--bw-gutter-size</code></td><td data-jscall-id="170" style="text-align:right">hit-area sizing &#40;grows on touch&#41;</td></tr><tr data-jscall-id="171"><td data-jscall-id="172" style="text-align:right"><code data-jscall-id="173">--bw-font</code>, <code data-jscall-id="174">--bw-font-size</code> &#40;14px body&#41;, <code data-jscall-id="175">-xl</code> 22, <code data-jscall-id="176">-lg</code> 16, <code data-jscall-id="177">-ui</code> 13 &#40;controls&#41;, <code data-jscall-id="178">-sm</code> 12, <code data-jscall-id="179">-xs</code> 11, <code data-jscall-id="180">-2xs</code> 10</td><td data-jscall-id="181" style="text-align:right">typography</td></tr><tr data-jscall-id="182"><td data-jscall-id="183" style="text-align:right"><code data-jscall-id="184">--bw-space-1..6</code></td><td data-jscall-id="185" style="text-align:right">spacing</td></tr></tbody></table></div><footer data-jscall-id="186" class="VPDocFooter"><div data-jscall-id="187" class="edit-info"><div data-jscall-id="188" class="edit-link"><a data-jscall-id="189" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/main/docs/src/theming.md" target="_blank">Edit this page</a></div></div><nav data-jscall-id="190" class="prev-next"><a data-jscall-id="191" class="pager-link prev" href="components.html"><span data-jscall-id="192" class="desc">Previous</span><span data-jscall-id="193" class="title">Components</span></a><a data-jscall-id="194" class="pager-link next" href="testing.html"><span data-jscall-id="195" class="desc">Next</span><span data-jscall-id="196" class="title">Testing layouts</span></a></nav></footer></div><div data-jscall-id="197" class="VPAside"><div data-jscall-id="198" class="aside-inner"><div data-jscall-id="199" class="outline-title">On this page</div><nav data-jscall-id="200" class="outline"><a data-jscall-id="201" class="lvl-2" href="#Main-variables">Main variables</a></nav></div></div></div></div></div></div><div data-jscall-id="202" class="VPSearch-backdrop"><div data-jscall-id="203" class="VPSearch"><div data-jscall-id="204" class="search-bar"><span data-jscall-id="205" style="display:inline-flex"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span><input data-jscall-id="206" placeholder="Search docs" spellcheck="false" type="text" autocomplete="off" /></div><div data-jscall-id="207" class="results"></div></div></div><script data-jscall-id="803">window.__DOCS_SEARCH__ = [{"title":"Home","text":"The widgets on these pages are real Bonito apps exported into the HTML, so you can click tabs, drag gutters, and tear panels off. The video shows them driven from code in a real Electron window (see Testing layouts):\n\n<video src=\"assets/walkthrough.mp4\" controls loop muted width=\"100%\"></video>\n\n\n\nQuickstart\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    ws = Workspace(\n        Panel(\"editor\", pl(\"Editor\", \"#3b82f6\"); label=\"Editor\", closable=true),\n        Panel(\"plot\",   pl(\"Plot\",   \"#8b5cf6\"); label=\"Plot\",   closable=true),\n        Panel(\"log\",    pl(\"Log\",    \"#10b981\"); label=\"Log\",    closable=true);\n        layout = workspacelayout(\n            hsplit(tabgroup(\"editor\", \"plot\"), tabgroup(\"log\"); fractions=[0.7, 0.3])),\n    )\n    DOM.div(Theme(), frame(ws))\nend\n\nDrag a tab to the edge of a group and only that panel splits off; drop it on another group's tab strip to merge them back. See Workspace for the details, or Components for the smaller building blocks.\n\nHow it works\n\nPanels are mounted once. Switching tabs, changing a split's orientation, or moving a panel between groups re-flows them with CSS and never re-renders the children, so WebGL contexts, Makie cameras, and widget state survive.\nLayout state (active tab, split fraction, orientation, collapsed, window position) is held in Observables. User actions update them, and writing to them from Julia updates the DOM.\nDrags use pointer events, so mouse and touch take the same path. Hit areas grow on touch, and narrow w","url":"index.html"},{"title":"Quickstart","text":"Home › Quickstart","url":"index.html#Quickstart"},{"title":"How it works","text":"Home › How it works","url":"index.html#How-it-works"},{"title":"Workspace","text":"Workspace\n\n\n\nA split tree whose leaves are tab groups. Drag a tab to the edge of a group and only that panel splits off; the rest stay together. Drop a tab on another group's tab strip or center to move it there. A group disappears when its last tab leaves. Drag a tab out of the docked area to float it, and drag a floating window's title bar back onto a group (or use its dock button) to dock it again. Panels are moved between groups, never re-rendered.\n\nWorkspace\n\nDrag the tabs around, split the layout, or tear off the floating Surface:\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    ws = Workspace(\n        Panel(\"controls\", pl(\"Controls\", \"#1f2937\"); label=\"Controls\", closable=false),\n        Panel(\"phase\",    pl(\"Phase Portrait\", \"#3b82f6\"); label=\"Phase Portrait\", closable=true),\n        Panel(\"wave\",     pl(\"Waveform\", \"#8b5cf6\"); label=\"Waveform\", closable=true),\n        Panel(\"field\",    pl(\"Field\", \"#0ea5e9\"); label=\"Field\", closable=true),\n        Panel(\"surface\",  pl(\"Surface\", \"#7c3aed\"); label=\"Surface\", closable=true);\n        layout = workspacelayout(\n            hsplit(tabgroup(\"controls\"),\n                   tabgroup(\"phase\", \"wave\", \"field\"; active=\"phase\"); fractions=[0.26, 0.74]);\n            floating=[floatpanel(\"surface\"; x=520, y=30, width=240, height=180)]),\n    )\n    DOM.div(Theme(), frame(ws))\nend\n\nBuilding a layout\n\nThe starting arrangement is built from a handful of constructors:\n\nworkspacelayout\ntabgroup\nhsplit\nvsplit\nfloatpanel\nPanel\n\nPersisting and res","url":"workspace.html"},{"title":"Building a layout","text":"Workspace › Building a layout","url":"workspace.html#Building-a-layout"},{"title":"Persisting and restoring","text":"Workspace › Persisting and restoring","url":"workspace.html#Persisting-and-restoring"},{"title":"Driving it from Julia","text":"Workspace › Driving it from Julia","url":"workspace.html#Driving-it-from-Julia"},{"title":"Components","text":"Components\n\nSmaller building blocks, for when a full Workspace is more than you need.\n\n\n\nTabs\n\nTabs with no docking, optionally closable. active and closed are observables you can read or set from Julia.\n\nTabs\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    tabs = Tabs(\n        \"First\"  => pl(\"First tab\",  \"#0ea5e9\"),\n        \"Second\" => pl(\"Second tab\", \"#64748b\"),\n        \"Third\"  => pl(\"Third tab\",  \"#dc2626\");\n        closable = true,\n    )\n    DOM.div(Theme(), frame(tabs; height=\"160px\"))\nend\n\nSplitContainer\n\nTwo panes with a draggable gutter, optional headers with a collapse chevron per pane. The orientation is an Observable; change it and the panes re-flow without re-rendering their children.\n\nSplitContainer\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    split = SplitContainer(\n        pl(\"Scene\", \"#f59e0b\"), pl(\"Controls\", \"#ef4444\");\n        titles = (\"Scene\", \"Controls\"), split = 0.4, collapsible = true,\n    )\n    DOM.div(\n        Theme(),\n        DOM.div(\"Toggle orientation:\", OrientationToggle(split.direction);\n            style=Styles(\"display\"=>\"flex\",\"gap\"=>\"8px\",\"align-items\"=>\"center\",\n                         \"margin-bottom\"=>\"8px\",\"font-family\"=>\"var(--bw-font)\")),\n        frame(split),\n    )\nend\n\nPanelGroup\n\nA single group of N named panels, shown as tabs or side by side. Switch with the bar widgets, or drag a tab into the body: the edges make a split, the center goes back to tabs.\n\nPanelGroup\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    group = PanelGroup(\n        \"","url":"components.html"},{"title":"Tabs","text":"Components › Tabs","url":"components.html#Tabs"},{"title":"SplitContainer","text":"Components › SplitContainer","url":"components.html#SplitContainer"},{"title":"PanelGroup","text":"Components › PanelGroup","url":"components.html#PanelGroup"},{"title":"Collapsible","text":"Components › Collapsible","url":"components.html#Collapsible"},{"title":"FloatingWindow","text":"Components › FloatingWindow","url":"components.html#FloatingWindow"},{"title":"Buttons, menus and modals","text":"Components › Buttons, menus and modals","url":"components.html#Buttons,-menus-and-modals"},{"title":"InfiniteList","text":"Components › InfiniteList","url":"components.html#InfiniteList"},{"title":"Small widgets","text":"Components › Small widgets","url":"components.html#Small-widgets"},{"title":"Theming","text":"Theming\n\nColors and sizes come from --bw-* CSS variables, with light/dark defaults that follow prefers-color-scheme. Restyle every widget with Theme, or one widget through its style=Styles(...) argument.\n\n\n\nTheme\n\nTheme() with no arguments ships the defaults. Components already include them, so you only need it to override. Keywords map to variables (bg_panel becomes --bw-bg-panel); scheme=:light or :dark pins the palette instead of following the OS.\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    tabs() = Tabs(\"Scene\" => pl(\"Scene\", \"#1118\"), \"Log\" => pl(\"Log\", \"#1118\"))\n    DOM.div(\n        DOM.div(Theme(scheme=:dark, accent=\"#00d4ff\", bg_panel=\"#0b0f17\"), tabs();\n            style=Styles(\"flex\"=>\"1\")),\n        DOM.div(Theme(scheme=:light, accent=\"#e11d48\", bg_panel=\"#ffffff\"), tabs();\n            style=Styles(\"flex\"=>\"1\"));\n        style=Styles(\"display\"=>\"flex\", \"gap\"=>\"16px\"))\nend\n\nMain variables\n\nVariable Purpose\n--bw-bg, --bw-bg-panel, --bw-bg-bar, --bw-bg-hover, --bw-bg-subtle surfaces\n--bw-text, --bw-text-muted, --bw-text-faint text\n--bw-accent, --bw-accent-bg, --bw-accent-hover, --bw-accent-fg highlights, the filled button\n--bw-success, --bw-error, --bw-warning status, the danger button and menu item\n--bw-border, --bw-border-strong, --bw-radius, --bw-radius-sm chrome\n--bw-shadow, --bw-shadow-sm, --bw-shadow-md, --bw-backdrop floating windows, popovers, the modal backdrop\n--bw-bar-size, --bw-gutter-size hit-area sizing (grows on touch)\n--bw-font, --bw-font-size (14px body","url":"theming.html"},{"title":"Main variables","text":"Theming › Main variables","url":"theming.html#Main-variables"},{"title":"Testing layouts","text":"Testing layouts\n\nThe walkthrough video on the home page is a real Electron window driven from code: steering plots, splitting the layout by dragging a tab to a group edge, floating a panel and docking it back. It was recorded with ElectronCall. Source: examples/walkthrough.jl.\n\nProbes\n\nThe layout moves as panels split and float, so tests can't use fixed pixels. BonitoWidgets ships a few unexported probe helpers that build a small JavaScript expression to find a point on a widget by its label, against the live DOM, and return [x, y], or null if nothing matches:\n\ntab(label): the tab button whose label starts with label\ngroupbody(label; rel=(0.5, 0.9)): a point in the body of the group that holds that tab (the edges are the drop zones for splitting)\nfloattitle(label): the title bar of the floating window named label\n\nThey only use the widgets' CSS classes, so they don't pull in a test driver. Pull them in explicitly:\n\nusing BonitoWidgets: tab, groupbody, floattitle\n\nWith ElectronCall\n\nAny driver that can run JS and return a point can use a probe. With ElectronCall, wrap the expression in its JS target and pass it to the event DSL:\n\nusing BonitoWidgets: tab, groupbody, floattitle\nusing ElectronCall.Testing      # JS, Click, Drag, play, ...\n\nplay(ctx, [\n    Click(JS(tab(\"Waveform\"))),                                       # switch tabs\n    Drag(JS(tab(\"Field\")), JS(groupbody(\"Field\"; rel=(0.5, 0.9)))),   # split off the bottom\n    Drag(JS(floattitle(\"Surface\")), JS(tab(\"Phase Port","url":"testing.html"},{"title":"Probes","text":"Testing layouts › Probes","url":"testing.html#Probes"},{"title":"With ElectronCall","text":"Testing layouts › With ElectronCall","url":"testing.html#With-ElectronCall"},{"title":"API","text":"API\n\nPublic\n\nModules = [BonitoWidgets]\nOrder   = [:module, :constant, :type, :function, :macro]\nPublic  = true\nPrivate = false\n\nInternal\n\nIncluding the unexported test probes (tab, groupbody, floattitle).\n\nModules = [BonitoWidgets]\nOrder   = [:module, :constant, :type, :function, :macro]\nPublic  = false\nPrivate = true\n\n","url":"api.html"},{"title":"Public","text":"API › Public","url":"api.html#Public"},{"title":"Internal","text":"API › Internal","url":"api.html#Internal"}];</script></div></div></body></html>

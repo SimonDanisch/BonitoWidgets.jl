@@ -257,41 +257,84 @@
   transform: translateZ(0);
   border-radius: var(--bw-radius);
 }
+.style_34 {
+  justify-content: flex-end;
+  min-height: 200px;
+  gap: 8px;
+  display: flex;
+  align-content: flex-start;
+  align-items: center;
+}
+.style_35 {
+  height: 240px;
+  display: flex;
+  border: 1px solid var(--bw-border);
+  flex-direction: column;
+}
 </style><style>:root {
   --bw-bg-hover: rgba(0, 0, 0, 0.06);
   --bw-text-muted: #6b7280;
   --bw-font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --bw-space-4: 16px;
+  --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --bw-border-strong: rgba(0, 0, 0, 0.2);
+  --bw-bg-subtle: #f9f9fa;
   --bw-font-size-sm: 0.75rem;
+  --bw-space-4: 16px;
   --bw-bg-panel: #ffffff;
   --bw-radius-sm: 4px;
   --bw-space-1: 4px;
+  --bw-text-faint: #9ca3af;
+  --bw-font-size-ui: 0.8125rem;
   --bw-gutter-size: 9px;
+  --bw-error: #cf222e;
+  --bw-warning: #9a6700;
   --bw-radius: 8px;
   --bw-bg-bar: #ececee;
+  --bw-font-size-2xs: 0.625rem;
   --bw-bg: #f4f4f5;
+  --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10);
+  --bw-accent-hover: #0858b9;
+  --bw-font-size-lg: 1rem;
   --bw-transition: 0.15s ease;
   --bw-bar-size: 32px;
-  --bw-space-3: 12px;
+  --bw-backdrop: rgba(0, 0, 0, 0.35);
   --bw-font-size: 0.875rem;
-  --bw-z-float: 1000;
+  --bw-space-3: 12px;
+  --bw-space-5: 24px;
+  --bw-space-6: 32px;
   --bw-border: rgba(0, 0, 0, 0.12);
+  --bw-success: #1a7f37;
+  --bw-z-float: 1000;
   --bw-accent: #0969da;
+  --bw-accent-fg: #ffffff;
+  --bw-font-size-xs: 0.6875rem;
   --bw-accent-bg: rgba(9, 105, 218, 0.10);
-  --bw-space-2: 8px;
+  --bw-font-size-xl: 1.375rem;
   --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  --bw-space-2: 8px;
   --bw-text: #1f2328;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bw-border: rgba(255, 255, 255, 0.12);
     --bw-bg-hover: rgba(255, 255, 255, 0.07);
     --bw-text-muted: #9a9aa3;
-    --bw-accent: #4daafc;
-    --bw-bg-bar: #242429;
-    --bw-accent-bg: rgba(77, 170, 252, 0.12);
-    --bw-bg: #18181b;
+    --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --bw-border-strong: rgba(255, 255, 255, 0.2);
+    --bw-bg-subtle: #222226;
+    --bw-text-faint: #71717a;
+    --bw-warning: #d29922;
     --bw-bg-panel: #1e1e22;
+    --bw-error: #f85149;
+    --bw-bg-bar: #242429;
+    --bw-bg: #18181b;
+    --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+    --bw-accent-hover: #79bdfd;
+    --bw-backdrop: rgba(0, 0, 0, 0.6);
+    --bw-success: #3fb950;
+    --bw-border: rgba(255, 255, 255, 0.12);
+    --bw-accent: #4daafc;
+    --bw-accent-fg: #ffffff;
+    --bw-accent-bg: rgba(77, 170, 252, 0.12);
     --bw-text: #e4e4e7;
     --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
   }
@@ -306,37 +349,66 @@
   --bw-bg-hover: rgba(0, 0, 0, 0.06);
   --bw-text-muted: #6b7280;
   --bw-font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --bw-space-4: 16px;
+  --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --bw-border-strong: rgba(0, 0, 0, 0.2);
+  --bw-bg-subtle: #f9f9fa;
   --bw-font-size-sm: 0.75rem;
+  --bw-space-4: 16px;
   --bw-bg-panel: #ffffff;
   --bw-radius-sm: 4px;
   --bw-space-1: 4px;
+  --bw-text-faint: #9ca3af;
+  --bw-font-size-ui: 0.8125rem;
   --bw-gutter-size: 9px;
+  --bw-error: #cf222e;
+  --bw-warning: #9a6700;
   --bw-radius: 8px;
   --bw-bg-bar: #ececee;
+  --bw-font-size-2xs: 0.625rem;
   --bw-bg: #f4f4f5;
+  --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10);
+  --bw-accent-hover: #0858b9;
+  --bw-font-size-lg: 1rem;
   --bw-transition: 0.15s ease;
   --bw-bar-size: 32px;
-  --bw-space-3: 12px;
+  --bw-backdrop: rgba(0, 0, 0, 0.35);
   --bw-font-size: 0.875rem;
-  --bw-z-float: 1000;
+  --bw-space-3: 12px;
+  --bw-space-5: 24px;
+  --bw-space-6: 32px;
   --bw-border: rgba(0, 0, 0, 0.12);
+  --bw-success: #1a7f37;
+  --bw-z-float: 1000;
   --bw-accent: #0969da;
+  --bw-accent-fg: #ffffff;
+  --bw-font-size-xs: 0.6875rem;
   --bw-accent-bg: rgba(9, 105, 218, 0.10);
-  --bw-space-2: 8px;
+  --bw-font-size-xl: 1.375rem;
   --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  --bw-space-2: 8px;
   --bw-text: #1f2328;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bw-border: rgba(255, 255, 255, 0.12);
     --bw-bg-hover: rgba(255, 255, 255, 0.07);
     --bw-text-muted: #9a9aa3;
-    --bw-accent: #4daafc;
-    --bw-bg-bar: #242429;
-    --bw-accent-bg: rgba(77, 170, 252, 0.12);
-    --bw-bg: #18181b;
+    --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --bw-border-strong: rgba(255, 255, 255, 0.2);
+    --bw-bg-subtle: #222226;
+    --bw-text-faint: #71717a;
+    --bw-warning: #d29922;
     --bw-bg-panel: #1e1e22;
+    --bw-error: #f85149;
+    --bw-bg-bar: #242429;
+    --bw-bg: #18181b;
+    --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+    --bw-accent-hover: #79bdfd;
+    --bw-backdrop: rgba(0, 0, 0, 0.6);
+    --bw-success: #3fb950;
+    --bw-border: rgba(255, 255, 255, 0.12);
+    --bw-accent: #4daafc;
+    --bw-accent-fg: #ffffff;
+    --bw-accent-bg: rgba(77, 170, 252, 0.12);
     --bw-text: #e4e4e7;
     --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
   }
@@ -410,37 +482,66 @@
   --bw-bg-hover: rgba(0, 0, 0, 0.06);
   --bw-text-muted: #6b7280;
   --bw-font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --bw-space-4: 16px;
+  --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --bw-border-strong: rgba(0, 0, 0, 0.2);
+  --bw-bg-subtle: #f9f9fa;
   --bw-font-size-sm: 0.75rem;
+  --bw-space-4: 16px;
   --bw-bg-panel: #ffffff;
   --bw-radius-sm: 4px;
   --bw-space-1: 4px;
+  --bw-text-faint: #9ca3af;
+  --bw-font-size-ui: 0.8125rem;
   --bw-gutter-size: 9px;
+  --bw-error: #cf222e;
+  --bw-warning: #9a6700;
   --bw-radius: 8px;
   --bw-bg-bar: #ececee;
+  --bw-font-size-2xs: 0.625rem;
   --bw-bg: #f4f4f5;
+  --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10);
+  --bw-accent-hover: #0858b9;
+  --bw-font-size-lg: 1rem;
   --bw-transition: 0.15s ease;
   --bw-bar-size: 32px;
-  --bw-space-3: 12px;
+  --bw-backdrop: rgba(0, 0, 0, 0.35);
   --bw-font-size: 0.875rem;
-  --bw-z-float: 1000;
+  --bw-space-3: 12px;
+  --bw-space-5: 24px;
+  --bw-space-6: 32px;
   --bw-border: rgba(0, 0, 0, 0.12);
+  --bw-success: #1a7f37;
+  --bw-z-float: 1000;
   --bw-accent: #0969da;
+  --bw-accent-fg: #ffffff;
+  --bw-font-size-xs: 0.6875rem;
   --bw-accent-bg: rgba(9, 105, 218, 0.10);
-  --bw-space-2: 8px;
+  --bw-font-size-xl: 1.375rem;
   --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  --bw-space-2: 8px;
   --bw-text: #1f2328;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bw-border: rgba(255, 255, 255, 0.12);
     --bw-bg-hover: rgba(255, 255, 255, 0.07);
     --bw-text-muted: #9a9aa3;
-    --bw-accent: #4daafc;
-    --bw-bg-bar: #242429;
-    --bw-accent-bg: rgba(77, 170, 252, 0.12);
-    --bw-bg: #18181b;
+    --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --bw-border-strong: rgba(255, 255, 255, 0.2);
+    --bw-bg-subtle: #222226;
+    --bw-text-faint: #71717a;
+    --bw-warning: #d29922;
     --bw-bg-panel: #1e1e22;
+    --bw-error: #f85149;
+    --bw-bg-bar: #242429;
+    --bw-bg: #18181b;
+    --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+    --bw-accent-hover: #79bdfd;
+    --bw-backdrop: rgba(0, 0, 0, 0.6);
+    --bw-success: #3fb950;
+    --bw-border: rgba(255, 255, 255, 0.12);
+    --bw-accent: #4daafc;
+    --bw-accent-fg: #ffffff;
+    --bw-accent-bg: rgba(77, 170, 252, 0.12);
     --bw-text: #e4e4e7;
     --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
   }
@@ -599,37 +700,66 @@
   --bw-bg-hover: rgba(0, 0, 0, 0.06);
   --bw-text-muted: #6b7280;
   --bw-font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --bw-space-4: 16px;
+  --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --bw-border-strong: rgba(0, 0, 0, 0.2);
+  --bw-bg-subtle: #f9f9fa;
   --bw-font-size-sm: 0.75rem;
+  --bw-space-4: 16px;
   --bw-bg-panel: #ffffff;
   --bw-radius-sm: 4px;
   --bw-space-1: 4px;
+  --bw-text-faint: #9ca3af;
+  --bw-font-size-ui: 0.8125rem;
   --bw-gutter-size: 9px;
+  --bw-error: #cf222e;
+  --bw-warning: #9a6700;
   --bw-radius: 8px;
   --bw-bg-bar: #ececee;
+  --bw-font-size-2xs: 0.625rem;
   --bw-bg: #f4f4f5;
+  --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10);
+  --bw-accent-hover: #0858b9;
+  --bw-font-size-lg: 1rem;
   --bw-transition: 0.15s ease;
   --bw-bar-size: 32px;
-  --bw-space-3: 12px;
+  --bw-backdrop: rgba(0, 0, 0, 0.35);
   --bw-font-size: 0.875rem;
-  --bw-z-float: 1000;
+  --bw-space-3: 12px;
+  --bw-space-5: 24px;
+  --bw-space-6: 32px;
   --bw-border: rgba(0, 0, 0, 0.12);
+  --bw-success: #1a7f37;
+  --bw-z-float: 1000;
   --bw-accent: #0969da;
+  --bw-accent-fg: #ffffff;
+  --bw-font-size-xs: 0.6875rem;
   --bw-accent-bg: rgba(9, 105, 218, 0.10);
-  --bw-space-2: 8px;
+  --bw-font-size-xl: 1.375rem;
   --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  --bw-space-2: 8px;
   --bw-text: #1f2328;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bw-border: rgba(255, 255, 255, 0.12);
     --bw-bg-hover: rgba(255, 255, 255, 0.07);
     --bw-text-muted: #9a9aa3;
-    --bw-accent: #4daafc;
-    --bw-bg-bar: #242429;
-    --bw-accent-bg: rgba(77, 170, 252, 0.12);
-    --bw-bg: #18181b;
+    --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --bw-border-strong: rgba(255, 255, 255, 0.2);
+    --bw-bg-subtle: #222226;
+    --bw-text-faint: #71717a;
+    --bw-warning: #d29922;
     --bw-bg-panel: #1e1e22;
+    --bw-error: #f85149;
+    --bw-bg-bar: #242429;
+    --bw-bg: #18181b;
+    --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+    --bw-accent-hover: #79bdfd;
+    --bw-backdrop: rgba(0, 0, 0, 0.6);
+    --bw-success: #3fb950;
+    --bw-border: rgba(255, 255, 255, 0.12);
+    --bw-accent: #4daafc;
+    --bw-accent-fg: #ffffff;
+    --bw-accent-bg: rgba(77, 170, 252, 0.12);
     --bw-text: #e4e4e7;
     --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
   }
@@ -736,37 +866,66 @@
   --bw-bg-hover: rgba(0, 0, 0, 0.06);
   --bw-text-muted: #6b7280;
   --bw-font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --bw-space-4: 16px;
+  --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --bw-border-strong: rgba(0, 0, 0, 0.2);
+  --bw-bg-subtle: #f9f9fa;
   --bw-font-size-sm: 0.75rem;
+  --bw-space-4: 16px;
   --bw-bg-panel: #ffffff;
   --bw-radius-sm: 4px;
   --bw-space-1: 4px;
+  --bw-text-faint: #9ca3af;
+  --bw-font-size-ui: 0.8125rem;
   --bw-gutter-size: 9px;
+  --bw-error: #cf222e;
+  --bw-warning: #9a6700;
   --bw-radius: 8px;
   --bw-bg-bar: #ececee;
+  --bw-font-size-2xs: 0.625rem;
   --bw-bg: #f4f4f5;
+  --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10);
+  --bw-accent-hover: #0858b9;
+  --bw-font-size-lg: 1rem;
   --bw-transition: 0.15s ease;
   --bw-bar-size: 32px;
-  --bw-space-3: 12px;
+  --bw-backdrop: rgba(0, 0, 0, 0.35);
   --bw-font-size: 0.875rem;
-  --bw-z-float: 1000;
+  --bw-space-3: 12px;
+  --bw-space-5: 24px;
+  --bw-space-6: 32px;
   --bw-border: rgba(0, 0, 0, 0.12);
+  --bw-success: #1a7f37;
+  --bw-z-float: 1000;
   --bw-accent: #0969da;
+  --bw-accent-fg: #ffffff;
+  --bw-font-size-xs: 0.6875rem;
   --bw-accent-bg: rgba(9, 105, 218, 0.10);
-  --bw-space-2: 8px;
+  --bw-font-size-xl: 1.375rem;
   --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  --bw-space-2: 8px;
   --bw-text: #1f2328;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bw-border: rgba(255, 255, 255, 0.12);
     --bw-bg-hover: rgba(255, 255, 255, 0.07);
     --bw-text-muted: #9a9aa3;
-    --bw-accent: #4daafc;
-    --bw-bg-bar: #242429;
-    --bw-accent-bg: rgba(77, 170, 252, 0.12);
-    --bw-bg: #18181b;
+    --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --bw-border-strong: rgba(255, 255, 255, 0.2);
+    --bw-bg-subtle: #222226;
+    --bw-text-faint: #71717a;
+    --bw-warning: #d29922;
     --bw-bg-panel: #1e1e22;
+    --bw-error: #f85149;
+    --bw-bg-bar: #242429;
+    --bw-bg: #18181b;
+    --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+    --bw-accent-hover: #79bdfd;
+    --bw-backdrop: rgba(0, 0, 0, 0.6);
+    --bw-success: #3fb950;
+    --bw-border: rgba(255, 255, 255, 0.12);
+    --bw-accent: #4daafc;
+    --bw-accent-fg: #ffffff;
+    --bw-accent-bg: rgba(77, 170, 252, 0.12);
     --bw-text: #e4e4e7;
     --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
   }
@@ -826,37 +985,66 @@
   --bw-bg-hover: rgba(0, 0, 0, 0.06);
   --bw-text-muted: #6b7280;
   --bw-font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --bw-space-4: 16px;
+  --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --bw-border-strong: rgba(0, 0, 0, 0.2);
+  --bw-bg-subtle: #f9f9fa;
   --bw-font-size-sm: 0.75rem;
+  --bw-space-4: 16px;
   --bw-bg-panel: #ffffff;
   --bw-radius-sm: 4px;
   --bw-space-1: 4px;
+  --bw-text-faint: #9ca3af;
+  --bw-font-size-ui: 0.8125rem;
   --bw-gutter-size: 9px;
+  --bw-error: #cf222e;
+  --bw-warning: #9a6700;
   --bw-radius: 8px;
   --bw-bg-bar: #ececee;
+  --bw-font-size-2xs: 0.625rem;
   --bw-bg: #f4f4f5;
+  --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10);
+  --bw-accent-hover: #0858b9;
+  --bw-font-size-lg: 1rem;
   --bw-transition: 0.15s ease;
   --bw-bar-size: 32px;
-  --bw-space-3: 12px;
+  --bw-backdrop: rgba(0, 0, 0, 0.35);
   --bw-font-size: 0.875rem;
-  --bw-z-float: 1000;
+  --bw-space-3: 12px;
+  --bw-space-5: 24px;
+  --bw-space-6: 32px;
   --bw-border: rgba(0, 0, 0, 0.12);
+  --bw-success: #1a7f37;
+  --bw-z-float: 1000;
   --bw-accent: #0969da;
+  --bw-accent-fg: #ffffff;
+  --bw-font-size-xs: 0.6875rem;
   --bw-accent-bg: rgba(9, 105, 218, 0.10);
-  --bw-space-2: 8px;
+  --bw-font-size-xl: 1.375rem;
   --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  --bw-space-2: 8px;
   --bw-text: #1f2328;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bw-border: rgba(255, 255, 255, 0.12);
     --bw-bg-hover: rgba(255, 255, 255, 0.07);
     --bw-text-muted: #9a9aa3;
-    --bw-accent: #4daafc;
-    --bw-bg-bar: #242429;
-    --bw-accent-bg: rgba(77, 170, 252, 0.12);
-    --bw-bg: #18181b;
+    --bw-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --bw-border-strong: rgba(255, 255, 255, 0.2);
+    --bw-bg-subtle: #222226;
+    --bw-text-faint: #71717a;
+    --bw-warning: #d29922;
     --bw-bg-panel: #1e1e22;
+    --bw-error: #f85149;
+    --bw-bg-bar: #242429;
+    --bw-bg: #18181b;
+    --bw-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+    --bw-accent-hover: #79bdfd;
+    --bw-backdrop: rgba(0, 0, 0, 0.6);
+    --bw-success: #3fb950;
+    --bw-border: rgba(255, 255, 255, 0.12);
+    --bw-accent: #4daafc;
+    --bw-accent-fg: #ffffff;
+    --bw-accent-bg: rgba(77, 170, 252, 0.12);
     --bw-text: #e4e4e7;
     --bw-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
   }
@@ -924,6 +1112,170 @@
   touch-action: none;
   background: linear-gradient(135deg, transparent 50%, var(--bw-border) 50%, var(--bw-border) 60%, transparent 60%, transparent 70%, var(--bw-border) 70%, var(--bw-border) 80%, transparent 80%);
 }
+</style><style>.bw-btn {
+  font-weight: 500;
+  border-radius: var(--bw-radius-sm);
+  align-items: center;
+  white-space: nowrap;
+  font-size: var(--bw-font-size-ui);
+  cursor: pointer;
+  padding: 6px 12px;
+  appearance: none;
+  background: var(--bw-accent);
+  transition: background 120ms ease, transform 80ms ease, opacity 120ms ease, color 120ms;
+  text-decoration: none;
+  font: inherit;
+  border: 1px solid transparent;
+  gap: 6px;
+  line-height: 18px;
+  display: inline-flex;
+  color: var(--bw-accent-fg);
+}
+.bw-btn:hover {
+  background: var(--bw-accent-hover);
+}
+.bw-btn:active {
+  transform: translateY(1px);
+}
+.bw-btn-secondary {
+  background: var(--bw-bg-panel);
+  border-color: var(--bw-border-strong);
+  color: var(--bw-text);
+}
+.bw-btn-secondary:hover {
+  background: var(--bw-bg-subtle);
+}
+.bw-btn-ghost {
+  padding: 6px 8px;
+  background: transparent;
+  color: var(--bw-text-muted);
+}
+.bw-btn-ghost:hover {
+  background: var(--bw-bg-subtle);
+  color: var(--bw-text);
+}
+.bw-btn-danger {
+  background: var(--bw-bg-panel);
+  border-color: color-mix(in srgb, var(--bw-error) 40%, transparent);
+  color: var(--bw-error);
+}
+.bw-btn-danger:hover {
+  background: color-mix(in srgb, var(--bw-error) 10%, transparent);
+}
+.bw-btn-loading {
+  cursor: wait;
+  opacity: 0.7;
+}
+.bw-btn-sm {
+  font-size: var(--bw-font-size-sm);
+  padding: 3px 9px;
+}
+</style><style>.bw-menu {
+  display: inline-flex;
+  position: relative;
+}
+.bw-menu-list {
+  right: 0;
+  position: absolute;
+  z-index: 60;
+  border-radius: var(--bw-radius);
+  box-shadow: var(--bw-shadow-md);
+  min-width: 220px;
+  padding: 4px;
+  background: var(--bw-bg-panel);
+  border: 1px solid var(--bw-border-strong);
+  text-align: left;
+  display: none;
+  top: calc(100% + 4px);
+}
+.bw-menu-open > .bw-menu-list {
+  display: block;
+}
+.bw-menu-title {
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-size: var(--bw-font-size-xs);
+  padding: 6px 10px 2px;
+  color: var(--bw-text-muted);
+  text-transform: uppercase;
+}
+.bw-menu-item {
+  border-radius: var(--bw-radius-sm);
+  white-space: nowrap;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: var(--bw-font-size-ui);
+  padding: 6px 10px;
+  appearance: none;
+  background: transparent;
+  text-decoration: none;
+  width: 100%;
+  font: inherit;
+  border: 0;
+  text-align: left;
+  line-height: 18px;
+  display: block;
+  color: var(--bw-text);
+}
+.bw-menu-item:hover {
+  background: var(--bw-bg-subtle);
+}
+.bw-menu-sep {
+  height: 1px;
+  margin: 4px 6px;
+  background: var(--bw-border);
+}
+.bw-menu-danger {
+  color: var(--bw-error);
+}
+.bw-menu-danger:hover {
+  background: color-mix(in srgb, var(--bw-error) 10%, transparent);
+}
+</style><style>.bw-modal-overlay {
+  justify-content: center;
+  inset: 0;
+  padding: var(--bw-space-4);
+  display: none;
+  position: fixed;
+  z-index: calc(var(--bw-z-float) + 1);
+  background: var(--bw-backdrop);
+  align-items: center;
+}
+.bw-modal-overlay.bw-modal-open {
+  display: flex;
+}
+.bw-modal-card {
+  box-shadow: var(--bw-shadow-md);
+  max-height: 85vh;
+  overflow-y: auto;
+  width: min(560px, 100%);
+  display: flex;
+  border: 1px solid var(--bw-border-strong);
+  background: var(--bw-bg-panel);
+  flex-direction: column;
+  border-radius: var(--bw-radius);
+}
+.bw-modal-head {
+  justify-content: space-between;
+  gap: var(--bw-space-3);
+  padding: 14px 16px;
+  display: flex;
+  border-bottom: 1px solid var(--bw-border);
+  align-items: center;
+}
+.bw-modal-title {
+  font-weight: 600;
+  font-size: var(--bw-font-size);
+}
+.bw-modal-body {
+  padding: 4px 16px 16px;
+}
+</style><style>.bw-infinite-list {
+  overflow-anchor: none;
+  min-height: 0;
+  overflow-y: auto;
+  position: relative;
+}
 </style><style>@media (prefers-color-scheme: light) {
   :root {
     --bonito-widget-hover-bg: #f3f4f6;
@@ -985,13 +1337,13 @@ html .noUi-value {
     window.__require = window.require;
     window.define = undefined;
     window.require = undefined;
-</script><link rel="stylesheet" type="text/css" href="bonito/css/theme2236611702874637086.css" /><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" /><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script><script src="bonito/js/docs4717207692763196562.js"></script><script>    window.define = window.__define;
+</script><link rel="stylesheet" type="text/css" href="bonito/css/theme2236611702874637086.css" /><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" /><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script><script src="bonito/js/docs4717207692763196562.js"></script><script src="bonito/js/overlays.bundled70528187830907613.js" type="module"></script><script src="bonito/js/row_block.bundled16575830886086294818.js" type="module"></script><script>    window.define = window.__define;
     window.require = window.__require;
     window.__define = undefined;
     window.__require = undefined;
-</script></head><body><script type="module">Bonito.init_session("565ce68d-b2e2-45b6-a064-d2fd76c5f3ce", Bonito.fetch_binary('bonito/bin/113308e4776b120b7a82cd0c8a077ea454a35fea-6976818707208082131.bin'), "root", false);
-</script><div data-jscall-id="root" id="565ce68d-b2e2-45b6-a064-d2fd76c5f3ce"><div data-jscall-id="1" class="bonito-docs vp-layout"><div data-jscall-id="2" class="VPNav"><div data-jscall-id="3" class="container"><a data-jscall-id="4" class="title" href="index.html"><span data-jscall-id="5">BonitoWidgets</span></a><div data-jscall-id="6" class="content"><button data-jscall-id="7" type="button" class="search-btn" data-open-search="true"><span data-jscall-id="8" style="display:inline-flex"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span><span data-jscall-id="9">Search</span><span data-jscall-id="10" class="kbd">Ctrl K</span></button><div data-jscall-id="11" class="VPVersion"><script data-jscall-id="12" src="../versions.js"></script><button data-jscall-id="13" type="button" class="trigger"><span data-jscall-id="14">dev</span><span data-jscall-id="15">▾</span></button><div data-jscall-id="16" data-versions="true" class="menu"></div></div><a data-jscall-id="17" title="GitHub" class="icon-btn" href="https://github.com/SimonDanisch/BonitoWidgets.jl" target="_blank"><span data-jscall-id="18" style="display:inline-flex"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg></span></a><button data-jscall-id="19" data-toggle-theme="true" type="button" title="Toggle theme" class="icon-btn"><span data-jscall-id="20" style="display:inline-flex"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span></button><button data-jscall-id="21" data-toggle-sidebar="true" type="button" title="Menu" class="icon-btn hamburger"><span data-jscall-id="22" style="display:inline-flex"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></span></button></div></div></div><div data-jscall-id="23" class="VPContent"><nav data-jscall-id="24" class="VPSidebar"><a data-jscall-id="25" class="link top-link" href="index.html">Home</a><a data-jscall-id="26" class="link top-link" href="workspace.html">Workspace</a><a data-jscall-id="27" class="link top-link active" href="components.html">Components</a><a data-jscall-id="28" class="link top-link" href="theming.html">Theming</a><a data-jscall-id="29" class="link top-link" href="testing.html">Testing layouts</a><a data-jscall-id="30" class="link top-link" href="api.html">API</a></nav><div data-jscall-id="31" class="VPSidebar-backdrop"></div><div data-jscall-id="32" class="VPMain"><div data-jscall-id="33" class="VPDoc"><div data-jscall-id="34" class="doc-container"><div data-jscall-id="35" class="doc-content"><div data-jscall-id="36" class="vp-doc"><h1 data-jscall-id="37" id="Components">Components<a data-jscall-id="38" class="header-anchor" aria-label="Permalink" href="#Components">​#</a></h1><p data-jscall-id="39">Smaller building blocks, for when a full <a data-jscall-id="40" href="workspace.html#Workspace">Workspace</a> is more than you need.</p><h2 data-jscall-id="41" id="Tabs">Tabs<a data-jscall-id="42" class="header-anchor" aria-label="Permalink" href="#Tabs">​#</a></h2><p data-jscall-id="43">Tabs with no docking, optionally closable. <code data-jscall-id="44">active</code> and <code data-jscall-id="45">closed</code> are observables you can read or set from Julia.</p><details data-jscall-id="46" open="true" class="jldocstring custom-block"><summary data-jscall-id="47"><a data-jscall-id="48" id="BonitoWidgets.Tabs-components" href="#BonitoWidgets.Tabs-components"><span data-jscall-id="49" class="jlbinding">BonitoWidgets.Tabs</span></a><span data-jscall-id="50" class="VPBadge info">Type</span></summary><div data-jscall-id="51" class="docstring-body"><div data-jscall-id="52" class="language-julia"><span data-jscall-id="53" class="lang"><span>julia</span></span><button data-jscall-id="54" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="55"><code data-jscall-id="56" class="language-julia">Tabs&#40;items...; active&#61;1, closable&#61;false, style&#61;Styles&#40;&#41;&#41;
-Tabs&#40;&#34;3D View&#34; &#61;&#62; fig, &#34;Spectrum&#34; &#61;&#62; fig2; active&#61;1&#41;</code></pre></div><p data-jscall-id="57">A tabbed container switching between named panels. Each item is a <code data-jscall-id="58">label &#61;&#62; content</code> pair; the label can be a string or any renderable, the content typically a widget or a WGLMakie figure wrapped with <code data-jscall-id="59">resize_to&#61;:parent</code>.</p><p data-jscall-id="60">All panels stay mounted, stacked via absolute positioning, and only the active one is visible. Hidden panels keep their full size, so WebGL contexts, Makie cameras, and widget state survive every switch &#40;no re-render on tab change&#41;.</p><ul data-jscall-id="61"><li data-jscall-id="62"><p data-jscall-id="63"><code data-jscall-id="64">active::Observable&#123;Int&#125;</code> — 1-based index of the shown tab. Bidirectional: clicks update it, and setting it from Julia switches the tab.</p></li><li data-jscall-id="65"><p data-jscall-id="66"><code data-jscall-id="67">closable</code> — adds a close button per tab. Closing hides the tab &#43; panel and notifies <code data-jscall-id="68">closed::Observable&#123;Int&#125;</code> with the index; the content stays mounted so you can react however you like &#40;or ignore it&#41;.</p></li></ul><p data-jscall-id="69">The tab bar scrolls horizontally when tabs overflow &#40;touch-friendly&#41;, and tab height follows <code data-jscall-id="70">--bw-bar-size</code>, which grows on coarse pointers.</p><a data-jscall-id="71" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/c92cb61b915b19de0ce2710c13eddf4e473bca3a/src/tabs.jl#L1-L22" target="_blank">source</a></div></details><div data-jscall-id="72" class="language-julia"><span data-jscall-id="73" class="lang">julia</span><button data-jscall-id="74" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="75"><code data-jscall-id="76" class="language-julia">using Bonito, BonitoWidgets
+</script></head><body><script type="module">Bonito.init_session("4e299408-b3cf-45a3-bde8-f1190691508d", Bonito.fetch_binary('bonito/bin/3ecacbe029dfccf4ed6ed729e79936c93d2f30c0-1329042793044075676.bin'), "root", false);
+</script><div data-jscall-id="root" id="4e299408-b3cf-45a3-bde8-f1190691508d"><div data-jscall-id="1" class="bonito-docs vp-layout"><div data-jscall-id="2" class="VPNav"><div data-jscall-id="3" class="container"><a data-jscall-id="4" class="title" href="index.html"><span data-jscall-id="5">BonitoWidgets</span></a><div data-jscall-id="6" class="content"><button data-jscall-id="7" type="button" class="search-btn" data-open-search="true"><span data-jscall-id="8" style="display:inline-flex"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span><span data-jscall-id="9">Search</span><span data-jscall-id="10" class="kbd">Ctrl K</span></button><div data-jscall-id="11" class="VPVersion"><script data-jscall-id="12" src="../versions.js"></script><button data-jscall-id="13" type="button" class="trigger"><span data-jscall-id="14">dev</span><span data-jscall-id="15">▾</span></button><div data-jscall-id="16" data-versions="true" class="menu"></div></div><a data-jscall-id="17" title="GitHub" class="icon-btn" href="https://github.com/SimonDanisch/BonitoWidgets.jl" target="_blank"><span data-jscall-id="18" style="display:inline-flex"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg></span></a><button data-jscall-id="19" data-toggle-theme="true" type="button" title="Toggle theme" class="icon-btn"><span data-jscall-id="20" style="display:inline-flex"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span></button><button data-jscall-id="21" data-toggle-sidebar="true" type="button" title="Menu" class="icon-btn hamburger"><span data-jscall-id="22" style="display:inline-flex"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></span></button></div></div></div><div data-jscall-id="23" class="VPContent"><nav data-jscall-id="24" class="VPSidebar"><a data-jscall-id="25" class="link top-link" href="index.html">Home</a><a data-jscall-id="26" class="link top-link" href="workspace.html">Workspace</a><a data-jscall-id="27" class="link top-link active" href="components.html">Components</a><a data-jscall-id="28" class="link top-link" href="theming.html">Theming</a><a data-jscall-id="29" class="link top-link" href="testing.html">Testing layouts</a><a data-jscall-id="30" class="link top-link" href="api.html">API</a></nav><div data-jscall-id="31" class="VPSidebar-backdrop"></div><div data-jscall-id="32" class="VPMain"><div data-jscall-id="33" class="VPDoc"><div data-jscall-id="34" class="doc-container"><div data-jscall-id="35" class="doc-content"><div data-jscall-id="36" class="vp-doc"><h1 data-jscall-id="37" id="Components">Components<a data-jscall-id="38" class="header-anchor" aria-label="Permalink" href="#Components">​#</a></h1><p data-jscall-id="39">Smaller building blocks, for when a full <a data-jscall-id="40" href="workspace.html#Workspace">Workspace</a> is more than you need.</p><h2 data-jscall-id="41" id="Tabs">Tabs<a data-jscall-id="42" class="header-anchor" aria-label="Permalink" href="#Tabs">​#</a></h2><p data-jscall-id="43">Tabs with no docking, optionally closable. <code data-jscall-id="44">active</code> and <code data-jscall-id="45">closed</code> are observables you can read or set from Julia.</p><details data-jscall-id="46" open="true" class="jldocstring custom-block"><summary data-jscall-id="47"><a data-jscall-id="48" id="BonitoWidgets.Tabs-components" href="#BonitoWidgets.Tabs-components"><span data-jscall-id="49" class="jlbinding">BonitoWidgets.Tabs</span></a><span data-jscall-id="50" class="VPBadge info">Type</span></summary><div data-jscall-id="51" class="docstring-body"><div data-jscall-id="52" class="language-julia"><span data-jscall-id="53" class="lang"><span>julia</span></span><button data-jscall-id="54" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="55"><code data-jscall-id="56" class="language-julia">Tabs&#40;items...; active&#61;1, closable&#61;false, style&#61;Styles&#40;&#41;&#41;
+Tabs&#40;&#34;3D View&#34; &#61;&#62; fig, &#34;Spectrum&#34; &#61;&#62; fig2; active&#61;1&#41;</code></pre></div><p data-jscall-id="57">A tabbed container switching between named panels. Each item is a <code data-jscall-id="58">label &#61;&#62; content</code> pair; the label can be a string or any renderable, the content typically a widget or a WGLMakie figure wrapped with <code data-jscall-id="59">resize_to&#61;:parent</code>.</p><p data-jscall-id="60">All panels stay mounted, stacked via absolute positioning, and only the active one is visible. Hidden panels keep their full size, so WebGL contexts, Makie cameras, and widget state survive every switch &#40;no re-render on tab change&#41;.</p><ul data-jscall-id="61"><li data-jscall-id="62"><p data-jscall-id="63"><code data-jscall-id="64">active::Observable&#123;Int&#125;</code> — 1-based index of the shown tab. Bidirectional: clicks update it, and setting it from Julia switches the tab.</p></li><li data-jscall-id="65"><p data-jscall-id="66"><code data-jscall-id="67">closable</code> — adds a close button per tab. Closing hides the tab &#43; panel and notifies <code data-jscall-id="68">closed::Observable&#123;Int&#125;</code> with the index; the content stays mounted so you can react however you like &#40;or ignore it&#41;.</p></li></ul><p data-jscall-id="69">The tab bar scrolls horizontally when tabs overflow &#40;touch-friendly&#41;, and tab height follows <code data-jscall-id="70">--bw-bar-size</code>, which grows on coarse pointers.</p><a data-jscall-id="71" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/03c1adcbb1468310de7779875631743ba9a26979/src/tabs.jl#L1-L22" target="_blank">source</a></div></details><div data-jscall-id="72" class="language-julia"><span data-jscall-id="73" class="lang">julia</span><button data-jscall-id="74" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="75"><code data-jscall-id="76" class="language-julia">using Bonito, BonitoWidgets
 
 App&#40;&#41; do
     tabs &#61; Tabs&#40;
@@ -1005,7 +1357,7 @@ end</code></pre></div><div data-jscall-id="77" class="bonito-output"><div data-j
                collapsible&#61;true, min_fraction&#61;0.08, style&#61;Styles&#40;&#41;&#41;</code></pre></div><p data-jscall-id="120">A resizable two-pane container with a draggable gutter between the children:</p><div data-jscall-id="121" class="language-julia"><span data-jscall-id="122" class="lang"><span>julia</span></span><button data-jscall-id="123" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="124"><code data-jscall-id="125" class="language-julia">direction &#61; :row     &#91; A │ B &#93;   drag the vertical gutter to resize widths
 direction &#61; :column  &#91; A &#93;       drag the horizontal gutter to resize heights
                      &#91;─┼─&#93;
-                     &#91; B &#93;</code></pre></div><p data-jscall-id="126">All state is observable and bidirectional &#40;user gestures notify Julia, Julia updates apply live&#41;:</p><ul data-jscall-id="127"><li data-jscall-id="128"><p data-jscall-id="129"><code data-jscall-id="130">direction::Observable&#123;Symbol&#125;</code> — <code data-jscall-id="131">:row</code> or <code data-jscall-id="132">:column</code>; flipping it re-flows the same DOM &#40;children are never re-rendered&#41;. <code data-jscall-id="133">:horizontal</code>/<code data-jscall-id="134">:vertical</code> are accepted as aliases. Pair with <a data-jscall-id="135" href="api.html#BonitoWidgets.OrientationToggle"><code data-jscall-id="136">OrientationToggle</code></a>.</p></li><li data-jscall-id="137"><p data-jscall-id="138"><code data-jscall-id="139">split::Observable&#123;Float64&#125;</code> — fraction &#40;0–1&#41; of the axis given to pane <code data-jscall-id="140">a</code>, notified at the end of each drag.</p></li><li data-jscall-id="141"><p data-jscall-id="142"><code data-jscall-id="143">collapsed::Observable&#123;Int&#125;</code> — <code data-jscall-id="144">0</code> &#40;none&#41;, <code data-jscall-id="145">1</code>, or <code data-jscall-id="146">2</code>: that pane collapses to just its header, handing its space to the sibling.</p></li></ul><p data-jscall-id="147"><code data-jscall-id="148">titles&#61;&#40;&#34;A title&#34;, &#34;B title&#34;&#41;</code> adds a slim header bar per pane; with <code data-jscall-id="149">collapsible&#61;true</code> each header carries a collapse chevron. <code data-jscall-id="150">titles&#61;nothing</code> &#40;default&#41; renders bare panes — collapsing then only works via the observable.</p><p data-jscall-id="151">Drags use pointer events &#40;mouse &#43; touch&#41; and the gutter hit area follows <code data-jscall-id="152">--bw-gutter-size</code>, which grows on coarse pointers. Double-click resets the split to its initial value. Children fill their pane, so a Makie figure with <code data-jscall-id="153">resize_to&#61;:parent</code> tracks the pane size live while dragging.</p><a data-jscall-id="154" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/c92cb61b915b19de0ce2710c13eddf4e473bca3a/src/split.jl#L1-L31" target="_blank">source</a></div></details><div data-jscall-id="155" class="language-julia"><span data-jscall-id="156" class="lang">julia</span><button data-jscall-id="157" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="158"><code data-jscall-id="159" class="language-julia">using Bonito, BonitoWidgets
+                     &#91; B &#93;</code></pre></div><p data-jscall-id="126">All state is observable and bidirectional &#40;user gestures notify Julia, Julia updates apply live&#41;:</p><ul data-jscall-id="127"><li data-jscall-id="128"><p data-jscall-id="129"><code data-jscall-id="130">direction::Observable&#123;Symbol&#125;</code> — <code data-jscall-id="131">:row</code> or <code data-jscall-id="132">:column</code>; flipping it re-flows the same DOM &#40;children are never re-rendered&#41;. <code data-jscall-id="133">:horizontal</code>/<code data-jscall-id="134">:vertical</code> are accepted as aliases. Pair with <a data-jscall-id="135" href="api.html#BonitoWidgets.OrientationToggle"><code data-jscall-id="136">OrientationToggle</code></a>.</p></li><li data-jscall-id="137"><p data-jscall-id="138"><code data-jscall-id="139">split::Observable&#123;Float64&#125;</code> — fraction &#40;0–1&#41; of the axis given to pane <code data-jscall-id="140">a</code>, notified at the end of each drag.</p></li><li data-jscall-id="141"><p data-jscall-id="142"><code data-jscall-id="143">collapsed::Observable&#123;Int&#125;</code> — <code data-jscall-id="144">0</code> &#40;none&#41;, <code data-jscall-id="145">1</code>, or <code data-jscall-id="146">2</code>: that pane collapses to just its header, handing its space to the sibling.</p></li></ul><p data-jscall-id="147"><code data-jscall-id="148">titles&#61;&#40;&#34;A title&#34;, &#34;B title&#34;&#41;</code> adds a slim header bar per pane; with <code data-jscall-id="149">collapsible&#61;true</code> each header carries a collapse chevron. <code data-jscall-id="150">titles&#61;nothing</code> &#40;default&#41; renders bare panes — collapsing then only works via the observable.</p><p data-jscall-id="151">Drags use pointer events &#40;mouse &#43; touch&#41; and the gutter hit area follows <code data-jscall-id="152">--bw-gutter-size</code>, which grows on coarse pointers. Double-click resets the split to its initial value. Children fill their pane, so a Makie figure with <code data-jscall-id="153">resize_to&#61;:parent</code> tracks the pane size live while dragging.</p><a data-jscall-id="154" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/03c1adcbb1468310de7779875631743ba9a26979/src/split.jl#L1-L31" target="_blank">source</a></div></details><div data-jscall-id="155" class="language-julia"><span data-jscall-id="156" class="lang">julia</span><button data-jscall-id="157" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="158"><code data-jscall-id="159" class="language-julia">using Bonito, BonitoWidgets
 
 App&#40;&#41; do
     split &#61; SplitContainer&#40;
@@ -1022,7 +1374,7 @@ App&#40;&#41; do
 end</code></pre></div><div data-jscall-id="160" class="bonito-output"><div data-jscall-id="161"><div data-jscall-id="162" class=" style_12" style="">Toggle orientation:<span data-jscall-id="163" class=" style_11" style=""><button data-jscall-id="164" title="Toggle split direction" class="bw-icon-btn bw-orient-toggle" data-dir="row"><span data-jscall-id="165" class="bw-orient-row"><svg data-jscall-id="166" stroke-width="1.3" viewBox="0 0 16 16" stroke-linejoin="round" fill="none" juliasvgnode="true" stroke-linecap="round" width="1em" stroke="currentColor" height="1em" aria-hidden="true"><rect data-jscall-id="167" height="11" rx="1.5" juliasvgnode="true" y="2.5" width="13" x="1.5" /><path data-jscall-id="168" d="M8 2.5v11" juliasvgnode="true" /></svg></span><span data-jscall-id="169" class="bw-orient-column"><svg data-jscall-id="170" stroke-width="1.3" viewBox="0 0 16 16" stroke-linejoin="round" fill="none" juliasvgnode="true" stroke-linecap="round" width="1em" stroke="currentColor" height="1em" aria-hidden="true"><rect data-jscall-id="171" height="11" rx="1.5" juliasvgnode="true" y="2.5" width="13" x="1.5" /><path data-jscall-id="172" d="M1.5 8h13" juliasvgnode="true" /></svg></span></button><script data-jscall-id="173"></script></span></div><div data-jscall-id="174" class=" style_19" style=""><div data-jscall-id="175" class="bw-split bw-split-row style_18" style=""><div data-jscall-id="176" class="bw-split-pane bw-split-a style_14" style=""><div data-jscall-id="177" class="bw-split-header"><span data-jscall-id="178" class="bw-split-title">Scene</span><button data-jscall-id="179" title="Collapse / expand" class="bw-split-collapse"><span data-jscall-id="180" class="bw-split-chevron"><svg data-jscall-id="181" stroke-width="1.3" viewBox="0 0 16 16" stroke-linejoin="round" fill="none" juliasvgnode="true" stroke-linecap="round" width="1em" stroke="currentColor" height="1em" aria-hidden="true"><path data-jscall-id="182" d="M4 6l4 4 4-4" juliasvgnode="true" /></svg></span></button></div><div data-jscall-id="183" class="bw-split-body style_8" style=""><div data-jscall-id="184" class=" style_13" style="">Scene</div></div></div><div data-jscall-id="185" class="bw-split-gutter style_15" style=""><div data-jscall-id="186" class="bw-split-grip"></div></div><div data-jscall-id="187" class="bw-split-pane bw-split-b style_17" style=""><div data-jscall-id="188" class="bw-split-header"><span data-jscall-id="189" class="bw-split-title">Controls</span><button data-jscall-id="190" title="Collapse / expand" class="bw-split-collapse"><span data-jscall-id="191" class="bw-split-chevron"><svg data-jscall-id="192" stroke-width="1.3" viewBox="0 0 16 16" stroke-linejoin="round" fill="none" juliasvgnode="true" stroke-linecap="round" width="1em" stroke="currentColor" height="1em" aria-hidden="true"><path data-jscall-id="193" d="M4 6l4 4 4-4" juliasvgnode="true" /></svg></span></button></div><div data-jscall-id="194" class="bw-split-body style_8" style=""><div data-jscall-id="195" class=" style_16" style="">Controls</div></div></div><script data-jscall-id="196"></script></div></div></div></div><h2 data-jscall-id="197" id="PanelGroup">PanelGroup<a data-jscall-id="198" class="header-anchor" aria-label="Permalink" href="#PanelGroup">​#</a></h2><p data-jscall-id="199">A single group of N named panels, shown as tabs or side by side. Switch with the bar widgets, or drag a tab into the body: the edges make a split, the center goes back to tabs.</p><details data-jscall-id="200" open="true" class="jldocstring custom-block"><summary data-jscall-id="201"><a data-jscall-id="202" id="BonitoWidgets.PanelGroup-components" href="#BonitoWidgets.PanelGroup-components"><span data-jscall-id="203" class="jlbinding">BonitoWidgets.PanelGroup</span></a><span data-jscall-id="204" class="VPBadge info">Type</span></summary><div data-jscall-id="205" class="docstring-body"><div data-jscall-id="206" class="language-julia"><span data-jscall-id="207" class="lang"><span>julia</span></span><button data-jscall-id="208" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="209"><code data-jscall-id="210" class="language-julia">PanelGroup&#40;items...; mode&#61;:tabs, active&#61;1, collapsible&#61;true,
            mode_buttons&#61;true, draggable&#61;true, min_fraction&#61;0.1,
            style&#61;Styles&#40;&#41;&#41;
-PanelGroup&#40;&#34;Editor&#34; &#61;&#62; editor, &#34;Plot&#34; &#61;&#62; fig, &#34;Log&#34; &#61;&#62; log&#41;</code></pre></div><p data-jscall-id="211">VSCode-style panel management for a set of named panels: show them as <strong data-jscall-id="212">tabs</strong> or <strong data-jscall-id="213">side by side</strong> &#40;with draggable resize gutters&#41;, switchable at runtime via the widgets in the group bar — or by dragging a tab into a layout slot.</p><p data-jscall-id="214">The bar shows one button per panel plus &#40;right-aligned&#41; the layout widgets: tabs / horizontal split / vertical split toggles and a collapse chevron that folds the whole group down to the bar.</p><p data-jscall-id="215"><strong data-jscall-id="216">Tab dragging</strong> &#40;<code data-jscall-id="217">draggable&#61;true</code>&#41;: drag a tab over the body and drop zones light up — left/right edges dock the panel there in a horizontal split, top/bottom in a vertical split, center switches back to tabs with that panel active. Dropping on another tab in the strip reorders the panels. Dragging works with mouse and touch &#40;drag the tab downwards into the body on touch&#41;.</p><p data-jscall-id="218">All panels stay mounted across every layout change — the same DOM nodes are re-flowed &#40;or moved, for reorders&#41; without re-rendering — so WebGL contexts, Makie cameras, and widget state survive switching between tabs and splits.</p><p data-jscall-id="219">Observable state &#40;all bidirectional&#41;:</p><ul data-jscall-id="220"><li data-jscall-id="221"><p data-jscall-id="222"><code data-jscall-id="223">mode::Observable&#123;Symbol&#125;</code> — <code data-jscall-id="224">:tabs</code>, <code data-jscall-id="225">:row</code> &#40;side by side&#41;, or <code data-jscall-id="226">:column</code> &#40;stacked&#41;. <code data-jscall-id="227">:horizontal</code>/<code data-jscall-id="228">:vertical</code> accepted as aliases on construction.</p></li><li data-jscall-id="229"><p data-jscall-id="230"><code data-jscall-id="231">active::Observable&#123;Int&#125;</code> — the shown tab in <code data-jscall-id="232">:tabs</code> mode &#40;highlighted in split modes&#41;. Indices always refer to the original construction order.</p></li><li data-jscall-id="233"><p data-jscall-id="234"><code data-jscall-id="235">order::Observable&#123;Vector&#123;Int&#125;&#125;</code> — display order as a permutation of original panel indices, updated by tab drags; set it from Julia to restore a saved arrangement.</p></li><li data-jscall-id="236"><p data-jscall-id="237"><code data-jscall-id="238">collapsed::Observable&#123;Bool&#125;</code> — group folded to just its bar.</p></li><li data-jscall-id="239"><p data-jscall-id="240"><code data-jscall-id="241">fractions::Observable&#123;Vector&#123;Float64&#125;&#125;</code> — per-<em data-jscall-id="242">position</em> share of the split axis &#40;sums to 1&#41;, notified after each gutter drag.</p></li></ul><p data-jscall-id="243">Mobile: below 700px viewport width the group always lays out as tabs &#40;splits are unusable on phones&#41;, the split-mode buttons hide, and drop zones reduce to &#34;make active&#34;; <code data-jscall-id="244">mode</code> is preserved and re-applied once the viewport is wide again. Gutters and bar buttons grow on coarse pointers via <code data-jscall-id="245">--bw-bar-size</code>/<code data-jscall-id="246">--bw-gutter-size</code>.</p><a data-jscall-id="247" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/c92cb61b915b19de0ce2710c13eddf4e473bca3a/src/panelgroup.jl#L1-L43" target="_blank">source</a></div></details><div data-jscall-id="248" class="language-julia"><span data-jscall-id="249" class="lang">julia</span><button data-jscall-id="250" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="251"><code data-jscall-id="252" class="language-julia">using Bonito, BonitoWidgets
+PanelGroup&#40;&#34;Editor&#34; &#61;&#62; editor, &#34;Plot&#34; &#61;&#62; fig, &#34;Log&#34; &#61;&#62; log&#41;</code></pre></div><p data-jscall-id="211">VSCode-style panel management for a set of named panels: show them as <strong data-jscall-id="212">tabs</strong> or <strong data-jscall-id="213">side by side</strong> &#40;with draggable resize gutters&#41;, switchable at runtime via the widgets in the group bar — or by dragging a tab into a layout slot.</p><p data-jscall-id="214">The bar shows one button per panel plus &#40;right-aligned&#41; the layout widgets: tabs / horizontal split / vertical split toggles and a collapse chevron that folds the whole group down to the bar.</p><p data-jscall-id="215"><strong data-jscall-id="216">Tab dragging</strong> &#40;<code data-jscall-id="217">draggable&#61;true</code>&#41;: drag a tab over the body and drop zones light up — left/right edges dock the panel there in a horizontal split, top/bottom in a vertical split, center switches back to tabs with that panel active. Dropping on another tab in the strip reorders the panels. Dragging works with mouse and touch &#40;drag the tab downwards into the body on touch&#41;.</p><p data-jscall-id="218">All panels stay mounted across every layout change — the same DOM nodes are re-flowed &#40;or moved, for reorders&#41; without re-rendering — so WebGL contexts, Makie cameras, and widget state survive switching between tabs and splits.</p><p data-jscall-id="219">Observable state &#40;all bidirectional&#41;:</p><ul data-jscall-id="220"><li data-jscall-id="221"><p data-jscall-id="222"><code data-jscall-id="223">mode::Observable&#123;Symbol&#125;</code> — <code data-jscall-id="224">:tabs</code>, <code data-jscall-id="225">:row</code> &#40;side by side&#41;, or <code data-jscall-id="226">:column</code> &#40;stacked&#41;. <code data-jscall-id="227">:horizontal</code>/<code data-jscall-id="228">:vertical</code> accepted as aliases on construction.</p></li><li data-jscall-id="229"><p data-jscall-id="230"><code data-jscall-id="231">active::Observable&#123;Int&#125;</code> — the shown tab in <code data-jscall-id="232">:tabs</code> mode &#40;highlighted in split modes&#41;. Indices always refer to the original construction order.</p></li><li data-jscall-id="233"><p data-jscall-id="234"><code data-jscall-id="235">order::Observable&#123;Vector&#123;Int&#125;&#125;</code> — display order as a permutation of original panel indices, updated by tab drags; set it from Julia to restore a saved arrangement.</p></li><li data-jscall-id="236"><p data-jscall-id="237"><code data-jscall-id="238">collapsed::Observable&#123;Bool&#125;</code> — group folded to just its bar.</p></li><li data-jscall-id="239"><p data-jscall-id="240"><code data-jscall-id="241">fractions::Observable&#123;Vector&#123;Float64&#125;&#125;</code> — per-<em data-jscall-id="242">position</em> share of the split axis &#40;sums to 1&#41;, notified after each gutter drag.</p></li></ul><p data-jscall-id="243">Mobile: below 700px viewport width the group always lays out as tabs &#40;splits are unusable on phones&#41;, the split-mode buttons hide, and drop zones reduce to &#34;make active&#34;; <code data-jscall-id="244">mode</code> is preserved and re-applied once the viewport is wide again. Gutters and bar buttons grow on coarse pointers via <code data-jscall-id="245">--bw-bar-size</code>/<code data-jscall-id="246">--bw-gutter-size</code>.</p><a data-jscall-id="247" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/03c1adcbb1468310de7779875631743ba9a26979/src/panelgroup.jl#L1-L43" target="_blank">source</a></div></details><div data-jscall-id="248" class="language-julia"><span data-jscall-id="249" class="lang">julia</span><button data-jscall-id="250" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="251"><code data-jscall-id="252" class="language-julia">using Bonito, BonitoWidgets
 
 App&#40;&#41; do
     group &#61; PanelGroup&#40;
@@ -1032,7 +1384,7 @@ App&#40;&#41; do
         mode &#61; :tabs,
     &#41;
     DOM.div&#40;Theme&#40;&#41;, frame&#40;group; height&#61;&#34;240px&#34;&#41;&#41;
-end</code></pre></div><div data-jscall-id="253" class="bonito-output"><div data-jscall-id="254"><div data-jscall-id="255" class=" style_25" style=""><div data-jscall-id="256" class="bw-group style_9" data-mode="tabs" style=""><div data-jscall-id="257" class="bw-group-bar"><div data-jscall-id="258" class="bw-group-tabs"><button data-jscall-id="259" class="bw-tab bw-active"><span data-jscall-id="260" class="bw-tab-label">Scene</span></button><button data-jscall-id="261" class="bw-tab"><span data-jscall-id="262" class="bw-tab-label">Spectrum</span></button><button data-jscall-id="263" class="bw-tab"><span data-jscall-id="264" class="bw-tab-label">Timeline</span></button></div><div data-jscall-id="265" class="bw-group-actions"><button data-jscall-id="266" title="Show as tabs" class="bw-icon-btn bw-group-mode bw-active" data-mode="tabs"><svg data-jscall-id="267" stroke-width="1.3" viewBox="0 0 16 16" stroke-linejoin="round" fill="none" juliasvgnode="true" stroke-linecap="round" width="1em" stroke="currentColor" height="1em" aria-hidden="true"><rect data-jscall-id="268" height="11" rx="1.5" juliasvgnode="true" y="2.5" width="13" x="1.5" /><path data-jscall-id="269" d="M1.5 6.5h13" juliasvgnode="true" /><path data-jscall-id="270" d="M7 2.5v4" juliasvgnode="true" /></svg></button><button data-jscall-id="271" title="Split horizontally" class="bw-icon-btn bw-group-mode" data-mode="row"><svg data-jscall-id="272" stroke-width="1.3" viewBox="0 0 16 16" stroke-linejoin="round" fill="none" juliasvgnode="true" stroke-linecap="round" width="1em" stroke="currentColor" height="1em" aria-hidden="true"><rect data-jscall-id="273" height="11" rx="1.5" juliasvgnode="true" y="2.5" width="13" x="1.5" /><path data-jscall-id="274" d="M8 2.5v11" juliasvgnode="true" /></svg></button><button data-jscall-id="275" title="Split vertically" class="bw-icon-btn bw-group-mode" data-mode="column"><svg data-jscall-id="276" stroke-width="1.3" viewBox="0 0 16 16" stroke-linejoin="round" fill="none" juliasvgnode="true" stroke-linecap="round" width="1em" stroke="currentColor" height="1em" aria-hidden="true"><rect data-jscall-id="277" height="11" rx="1.5" juliasvgnode="true" y="2.5" width="13" x="1.5" /><path data-jscall-id="278" d="M1.5 8h13" juliasvgnode="true" /></svg></button><button data-jscall-id="279" title="Collapse / expand" class="bw-icon-btn bw-group-collapse"><span data-jscall-id="280" class="bw-group-chevron"><svg data-jscall-id="281" stroke-width="1.3" viewBox="0 0 16 16" stroke-linejoin="round" fill="none" juliasvgnode="true" stroke-linecap="round" width="1em" stroke="currentColor" height="1em" aria-hidden="true"><path data-jscall-id="282" d="M4 6l4 4 4-4" juliasvgnode="true" /></svg></span></button></div></div><div data-jscall-id="283" class="bw-group-body style_24" style=""><div data-jscall-id="284" class="bw-group-panel style_20" style=""><div data-jscall-id="285" class=" style_3" style="">Scene</div></div><div data-jscall-id="286" class="bw-group-gutter bw-split-gutter style_21" style=""><div data-jscall-id="287" class="bw-split-grip"></div></div><div data-jscall-id="288" class="bw-group-panel style_22" style=""><div data-jscall-id="289" class=" style_7" style="">Spectrum</div></div><div data-jscall-id="290" class="bw-group-gutter bw-split-gutter style_21" style=""><div data-jscall-id="291" class="bw-split-grip"></div></div><div data-jscall-id="292" class="bw-group-panel style_22" style=""><div data-jscall-id="293" class=" style_5" style="">Timeline</div></div><div data-jscall-id="294" class="bw-drop-overlay style_23" style=""></div></div><script data-jscall-id="295"></script></div></div></div></div><h2 data-jscall-id="296" id="Collapsible">Collapsible<a data-jscall-id="297" class="header-anchor" aria-label="Permalink" href="#Collapsible">​#</a></h2><details data-jscall-id="298" open="true" class="jldocstring custom-block"><summary data-jscall-id="299"><a data-jscall-id="300" id="BonitoWidgets.Collapsible-components" href="#BonitoWidgets.Collapsible-components"><span data-jscall-id="301" class="jlbinding">BonitoWidgets.Collapsible</span></a><span data-jscall-id="302" class="VPBadge info">Type</span></summary><div data-jscall-id="303" class="docstring-body"><div data-jscall-id="304" class="language-julia"><span data-jscall-id="305" class="lang"><span>julia</span></span><button data-jscall-id="306" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="307"><code data-jscall-id="308" class="language-julia">Collapsible&#40;header, content; expanded&#61;true, style&#61;Styles&#40;&#41;&#41;</code></pre></div><p data-jscall-id="309">A section that folds its content away. <code data-jscall-id="310">header</code> &#40;any renderable&#41; is always visible; clicking it — or the chevron — toggles the content with a smooth animation. The content stays mounted while collapsed, so widget state and WebGL contexts survive.</p><p data-jscall-id="311"><code data-jscall-id="312">expanded::Observable&#123;Bool&#125;</code> is bidirectional: clicks notify Julia, and setting it from Julia animates the fold.</p><a data-jscall-id="313" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/c92cb61b915b19de0ce2710c13eddf4e473bca3a/src/collapsible.jl#L1-L11" target="_blank">source</a></div></details><div data-jscall-id="314" class="language-julia"><span data-jscall-id="315" class="lang">julia</span><button data-jscall-id="316" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="317"><code data-jscall-id="318" class="language-julia">using Bonito, BonitoWidgets
+end</code></pre></div><div data-jscall-id="253" class="bonito-output"><div data-jscall-id="254"><div data-jscall-id="255" class=" style_25" style=""><div data-jscall-id="256" class="bw-group style_9" data-mode="tabs" style=""><div data-jscall-id="257" class="bw-group-bar"><div data-jscall-id="258" class="bw-group-tabs"><button data-jscall-id="259" class="bw-tab bw-active"><span data-jscall-id="260" class="bw-tab-label">Scene</span></button><button data-jscall-id="261" class="bw-tab"><span data-jscall-id="262" class="bw-tab-label">Spectrum</span></button><button data-jscall-id="263" class="bw-tab"><span data-jscall-id="264" class="bw-tab-label">Timeline</span></button></div><div data-jscall-id="265" class="bw-group-actions"><button data-jscall-id="266" title="Show as tabs" class="bw-icon-btn bw-group-mode bw-active" data-mode="tabs"><svg data-jscall-id="267" stroke-width="1.3" viewBox="0 0 16 16" stroke-linejoin="round" fill="none" juliasvgnode="true" stroke-linecap="round" width="1em" stroke="currentColor" height="1em" aria-hidden="true"><rect data-jscall-id="268" height="11" rx="1.5" juliasvgnode="true" y="2.5" width="13" x="1.5" /><path data-jscall-id="269" d="M1.5 6.5h13" juliasvgnode="true" /><path data-jscall-id="270" d="M7 2.5v4" juliasvgnode="true" /></svg></button><button data-jscall-id="271" title="Split horizontally" class="bw-icon-btn bw-group-mode" data-mode="row"><svg data-jscall-id="272" stroke-width="1.3" viewBox="0 0 16 16" stroke-linejoin="round" fill="none" juliasvgnode="true" stroke-linecap="round" width="1em" stroke="currentColor" height="1em" aria-hidden="true"><rect data-jscall-id="273" height="11" rx="1.5" juliasvgnode="true" y="2.5" width="13" x="1.5" /><path data-jscall-id="274" d="M8 2.5v11" juliasvgnode="true" /></svg></button><button data-jscall-id="275" title="Split vertically" class="bw-icon-btn bw-group-mode" data-mode="column"><svg data-jscall-id="276" stroke-width="1.3" viewBox="0 0 16 16" stroke-linejoin="round" fill="none" juliasvgnode="true" stroke-linecap="round" width="1em" stroke="currentColor" height="1em" aria-hidden="true"><rect data-jscall-id="277" height="11" rx="1.5" juliasvgnode="true" y="2.5" width="13" x="1.5" /><path data-jscall-id="278" d="M1.5 8h13" juliasvgnode="true" /></svg></button><button data-jscall-id="279" title="Collapse / expand" class="bw-icon-btn bw-group-collapse"><span data-jscall-id="280" class="bw-group-chevron"><svg data-jscall-id="281" stroke-width="1.3" viewBox="0 0 16 16" stroke-linejoin="round" fill="none" juliasvgnode="true" stroke-linecap="round" width="1em" stroke="currentColor" height="1em" aria-hidden="true"><path data-jscall-id="282" d="M4 6l4 4 4-4" juliasvgnode="true" /></svg></span></button></div></div><div data-jscall-id="283" class="bw-group-body style_24" style=""><div data-jscall-id="284" class="bw-group-panel style_20" style=""><div data-jscall-id="285" class=" style_3" style="">Scene</div></div><div data-jscall-id="286" class="bw-group-gutter bw-split-gutter style_21" style=""><div data-jscall-id="287" class="bw-split-grip"></div></div><div data-jscall-id="288" class="bw-group-panel style_22" style=""><div data-jscall-id="289" class=" style_7" style="">Spectrum</div></div><div data-jscall-id="290" class="bw-group-gutter bw-split-gutter style_21" style=""><div data-jscall-id="291" class="bw-split-grip"></div></div><div data-jscall-id="292" class="bw-group-panel style_22" style=""><div data-jscall-id="293" class=" style_5" style="">Timeline</div></div><div data-jscall-id="294" class="bw-drop-overlay style_23" style=""></div></div><script data-jscall-id="295"></script></div></div></div></div><h2 data-jscall-id="296" id="Collapsible">Collapsible<a data-jscall-id="297" class="header-anchor" aria-label="Permalink" href="#Collapsible">​#</a></h2><details data-jscall-id="298" open="true" class="jldocstring custom-block"><summary data-jscall-id="299"><a data-jscall-id="300" id="BonitoWidgets.Collapsible-components" href="#BonitoWidgets.Collapsible-components"><span data-jscall-id="301" class="jlbinding">BonitoWidgets.Collapsible</span></a><span data-jscall-id="302" class="VPBadge info">Type</span></summary><div data-jscall-id="303" class="docstring-body"><div data-jscall-id="304" class="language-julia"><span data-jscall-id="305" class="lang"><span>julia</span></span><button data-jscall-id="306" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="307"><code data-jscall-id="308" class="language-julia">Collapsible&#40;header, content; expanded&#61;true, style&#61;Styles&#40;&#41;&#41;</code></pre></div><p data-jscall-id="309">A section that folds its content away. <code data-jscall-id="310">header</code> &#40;any renderable&#41; is always visible; clicking it — or the chevron — toggles the content with a smooth animation. The content stays mounted while collapsed, so widget state and WebGL contexts survive.</p><p data-jscall-id="311"><code data-jscall-id="312">expanded::Observable&#123;Bool&#125;</code> is bidirectional: clicks notify Julia, and setting it from Julia animates the fold.</p><a data-jscall-id="313" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/03c1adcbb1468310de7779875631743ba9a26979/src/collapsible.jl#L1-L11" target="_blank">source</a></div></details><div data-jscall-id="314" class="language-julia"><span data-jscall-id="315" class="lang">julia</span><button data-jscall-id="316" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="317"><code data-jscall-id="318" class="language-julia">using Bonito, BonitoWidgets
 
 App&#40;&#41; do
     DOM.div&#40;Theme&#40;&#41;,
@@ -1042,7 +1394,7 @@ end</code></pre></div><div data-jscall-id="319" class="bonito-output"><div data-
                visible&#61;true, close_trigger&#61;Observable&#40;false&#41;, style&#61;Styles&#40;&#41;&#41;</code></pre></div><p data-jscall-id="355">A draggable, resizable, fixed-position window: drag the title bar to move, drag the SE corner to resize, both clamped to the viewport. Works with mouse and touch &#40;pointer events&#41;.</p><p data-jscall-id="356">Geometry &#40;<code data-jscall-id="357">x</code>, <code data-jscall-id="358">y</code>, <code data-jscall-id="359">width</code>, <code data-jscall-id="360">height</code>&#41;, <code data-jscall-id="361">visible</code>, and <code data-jscall-id="362">close_trigger</code> are Observables, so callers can persist gestures and push updates the other way &#40;e.g. restore saved geometry&#41;. The close button only notifies <code data-jscall-id="363">close_trigger</code> — the caller decides what closing means &#40;hide, park, …&#41;:</p><div data-jscall-id="364" class="language-julia"><span data-jscall-id="365" class="lang"><span>julia</span></span><button data-jscall-id="366" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="367"><code data-jscall-id="368" class="language-julia">w &#61; FloatingWindow&#40;content; title&#61;&#34;Tools&#34;&#41;
 on&#40;w.close_trigger&#41; do _
     w.visible&#91;&#93; &#61; false
-end</code></pre></div><a data-jscall-id="369" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/c92cb61b915b19de0ce2710c13eddf4e473bca3a/src/floating.jl#L1-L20" target="_blank">source</a></div></details><div data-jscall-id="370" class="language-julia"><span data-jscall-id="371" class="lang">julia</span><button data-jscall-id="372" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="373"><code data-jscall-id="374" class="language-julia">using Bonito, BonitoWidgets
+end</code></pre></div><a data-jscall-id="369" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/03c1adcbb1468310de7779875631743ba9a26979/src/floating.jl#L1-L20" target="_blank">source</a></div></details><div data-jscall-id="370" class="language-julia"><span data-jscall-id="371" class="lang">julia</span><button data-jscall-id="372" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="373"><code data-jscall-id="374" class="language-julia">using Bonito, BonitoWidgets
 
 App&#40;&#41; do
     win &#61; FloatingWindow&#40;pl&#40;&#34;Drag my title bar&#34;, &#34;#7c3aed&#34;&#41;;
@@ -1053,4 +1405,38 @@ App&#40;&#41; do
                          &#34;height&#34;&#61;&#62;&#34;240px&#34;, &#34;overflow&#34;&#61;&#62;&#34;hidden&#34;,
                          &#34;border&#34;&#61;&#62;&#34;1px solid var&#40;--bw-border&#41;&#34;,
                          &#34;border-radius&#34;&#61;&#62;&#34;var&#40;--bw-radius&#41;&#34;&#41;&#41;&#41;
-end</code></pre></div><div data-jscall-id="375" class="bonito-output"><div data-jscall-id="376"><div data-jscall-id="377" class=" style_33" style=""><div data-jscall-id="378" class=" style_11" style=""><div data-jscall-id="379" class="bw-float style_32" style=""><div data-jscall-id="380" class="bw-float-title"><span data-jscall-id="381" class="bw-float-title-text">Tools</span><button data-jscall-id="382" title="Close" class="bw-icon-btn bw-float-close"><svg data-jscall-id="383" stroke-width="1.3" viewBox="0 0 16 16" stroke-linejoin="round" fill="none" juliasvgnode="true" stroke-linecap="round" width="1em" stroke="currentColor" height="1em" aria-hidden="true"><path data-jscall-id="384" d="M4 4l8 8M12 4l-8 8" juliasvgnode="true" /></svg></button></div><div data-jscall-id="385" class="bw-float-body"><div data-jscall-id="386" class=" style_31" style="">Drag my title bar</div></div><div data-jscall-id="387" title="Drag to resize" class="bw-float-resize"></div></div><script data-jscall-id="388"></script></div></div></div></div><h2 data-jscall-id="389" id="Small-widgets">Small widgets<a data-jscall-id="390" class="header-anchor" aria-label="Permalink" href="#Small-widgets">​#</a></h2><p data-jscall-id="391">The bar widgets, exported for custom toolbars:</p><details data-jscall-id="392" open="true" class="jldocstring custom-block"><summary data-jscall-id="393"><a data-jscall-id="394" id="BonitoWidgets.IconButton-components" href="#BonitoWidgets.IconButton-components"><span data-jscall-id="395" class="jlbinding">BonitoWidgets.IconButton</span></a><span data-jscall-id="396" class="VPBadge info">Function</span></summary><div data-jscall-id="397" class="docstring-body"><div data-jscall-id="398" class="language-julia"><span data-jscall-id="399" class="lang"><span>julia</span></span><button data-jscall-id="400" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="401"><code data-jscall-id="402" class="language-julia">IconButton&#40;icon; title&#61;&#34;&#34;, onclick&#61;nothing, style&#61;Styles&#40;&#41;&#41;</code></pre></div><p data-jscall-id="403">A small square icon button matching the widget chrome &#40;hover/active states, touch-friendly sizing&#41;. <code data-jscall-id="404">icon</code> is any renderable &#40;the <code data-jscall-id="405">icon_*</code> helpers in this package return inline SVGs&#41;; <code data-jscall-id="406">onclick</code> takes a <code data-jscall-id="407">js&#34;...&#34;</code> handler.</p><a data-jscall-id="408" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/c92cb61b915b19de0ce2710c13eddf4e473bca3a/src/widgets.jl#L34-L40" target="_blank">source</a></div></details><details data-jscall-id="409" open="true" class="jldocstring custom-block"><summary data-jscall-id="410"><a data-jscall-id="411" id="BonitoWidgets.OrientationToggle-components" href="#BonitoWidgets.OrientationToggle-components"><span data-jscall-id="412" class="jlbinding">BonitoWidgets.OrientationToggle</span></a><span data-jscall-id="413" class="VPBadge info">Type</span></summary><div data-jscall-id="414" class="docstring-body"><div data-jscall-id="415" class="language-julia"><span data-jscall-id="416" class="lang"><span>julia</span></span><button data-jscall-id="417" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="418"><code data-jscall-id="419" class="language-julia">OrientationToggle&#40;direction::Observable&#123;Symbol&#125;; title&#61;&#34;Toggle split direction&#34;&#41;</code></pre></div><p data-jscall-id="420">An icon button that flips <code data-jscall-id="421">direction</code> between <code data-jscall-id="422">:row</code> and <code data-jscall-id="423">:column</code>. The icon always previews the layout the click switches to. Wire the same observable into a <a data-jscall-id="424" href="api.html#BonitoWidgets.SplitContainer"><code data-jscall-id="425">SplitContainer</code></a> &#40;or use <code data-jscall-id="426">PanelGroup</code>, which has the toggle built in&#41;.</p><a data-jscall-id="427" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/c92cb61b915b19de0ce2710c13eddf4e473bca3a/src/widgets.jl#L62-L69" target="_blank">source</a></div></details><details data-jscall-id="428" open="true" class="jldocstring custom-block"><summary data-jscall-id="429"><a data-jscall-id="430" id="BonitoWidgets.CollapseButton-components" href="#BonitoWidgets.CollapseButton-components"><span data-jscall-id="431" class="jlbinding">BonitoWidgets.CollapseButton</span></a><span data-jscall-id="432" class="VPBadge info">Type</span></summary><div data-jscall-id="433" class="docstring-body"><div data-jscall-id="434" class="language-julia"><span data-jscall-id="435" class="lang"><span>julia</span></span><button data-jscall-id="436" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="437"><code data-jscall-id="438" class="language-julia">CollapseButton&#40;collapsed::Observable&#123;Bool&#125;; title&#61;&#34;Collapse / expand&#34;&#41;</code></pre></div><p data-jscall-id="439">A chevron icon button that toggles <code data-jscall-id="440">collapsed</code>; the chevron rotates to point sideways while collapsed. Wire the observable to whatever should collapse &#40;e.g. a <a data-jscall-id="441" href="api.html#BonitoWidgets.Collapsible"><code data-jscall-id="442">Collapsible</code></a>&#39;s <code data-jscall-id="443">expanded</code> via <code data-jscall-id="444">&#33;</code>, or a <code data-jscall-id="445">PanelGroup</code>&#39;s <code data-jscall-id="446">collapsed</code>&#41;.</p><a data-jscall-id="447" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/c92cb61b915b19de0ce2710c13eddf4e473bca3a/src/widgets.jl#L108-L115" target="_blank">source</a></div></details></div><footer data-jscall-id="448" class="VPDocFooter"><div data-jscall-id="449" class="edit-info"><div data-jscall-id="450" class="edit-link"><a data-jscall-id="451" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/main/docs/src/components.md" target="_blank">Edit this page</a></div></div><nav data-jscall-id="452" class="prev-next"><a data-jscall-id="453" class="pager-link prev" href="workspace.html"><span data-jscall-id="454" class="desc">Previous</span><span data-jscall-id="455" class="title">Workspace</span></a><a data-jscall-id="456" class="pager-link next" href="theming.html"><span data-jscall-id="457" class="desc">Next</span><span data-jscall-id="458" class="title">Theming</span></a></nav></footer></div><div data-jscall-id="459" class="VPAside"><div data-jscall-id="460" class="aside-inner"><div data-jscall-id="461" class="outline-title">On this page</div><nav data-jscall-id="462" class="outline"><a data-jscall-id="463" class="lvl-2" href="#Tabs">Tabs</a><a data-jscall-id="464" class="lvl-2" href="#SplitContainer">SplitContainer</a><a data-jscall-id="465" class="lvl-2" href="#PanelGroup">PanelGroup</a><a data-jscall-id="466" class="lvl-2" href="#Collapsible">Collapsible</a><a data-jscall-id="467" class="lvl-2" href="#FloatingWindow">FloatingWindow</a><a data-jscall-id="468" class="lvl-2" href="#Small-widgets">Small widgets</a></nav></div></div></div></div></div></div><div data-jscall-id="469" class="VPSearch-backdrop"><div data-jscall-id="470" class="VPSearch"><div data-jscall-id="471" class="search-bar"><span data-jscall-id="472" style="display:inline-flex"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span><input data-jscall-id="473" placeholder="Search docs" spellcheck="false" type="text" autocomplete="off" /></div><div data-jscall-id="474" class="results"></div></div></div><script data-jscall-id="640">window.__DOCS_SEARCH__ = [{"title":"Home","text":"The widgets on these pages are real Bonito apps exported into the HTML, so you can click tabs, drag gutters, and tear panels off. The video shows them driven from code in a real Electron window (see Testing layouts):\n\n<video src=\"assets/walkthrough.mp4\" controls loop muted width=\"100%\"></video>\n\n\n\nQuickstart\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    ws = Workspace(\n        Panel(\"editor\", pl(\"Editor\", \"#3b82f6\"); label=\"Editor\", closable=true),\n        Panel(\"plot\",   pl(\"Plot\",   \"#8b5cf6\"); label=\"Plot\",   closable=true),\n        Panel(\"log\",    pl(\"Log\",    \"#10b981\"); label=\"Log\",    closable=true);\n        layout = workspacelayout(\n            hsplit(tabgroup(\"editor\", \"plot\"), tabgroup(\"log\"); fractions=[0.7, 0.3])),\n    )\n    DOM.div(Theme(), frame(ws))\nend\n\nDrag a tab to the edge of a group and only that panel splits off; drop it on another group's tab strip to merge them back. See Workspace for the details, or Components for the smaller building blocks.\n\nHow it works\n\nPanels are mounted once. Switching tabs, changing a split's orientation, or moving a panel between groups re-flows them with CSS and never re-renders the children, so WebGL contexts, Makie cameras, and widget state survive.\nLayout state (active tab, split fraction, orientation, collapsed, window position) is held in Observables. User actions update them, and writing to them from Julia updates the DOM.\nDrags use pointer events, so mouse and touch take the same path. Hit areas grow on touch, and narrow w","url":"index.html"},{"title":"Quickstart","text":"Home › Quickstart","url":"index.html#Quickstart"},{"title":"How it works","text":"Home › How it works","url":"index.html#How-it-works"},{"title":"Workspace","text":"Workspace\n\n\n\nA split tree whose leaves are tab groups. Drag a tab to the edge of a group and only that panel splits off; the rest stay together. Drop a tab on another group's tab strip or center to move it there. A group disappears when its last tab leaves. Drag a tab out of the docked area to float it, and drag a floating window's title bar back onto a group (or use its dock button) to dock it again. Panels are moved between groups, never re-rendered.\n\nWorkspace\n\nDrag the tabs around, split the layout, or tear off the floating Surface:\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    ws = Workspace(\n        Panel(\"controls\", pl(\"Controls\", \"#1f2937\"); label=\"Controls\", closable=false),\n        Panel(\"phase\",    pl(\"Phase Portrait\", \"#3b82f6\"); label=\"Phase Portrait\", closable=true),\n        Panel(\"wave\",     pl(\"Waveform\", \"#8b5cf6\"); label=\"Waveform\", closable=true),\n        Panel(\"field\",    pl(\"Field\", \"#0ea5e9\"); label=\"Field\", closable=true),\n        Panel(\"surface\",  pl(\"Surface\", \"#7c3aed\"); label=\"Surface\", closable=true);\n        layout = workspacelayout(\n            hsplit(tabgroup(\"controls\"),\n                   tabgroup(\"phase\", \"wave\", \"field\"; active=\"phase\"); fractions=[0.26, 0.74]);\n            floating=[floatpanel(\"surface\"; x=520, y=30, width=240, height=180)]),\n    )\n    DOM.div(Theme(), frame(ws))\nend\n\nBuilding a layout\n\nThe starting arrangement is built from a handful of constructors:\n\nworkspacelayout\ntabgroup\nhsplit\nvsplit\nfloatpanel\nPanel\n\nPersisting and res","url":"workspace.html"},{"title":"Building a layout","text":"Workspace › Building a layout","url":"workspace.html#Building-a-layout"},{"title":"Persisting and restoring","text":"Workspace › Persisting and restoring","url":"workspace.html#Persisting-and-restoring"},{"title":"Driving it from Julia","text":"Workspace › Driving it from Julia","url":"workspace.html#Driving-it-from-Julia"},{"title":"Components","text":"Components\n\nSmaller building blocks, for when a full Workspace is more than you need.\n\n\n\nTabs\n\nTabs with no docking, optionally closable. active and closed are observables you can read or set from Julia.\n\nTabs\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    tabs = Tabs(\n        \"First\"  => pl(\"First tab\",  \"#0ea5e9\"),\n        \"Second\" => pl(\"Second tab\", \"#64748b\"),\n        \"Third\"  => pl(\"Third tab\",  \"#dc2626\");\n        closable = true,\n    )\n    DOM.div(Theme(), frame(tabs; height=\"160px\"))\nend\n\nSplitContainer\n\nTwo panes with a draggable gutter, optional headers with a collapse chevron per pane. The orientation is an Observable; change it and the panes re-flow without re-rendering their children.\n\nSplitContainer\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    split = SplitContainer(\n        pl(\"Scene\", \"#f59e0b\"), pl(\"Controls\", \"#ef4444\");\n        titles = (\"Scene\", \"Controls\"), split = 0.4, collapsible = true,\n    )\n    DOM.div(\n        Theme(),\n        DOM.div(\"Toggle orientation:\", OrientationToggle(split.direction);\n            style=Styles(\"display\"=>\"flex\",\"gap\"=>\"8px\",\"align-items\"=>\"center\",\n                         \"margin-bottom\"=>\"8px\",\"font-family\"=>\"var(--bw-font)\")),\n        frame(split),\n    )\nend\n\nPanelGroup\n\nA single group of N named panels, shown as tabs or side by side. Switch with the bar widgets, or drag a tab into the body: the edges make a split, the center goes back to tabs.\n\nPanelGroup\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    group = PanelGroup(\n        \"","url":"components.html"},{"title":"Tabs","text":"Components › Tabs","url":"components.html#Tabs"},{"title":"SplitContainer","text":"Components › SplitContainer","url":"components.html#SplitContainer"},{"title":"PanelGroup","text":"Components › PanelGroup","url":"components.html#PanelGroup"},{"title":"Collapsible","text":"Components › Collapsible","url":"components.html#Collapsible"},{"title":"FloatingWindow","text":"Components › FloatingWindow","url":"components.html#FloatingWindow"},{"title":"Small widgets","text":"Components › Small widgets","url":"components.html#Small-widgets"},{"title":"Theming","text":"Theming\n\nColors and sizes come from --bw-* CSS variables, with light/dark defaults that follow prefers-color-scheme. Restyle every widget with Theme, or one widget through its style=Styles(...) argument.\n\n\n\nTheme\n\nTheme() with no arguments ships the defaults. Components already include them, so you only need it to override. Keywords map to variables (bg_panel becomes --bw-bg-panel); scheme=:light or :dark pins the palette instead of following the OS.\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    tabs() = Tabs(\"Scene\" => pl(\"Scene\", \"#1118\"), \"Log\" => pl(\"Log\", \"#1118\"))\n    DOM.div(\n        DOM.div(Theme(scheme=:dark, accent=\"#00d4ff\", bg_panel=\"#0b0f17\"), tabs();\n            style=Styles(\"flex\"=>\"1\")),\n        DOM.div(Theme(scheme=:light, accent=\"#e11d48\", bg_panel=\"#ffffff\"), tabs();\n            style=Styles(\"flex\"=>\"1\"));\n        style=Styles(\"display\"=>\"flex\", \"gap\"=>\"16px\"))\nend\n\nMain variables\n\nVariable Purpose\n--bw-bg, --bw-bg-panel, --bw-bg-bar, --bw-bg-hover surfaces\n--bw-text, --bw-text-muted text\n--bw-accent, --bw-accent-bg active tab/grip highlights\n--bw-border, --bw-radius, --bw-shadow chrome\n--bw-bar-size, --bw-gutter-size hit-area sizing (grows on touch)\n--bw-font, --bw-font-size, --bw-space-1..4 typography/spacing\n\n","url":"theming.html"},{"title":"Main variables","text":"Theming › Main variables","url":"theming.html#Main-variables"},{"title":"Testing layouts","text":"Testing layouts\n\nThe walkthrough video on the home page is a real Electron window driven from code: steering plots, splitting the layout by dragging a tab to a group edge, floating a panel and docking it back. It was recorded with ElectronCall. Source: examples/walkthrough.jl.\n\nProbes\n\nThe layout moves as panels split and float, so tests can't use fixed pixels. BonitoWidgets ships a few unexported probe helpers that build a small JavaScript expression to find a point on a widget by its label, against the live DOM, and return [x, y], or null if nothing matches:\n\ntab(label): the tab button whose label starts with label\ngroupbody(label; rel=(0.5, 0.9)): a point in the body of the group that holds that tab (the edges are the drop zones for splitting)\nfloattitle(label): the title bar of the floating window named label\n\nThey only use the widgets' CSS classes, so they don't pull in a test driver. Pull them in explicitly:\n\nusing BonitoWidgets: tab, groupbody, floattitle\n\nWith ElectronCall\n\nAny driver that can run JS and return a point can use a probe. With ElectronCall, wrap the expression in its JS target and pass it to the event DSL:\n\nusing BonitoWidgets: tab, groupbody, floattitle\nusing ElectronCall.Testing      # JS, Click, Drag, play, ...\n\nplay(ctx, [\n    Click(JS(tab(\"Waveform\"))),                                       # switch tabs\n    Drag(JS(tab(\"Field\")), JS(groupbody(\"Field\"; rel=(0.5, 0.9)))),   # split off the bottom\n    Drag(JS(floattitle(\"Surface\")), JS(tab(\"Phase Port","url":"testing.html"},{"title":"Probes","text":"Testing layouts › Probes","url":"testing.html#Probes"},{"title":"With ElectronCall","text":"Testing layouts › With ElectronCall","url":"testing.html#With-ElectronCall"},{"title":"API","text":"API\n\nPublic\n\nModules = [BonitoWidgets]\nOrder   = [:module, :constant, :type, :function, :macro]\nPublic  = true\nPrivate = false\n\nInternal\n\nIncluding the unexported test probes (tab, groupbody, floattitle).\n\nModules = [BonitoWidgets]\nOrder   = [:module, :constant, :type, :function, :macro]\nPublic  = false\nPrivate = true\n\n","url":"api.html"},{"title":"Public","text":"API › Public","url":"api.html#Public"},{"title":"Internal","text":"API › Internal","url":"api.html#Internal"}];</script></div></div></body></html>
+end</code></pre></div><div data-jscall-id="375" class="bonito-output"><div data-jscall-id="376"><div data-jscall-id="377" class=" style_33" style=""><div data-jscall-id="378" class=" style_11" style=""><div data-jscall-id="379" class="bw-float style_32" style=""><div data-jscall-id="380" class="bw-float-title"><span data-jscall-id="381" class="bw-float-title-text">Tools</span><button data-jscall-id="382" title="Close" class="bw-icon-btn bw-float-close"><svg data-jscall-id="383" stroke-width="1.3" viewBox="0 0 16 16" stroke-linejoin="round" fill="none" juliasvgnode="true" stroke-linecap="round" width="1em" stroke="currentColor" height="1em" aria-hidden="true"><path data-jscall-id="384" d="M4 4l8 8M12 4l-8 8" juliasvgnode="true" /></svg></button></div><div data-jscall-id="385" class="bw-float-body"><div data-jscall-id="386" class=" style_31" style="">Drag my title bar</div></div><div data-jscall-id="387" title="Drag to resize" class="bw-float-resize"></div></div><script data-jscall-id="388"></script></div></div></div></div><h2 data-jscall-id="389" id="Buttons,-menus-and-modals">Buttons, menus and modals<a data-jscall-id="390" class="header-anchor" aria-label="Permalink" href="#Buttons,-menus-and-modals">​#</a></h2><p data-jscall-id="391">Plain <code data-jscall-id="392">&#60;button&#62;</code>s styled by class: <code data-jscall-id="393">bw-btn</code> is the filled primary, with <code data-jscall-id="394">bw-btn-secondary</code>, <code data-jscall-id="395">bw-btn-ghost</code>, <code data-jscall-id="396">bw-btn-danger</code> and <code data-jscall-id="397">bw-btn-sm</code> as modifiers. A page that uses the classes on its own buttons includes <a data-jscall-id="398" href="api.html#BonitoWidgets.BUTTON_STYLES"><code data-jscall-id="399">BUTTON_STYLES</code></a> once. <a data-jscall-id="400" href="api.html#BonitoWidgets.Menu"><code data-jscall-id="401">Menu</code></a> puts one-shot actions behind a button; <a data-jscall-id="402" href="api.html#BonitoWidgets.Modal"><code data-jscall-id="403">Modal</code></a> shows a form over the page. Both keep their open state in an <code data-jscall-id="404">Observable&#123;Bool&#125;</code>.</p><div data-jscall-id="405" class="language-julia"><span data-jscall-id="406" class="lang">julia</span><button data-jscall-id="407" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="408"><code data-jscall-id="409" class="language-julia">App&#40;&#41; do
+    adding &#61; Observable&#40;false&#41;
+    menu &#61; Menu&#40;&#91;DOM.button&#40;&#34;Rename&#34;; class&#61;&#34;bw-menu-item&#34;&#41;,
+                 DOM.button&#40;&#34;Duplicate&#34;; class&#61;&#34;bw-menu-item&#34;&#41;,
+                 DOM.div&#40;; class&#61;&#34;bw-menu-sep&#34;&#41;,
+                 DOM.button&#40;&#34;Delete&#34;; class&#61;&#34;bw-menu-item bw-menu-danger&#34;&#41;&#93;&#41;
+    dialog &#61; Modal&#40;adding; title&#61;&#34;Add item&#34;&#41; do
+        DOM.div&#40;DOM.p&#40;&#34;Built anew on every open.&#34;&#41;,
+                DOM.button&#40;&#34;Done&#34;; class&#61;&#34;bw-btn&#34;, onclick&#61;js&#34;e &#61;&#62; &#36;&#40;adding&#41;.notify&#40;false&#41;&#34;&#41;&#41;
+    end
+    DOM.div&#40;BUTTON_STYLES,
+        DOM.button&#40;&#34;Add…&#34;; class&#61;&#34;bw-btn&#34;, onclick&#61;js&#34;e &#61;&#62; &#36;&#40;adding&#41;.notify&#40;true&#41;&#34;&#41;,
+        DOM.button&#40;&#34;Cancel&#34;; class&#61;&#34;bw-btn bw-btn-secondary&#34;&#41;,
+        menu, dialog;
+        style&#61;Styles&#40;&#34;display&#34;&#61;&#62;&#34;flex&#34;, &#34;gap&#34;&#61;&#62;&#34;8px&#34;, &#34;align-items&#34;&#61;&#62;&#34;center&#34;,
+                     &#34;justify-content&#34;&#61;&#62;&#34;flex-end&#34;, &#34;min-height&#34;&#61;&#62;&#34;200px&#34;,
+                     &#34;align-content&#34;&#61;&#62;&#34;flex-start&#34;&#41;&#41;
+end</code></pre></div><div data-jscall-id="410" class="bonito-output"><div data-jscall-id="411" class=" style_34" style=""><button data-jscall-id="412" class="bw-btn" onclick="">Add…</button><button data-jscall-id="413" class="bw-btn bw-btn-secondary">Cancel</button><div data-jscall-id="414" class="bw-menu"><button data-jscall-id="415" type="button" title="More actions" class="bw-btn bw-menu-trigger bw-btn-secondary bw-btn-sm">⋯</button><div data-jscall-id="416" class="bw-menu-list"><button data-jscall-id="417" class="bw-menu-item">Rename</button><button data-jscall-id="418" class="bw-menu-item">Duplicate</button><div data-jscall-id="419" class="bw-menu-sep"></div><button data-jscall-id="420" class="bw-menu-item bw-menu-danger">Delete</button></div></div><div data-jscall-id="421" class="bw-modal-overlay"><div data-jscall-id="422" aria-modal="true" class="bw-modal-card" role="dialog"><div data-jscall-id="423" class="bw-modal-head"><span data-jscall-id="424" class="bw-modal-title">Add item</span><button data-jscall-id="425" type="button" title="Close" class="bw-btn bw-btn-ghost bw-btn-sm bw-modal-close">✕</button></div><div data-jscall-id="427" style="display:contents"><div data-jscall-id="subsession-application-dom" id="9375ae1e-e9b3-469e-8f5c-cd658a2fa171" class="bonito-fragment" style="display:contents"><div data-jscall-id="428" style="display:contents"><style data-jscall-id="429"></style></div><div data-jscall-id="430" style="display:contents"><script data-jscall-id="431" type="module">Bonito.init_session("9375ae1e-e9b3-469e-8f5c-cd658a2fa171", null, "sub", false);
+</script><div data-jscall-id="426" class="bw-modal-body"></div></div></div></div></div></div></div></div><details data-jscall-id="432" open="true" class="jldocstring custom-block"><summary data-jscall-id="433"><a data-jscall-id="434" id="BonitoWidgets.BUTTON_STYLES-components" href="#BonitoWidgets.BUTTON_STYLES-components"><span data-jscall-id="435" class="jlbinding">BonitoWidgets.BUTTON_STYLES</span></a><span data-jscall-id="436" class="VPBadge info">Constant</span></summary><div data-jscall-id="437" class="docstring-body"><div data-jscall-id="438" class="language-julia"><span data-jscall-id="439" class="lang"><span>julia</span></span><button data-jscall-id="440" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="441"><code data-jscall-id="442" class="language-julia">BUTTON_STYLES</code></pre></div><p data-jscall-id="443">Styles for the <code data-jscall-id="444">bw-btn</code> class family: <code data-jscall-id="445">bw-btn</code> &#40;filled primary&#41; plus the modifiers <code data-jscall-id="446">bw-btn-secondary</code>, <code data-jscall-id="447">bw-btn-ghost</code>, <code data-jscall-id="448">bw-btn-danger</code>, <code data-jscall-id="449">bw-btn-sm</code> and <code data-jscall-id="450">bw-btn-loading</code>. Include it once in a page that uses the classes:</p><div data-jscall-id="451" class="language-julia"><span data-jscall-id="452" class="lang"><span>julia</span></span><button data-jscall-id="453" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="454"><code data-jscall-id="455" class="language-julia">DOM.div&#40;BUTTON_STYLES,
+        DOM.button&#40;&#34;Save&#34;; class &#61; &#34;bw-btn&#34;&#41;,
+        DOM.button&#40;&#34;Cancel&#34;; class &#61; &#34;bw-btn bw-btn-secondary&#34;&#41;&#41;</code></pre></div><a data-jscall-id="456" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/03c1adcbb1468310de7779875631743ba9a26979/src/buttons.jl#L14-L26" target="_blank">source</a></div></details><details data-jscall-id="457" open="true" class="jldocstring custom-block"><summary data-jscall-id="458"><a data-jscall-id="459" id="BonitoWidgets.Menu-components" href="#BonitoWidgets.Menu-components"><span data-jscall-id="460" class="jlbinding">BonitoWidgets.Menu</span></a><span data-jscall-id="461" class="VPBadge info">Type</span></summary><div data-jscall-id="462" class="docstring-body"><div data-jscall-id="463" class="language-julia"><span data-jscall-id="464" class="lang"><span>julia</span></span><button data-jscall-id="465" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="466"><code data-jscall-id="467" class="language-julia">Menu&#40;items; label&#61;&#34;⋯&#34;, title&#61;&#34;More actions&#34;, class&#61;&#34;&#34;,
+     trigger_class&#61;&#34;bw-btn-secondary bw-btn-sm&#34;, close_on_pick&#61;true,
+     open&#61;Observable&#40;false&#41;&#41;</code></pre></div><p data-jscall-id="468">A button that opens <code data-jscall-id="469">items</code> in a popover below it. Clicking outside or pressing Escape closes it, and so does clicking an element with class <code data-jscall-id="470">bw-menu-item</code>, unless <code data-jscall-id="471">close_on_pick&#61;false</code> &#40;a list of checkboxes, say&#41;.</p><p data-jscall-id="472"><code data-jscall-id="473">items</code> is any renderable, usually a vector of <code data-jscall-id="474">bw-menu-item</code> buttons, with <code data-jscall-id="475">bw-menu-title</code> headings and <code data-jscall-id="476">bw-menu-sep</code> separators in between. <code data-jscall-id="477">class</code> adds classes to the menu, <code data-jscall-id="478">trigger_class</code> to its button; either may be an <code data-jscall-id="479">Observable&#123;String&#125;</code>. <code data-jscall-id="480">open</code> is the state: set it to open or close the menu from Julia, or listen to it.</p><div data-jscall-id="481" class="language-julia"><span data-jscall-id="482" class="lang"><span>julia</span></span><button data-jscall-id="483" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="484"><code data-jscall-id="485" class="language-julia">Menu&#40;&#91;DOM.button&#40;&#34;Rename&#34;; class &#61; &#34;bw-menu-item&#34;, onclick &#61; js&#34;...&#34;&#41;,
+      DOM.div&#40;; class &#61; &#34;bw-menu-sep&#34;&#41;,
+      DOM.button&#40;&#34;Delete&#34;; class &#61; &#34;bw-menu-item bw-menu-danger&#34;, onclick &#61; js&#34;...&#34;&#41;&#93;&#41;</code></pre></div><a data-jscall-id="486" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/03c1adcbb1468310de7779875631743ba9a26979/src/overlays.jl#L14-L34" target="_blank">source</a></div></details><details data-jscall-id="487" open="true" class="jldocstring custom-block"><summary data-jscall-id="488"><a data-jscall-id="489" id="BonitoWidgets.Modal-components" href="#BonitoWidgets.Modal-components"><span data-jscall-id="490" class="jlbinding">BonitoWidgets.Modal</span></a><span data-jscall-id="491" class="VPBadge info">Type</span></summary><div data-jscall-id="492" class="docstring-body"><div data-jscall-id="493" class="language-julia"><span data-jscall-id="494" class="lang"><span>julia</span></span><button data-jscall-id="495" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="496"><code data-jscall-id="497" class="language-julia">Modal&#40;content::Function, open::Observable&#123;Bool&#125;; title&#61;&#34;&#34;&#41;</code></pre></div><p data-jscall-id="498">A dialog over the page while <code data-jscall-id="499">open&#91;&#93;</code> is true, closed by its ✕, a click on the backdrop or Escape. <code data-jscall-id="500">content&#40;&#41;</code> builds the body anew on every open, so a form starts out empty each time.</p><div data-jscall-id="501" class="language-julia"><span data-jscall-id="502" class="lang"><span>julia</span></span><button data-jscall-id="503" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="504"><code data-jscall-id="505" class="language-julia">adding &#61; Observable&#40;false&#41;
+DOM.div&#40;
+    DOM.button&#40;&#34;Add…&#34;; class &#61; &#34;bw-btn&#34;, onclick &#61; js&#34;e &#61;&#62; &#36;&#40;adding&#41;.notify&#40;true&#41;&#34;&#41;,
+    Modal&#40;adding; title &#61; &#34;Add account&#34;&#41; do
+        account_form&#40;&#41;
+    end&#41;</code></pre></div><a data-jscall-id="506" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/03c1adcbb1468310de7779875631743ba9a26979/src/overlays.jl#L109-L124" target="_blank">source</a></div></details><h2 data-jscall-id="507" id="InfiniteList">InfiniteList<a data-jscall-id="508" class="header-anchor" aria-label="Permalink" href="#InfiniteList">​#</a></h2><p data-jscall-id="509">An endless list: rows load in chunks as they scroll into reach, and rows far out of view leave the page, so a list of any length stays light. The source is anything with a <a data-jscall-id="510" href="api.html#BonitoWidgets.items-Tuple{AbstractVector,%20UnitRange{Int64}}"><code data-jscall-id="511">BonitoWidgets.items</code></a> method &#40;vectors have one&#41;; rows render through <a data-jscall-id="512" href="api.html#BonitoWidgets.row-Tuple{Any,%20Any}"><code data-jscall-id="513">BonitoWidgets.row</code></a> to static HTML. Its engine, <code data-jscall-id="514">RowBlock</code> in <code data-jscall-id="515">assets/row_block.js</code>, is the one BonitoAgents&#39; chat transcript scrolls on.</p><div data-jscall-id="516" class="language-julia"><span data-jscall-id="517" class="lang">julia</span><button data-jscall-id="518" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="519"><code data-jscall-id="520" class="language-julia">App&#40;&#41; do
+    list &#61; InfiniteList&#40;&#91;&#34;Row &#36;i&#34; for i in 1:100_000&#93;; class &#61; &#34;demo-list&#34;&#41;
+    DOM.div&#40;list; style &#61; Styles&#40;&#34;height&#34; &#61;&#62; &#34;240px&#34;, &#34;display&#34; &#61;&#62; &#34;flex&#34;,
+                                 &#34;flex-direction&#34; &#61;&#62; &#34;column&#34;,
+                                 &#34;border&#34; &#61;&#62; &#34;1px solid var&#40;--bw-border&#41;&#34;&#41;&#41;
+end</code></pre></div><div data-jscall-id="521" class="bonito-output"><div data-jscall-id="522" class=" style_35" style=""><div data-jscall-id="523" class="bw-infinite-list demo-list"><div data-jscall-id="524" class="bw-infinite-list-rows"></div></div></div></div><details data-jscall-id="525" open="true" class="jldocstring custom-block"><summary data-jscall-id="526"><a data-jscall-id="527" id="BonitoWidgets.InfiniteList-components" href="#BonitoWidgets.InfiniteList-components"><span data-jscall-id="528" class="jlbinding">BonitoWidgets.InfiniteList</span></a><span data-jscall-id="529" class="VPBadge info">Type</span></summary><div data-jscall-id="530" class="docstring-body"><div data-jscall-id="531" class="language-julia"><span data-jscall-id="532" class="lang"><span>julia</span></span><button data-jscall-id="533" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="534"><code data-jscall-id="535" class="language-julia">InfiniteList&#40;source; chunk &#61; 50, window &#61; 200, class &#61; &#34;&#34;&#41;</code></pre></div><p data-jscall-id="536">An endless list over <code data-jscall-id="537">source</code>: rows load <code data-jscall-id="538">chunk</code> at a time as they come into reach, and past <code data-jscall-id="539">window</code> rows the ones farthest out of view leave the page, so a list of any length stays light. <code data-jscall-id="540">source</code> is anything with a method of <a data-jscall-id="541" href="api.html#BonitoWidgets.items-Tuple{AbstractVector,%20UnitRange{Int64}}"><code data-jscall-id="542">BonitoWidgets.items</code></a>; rows render through <a data-jscall-id="543" href="api.html#BonitoWidgets.row-Tuple{Any,%20Any}"><code data-jscall-id="544">BonitoWidgets.row</code></a>. Setting <code data-jscall-id="545">list.source&#91;&#93;</code> starts the list over at the top. Render a list once per page: its rows answer that page&#39;s requests.</p><div data-jscall-id="546" class="language-julia"><span data-jscall-id="547" class="lang"><span>julia</span></span><button data-jscall-id="548" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="549"><code data-jscall-id="550" class="language-julia">list &#61; InfiniteList&#40;&#91;&#34;Row &#36;i&#34; for i in 1:100_000&#93;; class &#61; &#34;my-list&#34;&#41;</code></pre></div><a data-jscall-id="551" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/03c1adcbb1468310de7779875631743ba9a26979/src/infinite_list.jl#L35-L48" target="_blank">source</a></div></details><details data-jscall-id="552" open="true" class="jldocstring custom-block"><summary data-jscall-id="553"><a data-jscall-id="554" id="BonitoWidgets.items-components" href="#BonitoWidgets.items-components"><span data-jscall-id="555" class="jlbinding">BonitoWidgets.items</span></a><span data-jscall-id="556" class="VPBadge info">Function</span></summary><div data-jscall-id="557" class="docstring-body"><div data-jscall-id="558" class="language-julia"><span data-jscall-id="559" class="lang"><span>julia</span></span><button data-jscall-id="560" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="561"><code data-jscall-id="562" class="language-julia">items&#40;source, range::UnitRange&#123;Int&#125;&#41; -&#62; AbstractVector</code></pre></div><p data-jscall-id="563">The items of <code data-jscall-id="564">source</code> at positions <code data-jscall-id="565">range</code> &#40;1-based&#41;, fewer at its end. The data protocol of an <a data-jscall-id="566" href="api.html#BonitoWidgets.InfiniteList"><code data-jscall-id="567">InfiniteList</code></a>: add a method for your source type. Vectors have one.</p><a data-jscall-id="568" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/03c1adcbb1468310de7779875631743ba9a26979/src/infinite_list.jl#L11-L17" target="_blank">source</a></div></details><details data-jscall-id="569" open="true" class="jldocstring custom-block"><summary data-jscall-id="570"><a data-jscall-id="571" id="BonitoWidgets.row-components" href="#BonitoWidgets.row-components"><span data-jscall-id="572" class="jlbinding">BonitoWidgets.row</span></a><span data-jscall-id="573" class="VPBadge info">Function</span></summary><div data-jscall-id="574" class="docstring-body"><div data-jscall-id="575" class="language-julia"><span data-jscall-id="576" class="lang"><span>julia</span></span><button data-jscall-id="577" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="578"><code data-jscall-id="579" class="language-julia">row&#40;source, item&#41; -&#62; renderable</code></pre></div><p data-jscall-id="580">How an <a data-jscall-id="581" href="api.html#BonitoWidgets.InfiniteList"><code data-jscall-id="582">InfiniteList</code></a> over <code data-jscall-id="583">source</code> shows <code data-jscall-id="584">item</code>: the item itself by default. Rows are static HTML, so a row carries no observables; give rows <code data-jscall-id="585">data-*</code> attributes and handle clicks on an ancestor instead.</p><a data-jscall-id="586" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/03c1adcbb1468310de7779875631743ba9a26979/src/infinite_list.jl#L21-L27" target="_blank">source</a></div></details><h2 data-jscall-id="587" id="Small-widgets">Small widgets<a data-jscall-id="588" class="header-anchor" aria-label="Permalink" href="#Small-widgets">​#</a></h2><p data-jscall-id="589">The bar widgets, exported for custom toolbars:</p><details data-jscall-id="590" open="true" class="jldocstring custom-block"><summary data-jscall-id="591"><a data-jscall-id="592" id="BonitoWidgets.IconButton-components" href="#BonitoWidgets.IconButton-components"><span data-jscall-id="593" class="jlbinding">BonitoWidgets.IconButton</span></a><span data-jscall-id="594" class="VPBadge info">Function</span></summary><div data-jscall-id="595" class="docstring-body"><div data-jscall-id="596" class="language-julia"><span data-jscall-id="597" class="lang"><span>julia</span></span><button data-jscall-id="598" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="599"><code data-jscall-id="600" class="language-julia">IconButton&#40;icon; title&#61;&#34;&#34;, onclick&#61;nothing, style&#61;Styles&#40;&#41;&#41;</code></pre></div><p data-jscall-id="601">A small square icon button matching the widget chrome &#40;hover/active states, touch-friendly sizing&#41;. <code data-jscall-id="602">icon</code> is any renderable &#40;the <code data-jscall-id="603">icon_*</code> helpers in this package return inline SVGs&#41;; <code data-jscall-id="604">onclick</code> takes a <code data-jscall-id="605">js&#34;...&#34;</code> handler.</p><a data-jscall-id="606" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/03c1adcbb1468310de7779875631743ba9a26979/src/widgets.jl#L34-L40" target="_blank">source</a></div></details><details data-jscall-id="607" open="true" class="jldocstring custom-block"><summary data-jscall-id="608"><a data-jscall-id="609" id="BonitoWidgets.OrientationToggle-components" href="#BonitoWidgets.OrientationToggle-components"><span data-jscall-id="610" class="jlbinding">BonitoWidgets.OrientationToggle</span></a><span data-jscall-id="611" class="VPBadge info">Type</span></summary><div data-jscall-id="612" class="docstring-body"><div data-jscall-id="613" class="language-julia"><span data-jscall-id="614" class="lang"><span>julia</span></span><button data-jscall-id="615" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="616"><code data-jscall-id="617" class="language-julia">OrientationToggle&#40;direction::Observable&#123;Symbol&#125;; title&#61;&#34;Toggle split direction&#34;&#41;</code></pre></div><p data-jscall-id="618">An icon button that flips <code data-jscall-id="619">direction</code> between <code data-jscall-id="620">:row</code> and <code data-jscall-id="621">:column</code>. The icon always previews the layout the click switches to. Wire the same observable into a <a data-jscall-id="622" href="api.html#BonitoWidgets.SplitContainer"><code data-jscall-id="623">SplitContainer</code></a> &#40;or use <code data-jscall-id="624">PanelGroup</code>, which has the toggle built in&#41;.</p><a data-jscall-id="625" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/03c1adcbb1468310de7779875631743ba9a26979/src/widgets.jl#L62-L69" target="_blank">source</a></div></details><details data-jscall-id="626" open="true" class="jldocstring custom-block"><summary data-jscall-id="627"><a data-jscall-id="628" id="BonitoWidgets.CollapseButton-components" href="#BonitoWidgets.CollapseButton-components"><span data-jscall-id="629" class="jlbinding">BonitoWidgets.CollapseButton</span></a><span data-jscall-id="630" class="VPBadge info">Type</span></summary><div data-jscall-id="631" class="docstring-body"><div data-jscall-id="632" class="language-julia"><span data-jscall-id="633" class="lang"><span>julia</span></span><button data-jscall-id="634" type="button" title="Copy to clipboard" class="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button><pre data-jscall-id="635"><code data-jscall-id="636" class="language-julia">CollapseButton&#40;collapsed::Observable&#123;Bool&#125;; title&#61;&#34;Collapse / expand&#34;&#41;</code></pre></div><p data-jscall-id="637">A chevron icon button that toggles <code data-jscall-id="638">collapsed</code>; the chevron rotates to point sideways while collapsed. Wire the observable to whatever should collapse &#40;e.g. a <a data-jscall-id="639" href="api.html#BonitoWidgets.Collapsible"><code data-jscall-id="640">Collapsible</code></a>&#39;s <code data-jscall-id="641">expanded</code> via <code data-jscall-id="642">&#33;</code>, or a <code data-jscall-id="643">PanelGroup</code>&#39;s <code data-jscall-id="644">collapsed</code>&#41;.</p><a data-jscall-id="645" rel="noreferrer" class="VPBadge info source-link" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/03c1adcbb1468310de7779875631743ba9a26979/src/widgets.jl#L108-L115" target="_blank">source</a></div></details></div><footer data-jscall-id="646" class="VPDocFooter"><div data-jscall-id="647" class="edit-info"><div data-jscall-id="648" class="edit-link"><a data-jscall-id="649" href="https://github.com/SimonDanisch/BonitoWidgets.jl/blob/main/docs/src/components.md" target="_blank">Edit this page</a></div></div><nav data-jscall-id="650" class="prev-next"><a data-jscall-id="651" class="pager-link prev" href="workspace.html"><span data-jscall-id="652" class="desc">Previous</span><span data-jscall-id="653" class="title">Workspace</span></a><a data-jscall-id="654" class="pager-link next" href="theming.html"><span data-jscall-id="655" class="desc">Next</span><span data-jscall-id="656" class="title">Theming</span></a></nav></footer></div><div data-jscall-id="657" class="VPAside"><div data-jscall-id="658" class="aside-inner"><div data-jscall-id="659" class="outline-title">On this page</div><nav data-jscall-id="660" class="outline"><a data-jscall-id="661" class="lvl-2" href="#Tabs">Tabs</a><a data-jscall-id="662" class="lvl-2" href="#SplitContainer">SplitContainer</a><a data-jscall-id="663" class="lvl-2" href="#PanelGroup">PanelGroup</a><a data-jscall-id="664" class="lvl-2" href="#Collapsible">Collapsible</a><a data-jscall-id="665" class="lvl-2" href="#FloatingWindow">FloatingWindow</a><a data-jscall-id="666" class="lvl-2" href="#Buttons,-menus-and-modals">Buttons, menus and modals</a><a data-jscall-id="667" class="lvl-2" href="#InfiniteList">InfiniteList</a><a data-jscall-id="668" class="lvl-2" href="#Small-widgets">Small widgets</a></nav></div></div></div></div></div></div><div data-jscall-id="669" class="VPSearch-backdrop"><div data-jscall-id="670" class="VPSearch"><div data-jscall-id="671" class="search-bar"><span data-jscall-id="672" style="display:inline-flex"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span><input data-jscall-id="673" placeholder="Search docs" spellcheck="false" type="text" autocomplete="off" /></div><div data-jscall-id="674" class="results"></div></div></div><script data-jscall-id="803">window.__DOCS_SEARCH__ = [{"title":"Home","text":"The widgets on these pages are real Bonito apps exported into the HTML, so you can click tabs, drag gutters, and tear panels off. The video shows them driven from code in a real Electron window (see Testing layouts):\n\n<video src=\"assets/walkthrough.mp4\" controls loop muted width=\"100%\"></video>\n\n\n\nQuickstart\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    ws = Workspace(\n        Panel(\"editor\", pl(\"Editor\", \"#3b82f6\"); label=\"Editor\", closable=true),\n        Panel(\"plot\",   pl(\"Plot\",   \"#8b5cf6\"); label=\"Plot\",   closable=true),\n        Panel(\"log\",    pl(\"Log\",    \"#10b981\"); label=\"Log\",    closable=true);\n        layout = workspacelayout(\n            hsplit(tabgroup(\"editor\", \"plot\"), tabgroup(\"log\"); fractions=[0.7, 0.3])),\n    )\n    DOM.div(Theme(), frame(ws))\nend\n\nDrag a tab to the edge of a group and only that panel splits off; drop it on another group's tab strip to merge them back. See Workspace for the details, or Components for the smaller building blocks.\n\nHow it works\n\nPanels are mounted once. Switching tabs, changing a split's orientation, or moving a panel between groups re-flows them with CSS and never re-renders the children, so WebGL contexts, Makie cameras, and widget state survive.\nLayout state (active tab, split fraction, orientation, collapsed, window position) is held in Observables. User actions update them, and writing to them from Julia updates the DOM.\nDrags use pointer events, so mouse and touch take the same path. Hit areas grow on touch, and narrow w","url":"index.html"},{"title":"Quickstart","text":"Home › Quickstart","url":"index.html#Quickstart"},{"title":"How it works","text":"Home › How it works","url":"index.html#How-it-works"},{"title":"Workspace","text":"Workspace\n\n\n\nA split tree whose leaves are tab groups. Drag a tab to the edge of a group and only that panel splits off; the rest stay together. Drop a tab on another group's tab strip or center to move it there. A group disappears when its last tab leaves. Drag a tab out of the docked area to float it, and drag a floating window's title bar back onto a group (or use its dock button) to dock it again. Panels are moved between groups, never re-rendered.\n\nWorkspace\n\nDrag the tabs around, split the layout, or tear off the floating Surface:\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    ws = Workspace(\n        Panel(\"controls\", pl(\"Controls\", \"#1f2937\"); label=\"Controls\", closable=false),\n        Panel(\"phase\",    pl(\"Phase Portrait\", \"#3b82f6\"); label=\"Phase Portrait\", closable=true),\n        Panel(\"wave\",     pl(\"Waveform\", \"#8b5cf6\"); label=\"Waveform\", closable=true),\n        Panel(\"field\",    pl(\"Field\", \"#0ea5e9\"); label=\"Field\", closable=true),\n        Panel(\"surface\",  pl(\"Surface\", \"#7c3aed\"); label=\"Surface\", closable=true);\n        layout = workspacelayout(\n            hsplit(tabgroup(\"controls\"),\n                   tabgroup(\"phase\", \"wave\", \"field\"; active=\"phase\"); fractions=[0.26, 0.74]);\n            floating=[floatpanel(\"surface\"; x=520, y=30, width=240, height=180)]),\n    )\n    DOM.div(Theme(), frame(ws))\nend\n\nBuilding a layout\n\nThe starting arrangement is built from a handful of constructors:\n\nworkspacelayout\ntabgroup\nhsplit\nvsplit\nfloatpanel\nPanel\n\nPersisting and res","url":"workspace.html"},{"title":"Building a layout","text":"Workspace › Building a layout","url":"workspace.html#Building-a-layout"},{"title":"Persisting and restoring","text":"Workspace › Persisting and restoring","url":"workspace.html#Persisting-and-restoring"},{"title":"Driving it from Julia","text":"Workspace › Driving it from Julia","url":"workspace.html#Driving-it-from-Julia"},{"title":"Components","text":"Components\n\nSmaller building blocks, for when a full Workspace is more than you need.\n\n\n\nTabs\n\nTabs with no docking, optionally closable. active and closed are observables you can read or set from Julia.\n\nTabs\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    tabs = Tabs(\n        \"First\"  => pl(\"First tab\",  \"#0ea5e9\"),\n        \"Second\" => pl(\"Second tab\", \"#64748b\"),\n        \"Third\"  => pl(\"Third tab\",  \"#dc2626\");\n        closable = true,\n    )\n    DOM.div(Theme(), frame(tabs; height=\"160px\"))\nend\n\nSplitContainer\n\nTwo panes with a draggable gutter, optional headers with a collapse chevron per pane. The orientation is an Observable; change it and the panes re-flow without re-rendering their children.\n\nSplitContainer\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    split = SplitContainer(\n        pl(\"Scene\", \"#f59e0b\"), pl(\"Controls\", \"#ef4444\");\n        titles = (\"Scene\", \"Controls\"), split = 0.4, collapsible = true,\n    )\n    DOM.div(\n        Theme(),\n        DOM.div(\"Toggle orientation:\", OrientationToggle(split.direction);\n            style=Styles(\"display\"=>\"flex\",\"gap\"=>\"8px\",\"align-items\"=>\"center\",\n                         \"margin-bottom\"=>\"8px\",\"font-family\"=>\"var(--bw-font)\")),\n        frame(split),\n    )\nend\n\nPanelGroup\n\nA single group of N named panels, shown as tabs or side by side. Switch with the bar widgets, or drag a tab into the body: the edges make a split, the center goes back to tabs.\n\nPanelGroup\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    group = PanelGroup(\n        \"","url":"components.html"},{"title":"Tabs","text":"Components › Tabs","url":"components.html#Tabs"},{"title":"SplitContainer","text":"Components › SplitContainer","url":"components.html#SplitContainer"},{"title":"PanelGroup","text":"Components › PanelGroup","url":"components.html#PanelGroup"},{"title":"Collapsible","text":"Components › Collapsible","url":"components.html#Collapsible"},{"title":"FloatingWindow","text":"Components › FloatingWindow","url":"components.html#FloatingWindow"},{"title":"Buttons, menus and modals","text":"Components › Buttons, menus and modals","url":"components.html#Buttons,-menus-and-modals"},{"title":"InfiniteList","text":"Components › InfiniteList","url":"components.html#InfiniteList"},{"title":"Small widgets","text":"Components › Small widgets","url":"components.html#Small-widgets"},{"title":"Theming","text":"Theming\n\nColors and sizes come from --bw-* CSS variables, with light/dark defaults that follow prefers-color-scheme. Restyle every widget with Theme, or one widget through its style=Styles(...) argument.\n\n\n\nTheme\n\nTheme() with no arguments ships the defaults. Components already include them, so you only need it to override. Keywords map to variables (bg_panel becomes --bw-bg-panel); scheme=:light or :dark pins the palette instead of following the OS.\n\nusing Bonito, BonitoWidgets\n\nApp() do\n    tabs() = Tabs(\"Scene\" => pl(\"Scene\", \"#1118\"), \"Log\" => pl(\"Log\", \"#1118\"))\n    DOM.div(\n        DOM.div(Theme(scheme=:dark, accent=\"#00d4ff\", bg_panel=\"#0b0f17\"), tabs();\n            style=Styles(\"flex\"=>\"1\")),\n        DOM.div(Theme(scheme=:light, accent=\"#e11d48\", bg_panel=\"#ffffff\"), tabs();\n            style=Styles(\"flex\"=>\"1\"));\n        style=Styles(\"display\"=>\"flex\", \"gap\"=>\"16px\"))\nend\n\nMain variables\n\nVariable Purpose\n--bw-bg, --bw-bg-panel, --bw-bg-bar, --bw-bg-hover, --bw-bg-subtle surfaces\n--bw-text, --bw-text-muted, --bw-text-faint text\n--bw-accent, --bw-accent-bg, --bw-accent-hover, --bw-accent-fg highlights, the filled button\n--bw-success, --bw-error, --bw-warning status, the danger button and menu item\n--bw-border, --bw-border-strong, --bw-radius, --bw-radius-sm chrome\n--bw-shadow, --bw-shadow-sm, --bw-shadow-md, --bw-backdrop floating windows, popovers, the modal backdrop\n--bw-bar-size, --bw-gutter-size hit-area sizing (grows on touch)\n--bw-font, --bw-font-size (14px body","url":"theming.html"},{"title":"Main variables","text":"Theming › Main variables","url":"theming.html#Main-variables"},{"title":"Testing layouts","text":"Testing layouts\n\nThe walkthrough video on the home page is a real Electron window driven from code: steering plots, splitting the layout by dragging a tab to a group edge, floating a panel and docking it back. It was recorded with ElectronCall. Source: examples/walkthrough.jl.\n\nProbes\n\nThe layout moves as panels split and float, so tests can't use fixed pixels. BonitoWidgets ships a few unexported probe helpers that build a small JavaScript expression to find a point on a widget by its label, against the live DOM, and return [x, y], or null if nothing matches:\n\ntab(label): the tab button whose label starts with label\ngroupbody(label; rel=(0.5, 0.9)): a point in the body of the group that holds that tab (the edges are the drop zones for splitting)\nfloattitle(label): the title bar of the floating window named label\n\nThey only use the widgets' CSS classes, so they don't pull in a test driver. Pull them in explicitly:\n\nusing BonitoWidgets: tab, groupbody, floattitle\n\nWith ElectronCall\n\nAny driver that can run JS and return a point can use a probe. With ElectronCall, wrap the expression in its JS target and pass it to the event DSL:\n\nusing BonitoWidgets: tab, groupbody, floattitle\nusing ElectronCall.Testing      # JS, Click, Drag, play, ...\n\nplay(ctx, [\n    Click(JS(tab(\"Waveform\"))),                                       # switch tabs\n    Drag(JS(tab(\"Field\")), JS(groupbody(\"Field\"; rel=(0.5, 0.9)))),   # split off the bottom\n    Drag(JS(floattitle(\"Surface\")), JS(tab(\"Phase Port","url":"testing.html"},{"title":"Probes","text":"Testing layouts › Probes","url":"testing.html#Probes"},{"title":"With ElectronCall","text":"Testing layouts › With ElectronCall","url":"testing.html#With-ElectronCall"},{"title":"API","text":"API\n\nPublic\n\nModules = [BonitoWidgets]\nOrder   = [:module, :constant, :type, :function, :macro]\nPublic  = true\nPrivate = false\n\nInternal\n\nIncluding the unexported test probes (tab, groupbody, floattitle).\n\nModules = [BonitoWidgets]\nOrder   = [:module, :constant, :type, :function, :macro]\nPublic  = false\nPrivate = true\n\n","url":"api.html"},{"title":"Public","text":"API › Public","url":"api.html#Public"},{"title":"Internal","text":"API › Internal","url":"api.html#Internal"}];</script></div></div></body></html>

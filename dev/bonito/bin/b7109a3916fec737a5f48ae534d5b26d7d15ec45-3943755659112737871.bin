@@ -1,16 +1,0 @@
-È k”Ù$64374dc8-24bf-46fc-9efa-4054120f18f3¤rootÇ2Ç/j“Ù$64374dc8-24bf-46fc-9efa-4054120f18f3¤rootÔÈ;’È0k”Ù$64374dc8-24bf-46fc-9efa-4054120f18f3¤rootÇ2Ç/j“Ù$64374dc8-24bf-46fc-9efa-4054120f18f3¤rootÔÇÌ‚¨msg_type¡2§payloadÇµf“€Ùcif (typeof Bonito !== 'undefined' && Bonito.set_no_connection) {
-    Bonito.set_no_connection();
-}
-ÙL/home/runner/.julia/packages/Bonito/otB2C/src/connection/no-connection.jl:13Èk”Ù$64374dc8-24bf-46fc-9efa-4054120f18f3¤rootÈ·È³j“Ù$64374dc8-24bf-46fc-9efa-4054120f18f3¤rootÈƒ“ÇÉe’¢46‚¨floating‘…¦heightÌ´¥widthÌð¡y¥panel§surface¡xÍ¤rootƒ¤type£row¨children’ƒ¤type¤tabs¦panels‘¨controls¦active¨controlsƒ¤type¤tabs¦panels“¥phase¤wave¥field¦active¥phase©fractionsØ¤p=
-×£Ð?®Gáz®ç?Çe’¢49 Ç«e’¢48…¥field‚¥label¥Field¨closableÃ¤wave‚¥label¨Waveform¨closableÃ§surface‚¥label§Surface¨closableÃ¥phase‚¥label®Phase Portrait¨closableÃ¨controls‚¥label¨Controls¨closableÂÈ‚¨msg_type¡2§payloadÈÿf“ƒ³4874466230403259047Çh¢48³5459501600146774718Çh¢49³1671928112007156307Çh¢46Úb((root) => {
-    import('./BonitoWidgets.bundled199086082347176271.js').then(lib => lib.mountWorkspace({
-        chrome: document.querySelector('[data-jscall-id="141"]'),
-        parking: document.querySelector('[data-jscall-id="142"]'),
-        floatlayer: document.querySelector('[data-jscall-id="153"]'),
-        layout: __lookup_interpolated('1671928112007156307'),
-        meta: __lookup_interpolated('4874466230403259047'),
-        closed: __lookup_interpolated('5459501600146774718'),
-        minFraction: 0.1,
-        hideSingleTab: false,
-    }));
-})(document.querySelector('[data-jscall-id="140"]'));ÙH/home/runner/work/BonitoWidgets.jl/BonitoWidgets.jl/src/workspace.jl:472
