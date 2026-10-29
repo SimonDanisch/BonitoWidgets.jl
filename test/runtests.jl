@@ -11,6 +11,11 @@ function render_html(component)
     return sprint(io -> show(io, MIME"text/html"(), dom))
 end
 
+# A InfiniteList source of its own: the squares of the positions.
+struct Squares end
+BonitoWidgets.items(::Squares, r::UnitRange{Int}) = collect(r) .^ 2
+BonitoWidgets.row(::Squares, x) = DOM.li(string(x); class = "sq")
+
 @testset "BonitoWidgets" begin
     @testset "string_bridge" begin
         dir = Observable(:row)
@@ -190,6 +195,8 @@ end
         base = render_html(DOM.div(Theme()))
         @test occursin("prefers-color-scheme: dark", base)
         @test occursin("pointer: coarse", base)
+        # Every palette variable exists in both schemes.
+        @test first.(BonitoWidgets.LIGHT_PALETTE) == first.(BonitoWidgets.DARK_PALETTE)
     end
 
     @testset "Widget buttons" begin
@@ -198,6 +205,85 @@ end
         collapsed = Observable(false)
         @test occursin("bw-collapse-btn", render_html(CollapseButton(collapsed)))
         @test occursin("bw-icon-btn", render_html(IconButton(DOM.span("x"); title="t")))
+    end
+
+    @testset "Menu" begin
+        m = Menu([DOM.button("Rename"; class="bw-menu-item")]; title="Actions",
+                 class=Observable("extra"), trigger_class="bw-btn-sm custom")
+        @test m.open[] == false
+        @test m.close_on_pick
+        html = render_html(m)
+        @test occursin("class=\"bw-menu extra\"", html)
+        @test occursin("class=\"bw-btn bw-menu-trigger bw-btn-sm custom\"", html)
+        @test occursin("class=\"bw-menu-list\"", html)
+        @test occursin("Rename", html)
+        # The trigger is a bw-btn, so the button styles come along.
+        @test occursin(".bw-btn-secondary", html)
+        # An open observable passed in is the menu's state, not a copy.
+        open = Observable(true)
+        @test Menu(DOM.div(); open=open, close_on_pick=false).open === open
+    end
+
+    @testset "Modal" begin
+        open = Observable(false)
+        built = Ref(0)
+        md = Modal(open; title="Add account") do
+            built[] += 1
+            DOM.div("the form"; class="probe-form")
+        end
+        html = render_html(md)
+        @test occursin("class=\"bw-modal-overlay\"", html)
+        @test occursin("Add account", html)
+        # The body is built on open, not before.
+        @test built[] == 0
+        @test !occursin("probe-form", html)
+        open[] = true
+        @test built[] == 1                     # the live render built it
+        @test occursin("probe-form", render_html(md))
+        open[] = false
+        open[] = true                          # every open builds it anew
+        @test built[] == 4                     # 2 live renders, one more open each
+    end
+
+    @testset "InfiniteList" begin
+        using BonitoWidgets: items, row, handle_request!
+        @test items(1:10 |> collect, 3:5) == [3, 4, 5]
+        @test items(collect(1:10), 9:20) == [9, 10]           # fewer at the end
+        @test isempty(items(collect(1:10), 11:20))
+        @test_throws ArgumentError InfiniteList(1:10; chunk = 50, window = 50)
+
+        list = InfiniteList(["a<b", "c"]; chunk = 2, window = 8, class = "my-list")
+        @test occursin("class=\"bw-infinite-list my-list\"", render_html(list))
+        # A request for 0-based positions 0..1 answers with both rows as HTML;
+        # a string row is escaped, not markup.
+        handle_request!(list, Dict{String,Any}("type" => "request", "epoch" => 3, "req" => 7,
+                                               "start" => 0, "stop" => 1))
+        reply = list.to_js[]
+        @test (reply["type"], reply["epoch"], reply["req"], reply["start"]) == ("rows", 3, 7, 0)
+        @test reply["rows"] == ["<div>a&#60;b</div>", "<div>c</div>"]
+        # Past the end: fewer rows than asked for is how the browser sees the end.
+        handle_request!(list, Dict{String,Any}("type" => "request", "epoch" => 3, "req" => 8,
+                                               "start" => 1, "stop" => 4))
+        @test list.to_js[]["rows"] == ["<div>c</div>"]
+        # A new source starts the list over.
+        list.source[] = ["x"]
+        @test list.to_js[]["type"] == "reset"
+        @test_throws ErrorException handle_request!(list, Dict{String,Any}("type" => "bogus"))
+
+        # A source of your own: `items` and `row` methods (top of this file).
+        sq = InfiniteList(Squares())
+        handle_request!(sq, Dict{String,Any}("type" => "request", "epoch" => 0, "req" => 1,
+                                             "start" => 2, "stop" => 3))
+        @test sq.to_js[]["rows"] == ["<li class=\"sq\">9</li>", "<li class=\"sq\">16</li>"]
+    end
+
+    @testset "Button styles" begin
+        html = render_html(DOM.div(BUTTON_STYLES, DOM.button("Save"; class="bw-btn")))
+        for cls in (".bw-btn-secondary", ".bw-btn-ghost", ".bw-btn-danger", ".bw-btn-sm")
+            @test occursin(cls, html)
+        end
+        # Colors come from the theme, so a Theme override restyles buttons.
+        @test occursin("var(--bw-accent)", html)
     end
 
     @testset "Probes" begin

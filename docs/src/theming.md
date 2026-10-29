@@ -44,9 +44,12 @@ end
 
 | Variable | Purpose |
 |---|---|
-| `--bw-bg`, `--bw-bg-panel`, `--bw-bg-bar`, `--bw-bg-hover` | surfaces |
-| `--bw-text`, `--bw-text-muted` | text |
-| `--bw-accent`, `--bw-accent-bg` | active tab/grip highlights |
-| `--bw-border`, `--bw-radius`, `--bw-shadow` | chrome |
+| `--bw-bg`, `--bw-bg-panel`, `--bw-bg-bar`, `--bw-bg-hover`, `--bw-bg-subtle` | surfaces |
+| `--bw-text`, `--bw-text-muted`, `--bw-text-faint` | text |
+| `--bw-accent`, `--bw-accent-bg`, `--bw-accent-hover`, `--bw-accent-fg` | highlights, the filled button |
+| `--bw-success`, `--bw-error`, `--bw-warning` | status, the danger button and menu item |
+| `--bw-border`, `--bw-border-strong`, `--bw-radius`, `--bw-radius-sm` | chrome |
+| `--bw-shadow`, `--bw-shadow-sm`, `--bw-shadow-md`, `--bw-backdrop` | floating windows, popovers, the modal backdrop |
 | `--bw-bar-size`, `--bw-gutter-size` | hit-area sizing (grows on touch) |
-| `--bw-font`, `--bw-font-size`, `--bw-space-1..4` | typography/spacing |
+| `--bw-font`, `--bw-font-size` (14px body), `-xl` 22, `-lg` 16, `-ui` 13 (controls), `-sm` 12, `-xs` 11, `-2xs` 10 | typography |
+| `--bw-space-1..6` | spacing |

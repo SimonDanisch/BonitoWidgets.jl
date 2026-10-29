@@ -132,6 +132,66 @@ App() do
 end
 ```
 
+## Buttons, menus and modals
+
+Plain `<button>`s styled by class: `bw-btn` is the filled primary, with
+`bw-btn-secondary`, `bw-btn-ghost`, `bw-btn-danger` and `bw-btn-sm` as
+modifiers. A page that uses the classes on its own buttons includes
+[`BUTTON_STYLES`](@ref) once. [`Menu`](@ref) puts one-shot actions behind a
+button; [`Modal`](@ref) shows a form over the page. Both keep their open state
+in an `Observable{Bool}`.
+
+```@example comp
+App() do
+    adding = Observable(false)
+    menu = Menu([DOM.button("Rename"; class="bw-menu-item"),
+                 DOM.button("Duplicate"; class="bw-menu-item"),
+                 DOM.div(; class="bw-menu-sep"),
+                 DOM.button("Delete"; class="bw-menu-item bw-menu-danger")])
+    dialog = Modal(adding; title="Add item") do
+        DOM.div(DOM.p("Built anew on every open."),
+                DOM.button("Done"; class="bw-btn", onclick=js"e => $(adding).notify(false)"))
+    end
+    DOM.div(BUTTON_STYLES,
+        DOM.button("Add…"; class="bw-btn", onclick=js"e => $(adding).notify(true)"),
+        DOM.button("Cancel"; class="bw-btn bw-btn-secondary"),
+        menu, dialog;
+        style=Styles("display"=>"flex", "gap"=>"8px", "align-items"=>"center",
+                     "justify-content"=>"flex-end", "min-height"=>"200px",
+                     "align-content"=>"flex-start"))
+end
+```
+
+```@docs; canonical=false
+BUTTON_STYLES
+Menu
+Modal
+```
+
+## InfiniteList
+
+An endless list: rows load in chunks as they scroll into reach, and rows far
+out of view leave the page, so a list of any length stays light. The source is
+anything with a [`BonitoWidgets.items`](@ref) method (vectors have one); rows
+render through [`BonitoWidgets.row`](@ref) to static HTML. Its engine,
+`RowBlock` in `assets/row_block.js`, is the one BonitoAgents' chat transcript
+scrolls on.
+
+```@example comp
+App() do
+    list = InfiniteList(["Row $i" for i in 1:100_000]; class = "demo-list")
+    DOM.div(list; style = Styles("height" => "240px", "display" => "flex",
+                                 "flex-direction" => "column",
+                                 "border" => "1px solid var(--bw-border)"))
+end
+```
+
+```@docs; canonical=false
+InfiniteList
+BonitoWidgets.items
+BonitoWidgets.row
+```
+
 ## Small widgets
 
 The bar widgets, exported for custom toolbars:
