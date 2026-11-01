@@ -35,15 +35,19 @@ export function mountWorkspace(opts) {
     const minFrac = opts.minFraction;
     const hideSingleTab = opts.hideSingleTab;
 
-    const clone = (x) => JSON.parse(JSON.stringify(x));
+    // Bonito transports numeric Julia vectors as typed arrays. JSON needs
+    // ordinary arrays, otherwise fractions become objects with numeric keys.
+    const clone = (x) => JSON.parse(JSON.stringify(x, (_key, value) =>
+        ArrayBuffer.isView(value) ? Array.from(value) : value));
     let layout = clone(layoutObs.value);     // {root, floating}
     let meta = metaObs.value || {};
     const narrow = window.matchMedia('(max-width: 700px)');
 
     const labelOf = (id) => (meta[id] && meta[id].label != null) ? meta[id].label : id;
     const closableOf = (id) => !!(meta[id] && meta[id].closable);
-    const panelNode = (id) =>
-        wsRoot.querySelector('.bw-ws-panel[data-panel-id="' + (window.CSS ? CSS.escape(id) : id) + '"]');
+    const owned = (node) => node.closest('.bw-ws') === wsRoot;
+    const panels = () => [...wsRoot.querySelectorAll('.bw-ws-panel')].filter(owned);
+    const panelNode = (id) => panels().find(node => node.dataset.panelId === id);
 
     // ---- tree helpers (operate on layout.root) --------------------------
     const isLeaf = (node) => node.type === 'tabs';
@@ -111,6 +115,7 @@ export function mountWorkspace(opts) {
             if (actual) actual.active = id;
         }
         for (const g of chrome.querySelectorAll('.bw-ws-group')) {
+            if (!owned(g)) continue;
             if (g._node !== leaf) continue;
             for (const b of g._strip.children) b.classList.toggle('bw-active', b._panelId === id);
             leaf.panels.forEach((pid) => {
@@ -178,7 +183,7 @@ export function mountWorkspace(opts) {
     }
 
     function parkAll() {
-        wsRoot.querySelectorAll('.bw-ws-panel').forEach(p => {
+        panels().forEach(p => {
             setPanelVisible(p, false);
             if (p.parentNode !== parking) parking.appendChild(p);
         });
@@ -412,7 +417,7 @@ export function mountWorkspace(opts) {
         parkAll();
         const layoutIds = new Set(allPanels(layout.root).concat(layout.floating.map(f => f.panel)));
         // Prune DOM nodes for panels removed from the layout.
-        wsRoot.querySelectorAll('.bw-ws-panel').forEach((p) => {
+        panels().forEach((p) => {
             const id = p.dataset.panelId;
             if (!layoutIds.has(id) && placedIds.has(id)) p.remove();
         });
@@ -475,7 +480,8 @@ export function mountWorkspace(opts) {
             updateActive(layout.root, v.root);
             if (narrow.matches) {
                 const group = chrome.firstElementChild;
-                if (group) setActiveLocal(group._node, firstActive());
+                if (group && group._node) setActiveLocal(group._node, firstActive());
+                else render(); // matchMedia changed before its render listener ran
             }
             return;
         }
@@ -505,6 +511,7 @@ export function mountWorkspace(opts) {
     // or 'float' (pointer outside the docked chrome).
     function dropActionAt(e, allowFloat) {
         for (const group of chrome.querySelectorAll('.bw-ws-group')) {
+            if (!owned(group)) continue;
             const barR = group.firstElementChild.getBoundingClientRect();
             if (e.clientY >= barR.top && e.clientY <= barR.bottom &&
                 e.clientX >= barR.left && e.clientX <= barR.right) {

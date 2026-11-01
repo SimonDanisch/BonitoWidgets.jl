@@ -14,13 +14,17 @@ function mountWorkspace(opts) {
     const closedObs = opts.closed;
     const minFrac = opts.minFraction;
     const hideSingleTab = opts.hideSingleTab;
-    const clone = (x)=>JSON.parse(JSON.stringify(x));
+    const clone = (x)=>JSON.parse(JSON.stringify(x, (_key, value)=>ArrayBuffer.isView(value) ? Array.from(value) : value));
     let layout = clone(layoutObs.value);
     let meta = metaObs.value || {};
     const narrow = window.matchMedia('(max-width: 700px)');
     const labelOf = (id)=>meta[id] && meta[id].label != null ? meta[id].label : id;
     const closableOf = (id)=>!!(meta[id] && meta[id].closable);
-    const panelNode = (id)=>wsRoot.querySelector('.bw-ws-panel[data-panel-id="' + (window.CSS ? CSS.escape(id) : id) + '"]');
+    const owned = (node)=>node.closest('.bw-ws') === wsRoot;
+    const panels = ()=>[
+            ...wsRoot.querySelectorAll('.bw-ws-panel')
+        ].filter(owned);
+    const panelNode = (id)=>panels().find((node)=>node.dataset.panelId === id);
     const isLeaf = (node)=>node.type === 'tabs';
     function leafOf(node, id) {
         if (isLeaf(node)) return node.panels.includes(id) ? node : null;
@@ -83,6 +87,7 @@ function mountWorkspace(opts) {
             if (actual) actual.active = id;
         }
         for (const g of chrome.querySelectorAll('.bw-ws-group')){
+            if (!owned(g)) continue;
             if (g._node !== leaf) continue;
             for (const b of g._strip.children)b.classList.toggle('bw-active', b._panelId === id);
             leaf.panels.forEach((pid)=>{
@@ -143,7 +148,7 @@ function mountWorkspace(opts) {
         }
     }
     function parkAll() {
-        wsRoot.querySelectorAll('.bw-ws-panel').forEach((p)=>{
+        panels().forEach((p)=>{
             setPanelVisible(p, false);
             if (p.parentNode !== parking) parking.appendChild(p);
         });
@@ -349,7 +354,7 @@ function mountWorkspace(opts) {
         const scrollSnap = snapshotScroll();
         parkAll();
         const layoutIds = new Set(allPanels(layout.root).concat(layout.floating.map((f)=>f.panel)));
-        wsRoot.querySelectorAll('.bw-ws-panel').forEach((p)=>{
+        panels().forEach((p)=>{
             const id = p.dataset.panelId;
             if (!layoutIds.has(id) && placedIds.has(id)) p.remove();
         });
@@ -399,7 +404,8 @@ function mountWorkspace(opts) {
             updateActive(layout.root, v.root);
             if (narrow.matches) {
                 const group = chrome.firstElementChild;
-                if (group) setActiveLocal(group._node, firstActive());
+                if (group && group._node) setActiveLocal(group._node, firstActive());
+                else render();
             }
             return;
         }
@@ -427,6 +433,7 @@ function mountWorkspace(opts) {
     };
     function dropActionAt(e, allowFloat) {
         for (const group of chrome.querySelectorAll('.bw-ws-group')){
+            if (!owned(group)) continue;
             const barR = group.firstElementChild.getBoundingClientRect();
             if (e.clientY >= barR.top && e.clientY <= barR.bottom && e.clientX >= barR.left && e.clientX <= barR.right) {
                 for (const btn of group._strip.children){
