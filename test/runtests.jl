@@ -168,11 +168,50 @@ BonitoWidgets.row(::Squares, x) = DOM.li(string(x); class = "sq")
     end
 
     @testset "Collapsible" begin
-        c = Collapsible("Title", DOM.div("content"); expanded=false)
+        c = Collapsible("Title", DOM.div("the content"); expanded=false)
         @test !c.expanded[]
         html = render_html(c)
+        @test occursin("<details", html)
         @test occursin("bw-collapsible", html)
-        @test occursin("0fr", html)
+        @test !occursin(r"<details[^>]* open", html)
+        @test occursin("the content", html)     # mounted while collapsed
+
+        @test occursin(r"<details[^>]* open", render_html(Collapsible("Title", "x"; expanded=true)))
+
+        @testset "a class replaces the default look" begin
+            html = render_html(Collapsible("Title", "x"; class="my-section", header_class="my-head"))
+            @test occursin(r"<details[^>]*class=\"my-section", html)
+            @test occursin(r"<summary[^>]*class=\"my-head", html)
+            @test !occursin("class=\"bw-collapsible\"", html)
+        end
+
+        @testset "states" begin
+            html = render_html(Collapsible("Title", "x"; states=["summary", "full"], state="full"))
+            @test occursin("data-state=\"full\"", html)
+            @test occursin("data-state=\"summary\"", render_html(Collapsible("Title", "x"; states=["summary", "full"])))
+            @test !occursin("data-state", render_html(Collapsible("Title", "x")))
+        end
+
+        @testset "a function is built on the first open, once" begin
+            calls = Ref(0)
+            build() = (calls[] += 1; DOM.div("built content"))
+            c = Collapsible("Title", build; expanded=false)
+            html = render_html(c)
+            @test calls[] == 0
+            @test !occursin("built content", html)
+            c.expanded[] = true
+            @test calls[] == 1
+            c.expanded[] = false
+            c.expanded[] = true
+            @test calls[] == 1
+        end
+
+        @testset "a function that starts open is built with the page" begin
+            calls = Ref(0)
+            html = render_html(Collapsible("Title", () -> (calls[] += 1; DOM.div("built content"))))
+            @test calls[] == 1
+            @test occursin("built content", html)
+        end
     end
 
     @testset "FloatingWindow" begin
