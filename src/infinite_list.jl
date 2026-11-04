@@ -27,17 +27,18 @@ default. Rows are static HTML, so a row carries no observables; give rows
 """
 row(source, item) = item
 
-# A row as HTML. A DOM node is HTML already; anything else (a string, say) goes
-# into a div, which escapes it.
-row_html(node::Bonito.HTMLElement) = string(node)
-row_html(x) = string(DOM.div(x))
+# A row as one element. A DOM node is one already; anything else (a string, say)
+# goes into a div, which escapes it.
+row_node(node::Bonito.HTMLElement) = node
+row_node(x) = DOM.div(x)
 
 """
     InfiniteList(source; chunk = 50, window = 200, class = "")
 
 An endless list over `source`: rows load `chunk` at a time as they come into
 reach, and past `window` rows the ones farthest out of view leave the page, so
-a list of any length stays light. `source` is anything with a method of
+a list of any length stays light. The first chunk comes with the render, so the
+first rows take no trip to the server. `source` is anything with a method of
 [`BonitoWidgets.items`](@ref); rows render through [`BonitoWidgets.row`](@ref).
 Setting `list.source[]` starts the list over at the top. Render a list once
 per page: its rows answer that page's requests.
@@ -63,6 +64,12 @@ function InfiniteList(source; chunk::Integer = 50, window::Integer = 200, class:
     return list
 end
 
+# The rows at positions `range`, as elements.
+function row_nodes(list::InfiniteList, range::UnitRange{Int})
+    source = list.source[]
+    return Any[row_node(row(source, x)) for x in items(source, range)]
+end
+
 """
     handle_request!(list, msg)
 
@@ -71,17 +78,17 @@ inclusive) with the rows at those positions, fewer at the source's end.
 """
 function handle_request!(list::InfiniteList, msg::AbstractDict)
     msg["type"] == "request" || error("InfiniteList: unknown message type $(repr(msg["type"]))")
-    source = list.source[]
-    found = items(source, (msg["start"] + 1):(msg["stop"] + 1))
     list.to_js[] = Dict{String,Any}(
         "type" => "rows", "epoch" => msg["epoch"], "req" => msg["req"], "start" => msg["start"],
-        "rows" => String[row_html(row(source, x)) for x in found])
+        "rows" => String[string(node) for node in row_nodes(list, (msg["start"] + 1):(msg["stop"] + 1))])
     return
 end
 
 function Bonito.jsrender(session::Session, list::InfiniteList)
     on(msg -> handle_request!(list, msg), session, list.to_julia)
-    rows = DOM.div(; class = "bw-infinite-list-rows")
+    # The first chunk is part of the render: one message, no trip to the server,
+    # and the rows show before the script runs. The browser takes these nodes over.
+    rows = DOM.div(row_nodes(list, 1:list.chunk); class = "bw-infinite-list-rows")
     # The scroller is the rows' parent: a script can't name the node it sits in.
     wire = js"""$(ROW_BLOCK_LIB).then(lib => new lib.InfiniteList($(rows).parentElement, $(rows),
         $(list.to_julia), $(list.to_js), {chunk: $(list.chunk), window: $(list.window)}))"""

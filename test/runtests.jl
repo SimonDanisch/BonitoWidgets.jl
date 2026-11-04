@@ -246,7 +246,7 @@ BonitoWidgets.row(::Squares, x) = DOM.li(string(x); class = "sq")
     end
 
     @testset "InfiniteList" begin
-        using BonitoWidgets: items, row, handle_request!
+        using BonitoWidgets: items, row, handle_request!, row_nodes
         @test items(1:10 |> collect, 3:5) == [3, 4, 5]
         @test items(collect(1:10), 9:20) == [9, 10]           # fewer at the end
         @test isempty(items(collect(1:10), 11:20))
@@ -265,6 +265,13 @@ BonitoWidgets.row(::Squares, x) = DOM.li(string(x); class = "sq")
         handle_request!(list, Dict{String,Any}("type" => "request", "epoch" => 3, "req" => 8,
                                                "start" => 1, "stop" => 4))
         @test list.to_js[]["rows"] == ["<div>c</div>"]
+        # The first chunk is in the render, as a request would answer it.
+        @test string.(row_nodes(list, 1:list.chunk)) == ["<div>a&#60;b</div>", "<div>c</div>"]
+        # One child per row: the browser takes the rows' children as the first chunk.
+        @test occursin(r"<div [^>]*>a&#60;b</div><div [^>]*>c</div>", render_html(list))
+        @test !occursin("Row 3", render_html(InfiniteList(["Row \$i" for i in 1:3]; chunk = 2, window = 8)))
+        @test isempty(row_nodes(InfiniteList(String[]), 1:50))
+        @test string.(row_nodes(InfiniteList(collect(1:5); chunk = 2, window = 8), 1:2)) == ["<div>1</div>", "<div>2</div>"]
         # A new source starts the list over.
         list.source[] = ["x"]
         @test list.to_js[]["type"] == "reset"

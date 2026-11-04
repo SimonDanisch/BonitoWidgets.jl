@@ -384,6 +384,7 @@ class InfiniteList {
     constructor(scroller, rows, toJulia, toJs, opts){
         this.scroller = scroller;
         this.template = document.createElement('template');
+        let first = Array.from(rows.children);
         this.block = new RowBlock(scroller, {
             parent: rows,
             chunk: opts.chunk,
@@ -391,15 +392,29 @@ class InfiniteList {
             start: 'top',
             epoch: opts.epoch
         }, {
-            request: (msg)=>toJulia.notify({
+            request: (msg)=>{
+                if (first !== null) {
+                    const items = first;
+                    first = null;
+                    this.block.onRange({
+                        epoch: msg.epoch,
+                        req: msg.req,
+                        start: msg.range[0],
+                        items
+                    });
+                    return;
+                }
+                toJulia.notify({
                     type: 'request',
                     epoch: msg.epoch,
                     req: msg.req,
                     start: msg.range[0],
                     stop: msg.range[1]
-                }),
-            makeRow: (_key, html)=>{
-                this.template.innerHTML = html;
+                });
+            },
+            makeRow: (_key, row)=>{
+                if (row instanceof Element) return row;
+                this.template.innerHTML = row;
                 return this.template.content.firstElementChild;
             }
         });
