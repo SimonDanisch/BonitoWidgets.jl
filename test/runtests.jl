@@ -206,6 +206,31 @@ BonitoWidgets.row(::Squares, x) = DOM.li(string(x); class = "sq")
             @test calls[] == 1
         end
 
+        @testset "a page that's gone builds nothing" begin
+            calls = Ref(0)
+            c = Collapsible("Title", () -> (calls[] += 1; DOM.div("built content")); expanded=false)
+            session = Session(Bonito.NoConnection(); asset_server=Bonito.NoServer())
+            Bonito.session_dom(session, App(() -> DOM.div(c)))
+            close(session)
+            c.expanded[] = true
+            @test calls[] == 0
+        end
+
+        @testset "a list shares one script" begin
+            scripts(n) = count("<script", render_html(CollapsibleList(
+                [Collapsible("Section $i", () -> DOM.div(); expanded=false) for i in 1:n])))
+            @test scripts(5) == scripts(1)
+            calls = Ref(0)
+            sections = [Collapsible("Section $i", () -> (calls[] += 1; DOM.div("built $i")); expanded=false) for i in 1:5]
+            html = render_html(CollapsibleList(sections; class="my-list"))
+            @test count("<details", html) == 5
+            @test occursin(r"<div[^>]*class=\"my-list", html)
+            @test calls[] == 0
+            sections[3].expanded[] = true
+            @test calls[] == 1
+            @test !sections[2].expanded[]
+        end
+
         @testset "a function that starts open is built with the page" begin
             calls = Ref(0)
             html = render_html(Collapsible("Title", () -> (calls[] += 1; DOM.div("built content"))))

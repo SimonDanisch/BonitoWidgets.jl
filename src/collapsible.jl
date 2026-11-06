@@ -9,8 +9,8 @@ renderable) is always visible, and clicking it toggles the content. The content
 stays mounted while collapsed, so widget state and WebGL contexts survive.
 
 `content` can be a function returning the content. It's called the first time the
-section is open, so a section nobody opens costs almost nothing, and what it returned
-stays mounted from then on.
+section is open, and what it returned stays mounted from then on. Showing many
+sections, use a [`CollapsibleList`](@ref): they then share one script.
 
 A click on a control in the header (a button, link or input), or one whose handler
 called `preventDefault`, doesn't toggle.
@@ -56,24 +56,78 @@ function mounted_content(session::Session, build::Function, expanded::Observable
     on(session, expanded) do open
         if open && !Threads.atomic_xchg!(built, true)
             content = build()
-            lock(Bonito.deletion_lock(Bonito.root_session(session))) do
-                Bonito.isclosed(session) || Bonito.update_session_dom!(session, id, content; replace=true)
-            end
+            # The click can still be on its way when the page closes.
+            Bonito.isclosed(session) || Bonito.update_session_dom!(session, id, content; replace=true)
         end
         return
     end
     return placeholder
 end
 
-function Bonito.jsrender(session::Session, c::Collapsible)
+"""
+    CollapsibleList(sections; attributes...)
+
+Several [`Collapsible`](@ref)s rendered side by side with one script and one channel
+to Julia for all of them, so a closed section costs about what a plain `<details>`
+does. `attributes` go on the element holding the sections.
+"""
+struct CollapsibleList
+    sections::Vector{Collapsible}
+    attributes::Dict{Symbol,Any}
+end
+
+CollapsibleList(sections; attributes...) =
+    CollapsibleList(collect(Collapsible, sections), Dict{Symbol,Any}(attributes))
+
+default_look(c::Collapsible) = c.class == "bw-collapsible" ? (THEME_STYLES, COLLAPSIBLE_STYLES) : ()
+
+# The section's summary, its `<details>` children and attributes, without any script.
+function section_parts(session::Session, c::Collapsible, key::Int)
     summary = DOM.summary(c.header; class=c.header_class)
-    wire = js"$(COLLAPSIBLE_LIB).then(lib => lib.connect($(summary), $(c.expanded), $(c.states)))"
-    attributes = copy(c.attributes)
+    attributes = merge(Dict{Symbol,Any}(:class => c.class, :open => c.expanded[], :dataBwKey => key), c.attributes)
     isnothing(c.state) || (attributes[:dataState] = c.state)
-    default_look = c.class == "bw-collapsible" ? (THEME_STYLES, COLLAPSIBLE_STYLES) : ()
-    return Bonito.jsrender(session, DOM.details(default_look..., summary,
-        mounted_content(session, c.content, c.expanded), wire;
-        class=c.class, open=c.expanded[], attributes...))
+    isempty(c.states) || (attributes[:dataStates] = join(c.states, " "))
+    return summary, mounted_content(session, c.content, c.expanded), attributes
+end
+
+# `shown` is what the browser shows, so a click doesn't come back to it as an update.
+function section_wiring(session::Session, sections::Vector{Collapsible}, anchor)
+    shown = Bool[c.expanded[] for c in sections]
+    from_browser = Observable{Any}(nothing)
+    to_browser = Observable{Any}(nothing)
+    on(session, from_browser) do (key, open)
+        if shown[key] != open
+            shown[key] = open
+            sections[key].expanded[] = open
+        end
+        return
+    end
+    for (key, c) in enumerate(sections)
+        on(session, c.expanded) do open
+            if shown[key] != open
+                shown[key] = open
+                to_browser[] = Any[key, open]
+            end
+            return
+        end
+    end
+    return js"$(COLLAPSIBLE_LIB).then(lib => lib.connect($(anchor), $(from_browser), $(to_browser), $(findall(shown))))"
+end
+
+function Bonito.jsrender(session::Session, c::Collapsible)
+    summary, content, attributes = section_parts(session, c, 1)
+    return Bonito.jsrender(session, DOM.details(default_look(c)..., summary, content,
+        section_wiring(session, [c], summary); dataBwSections="", attributes...))
+end
+
+function Bonito.jsrender(session::Session, list::CollapsibleList)
+    sections = map(enumerate(list.sections)) do (key, c)
+        summary, content, attributes = section_parts(session, c, key)
+        return DOM.details(default_look(c)..., summary, content; attributes...)
+    end
+    root = DOM.div(sections; dataBwSections="", list.attributes...)
+    return Bonito.jsrender(session, DOM.div(root, section_wiring(session, list.sections, root);
+                                            style=Styles("display" => "contents")))
 end
 
 # A `::before` glyph swapped on `[open]`, not a rotated icon: one CSS rule instead of

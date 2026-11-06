@@ -107,6 +107,22 @@ App() do
 end
 ```
 
+## CollapsibleList
+
+```@docs; canonical=false
+CollapsibleList
+```
+
+```@example comp
+using Bonito, BonitoWidgets
+
+App() do
+    DOM.div(Theme(), CollapsibleList([
+        Collapsible("Section $i", () -> pl("Built when opened", "#475569"); expanded=false)
+        for i in 1:3]))
+end
+```
+
 ## FloatingWindow
 
 A draggable, resizable, fixed-position window, kept inside the viewport. Below it

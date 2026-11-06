@@ -21,7 +21,7 @@ include("probes.jl")  # unexported JS DOM-probe builders for driver-agnostic UI 
 export Theme
 export Tabs
 export SplitContainer
-export Collapsible
+export Collapsible, CollapsibleList
 export PanelGroup
 export Workspace, Panel, tabgroup, hsplit, vsplit, floatpanel, workspacelayout
 export add_panel!, remove_panel!, float_panel!, dock_panel!, activate_panel!

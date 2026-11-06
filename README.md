@@ -106,6 +106,7 @@ group.collapsed[] = true              # fold down to the bar
 ```julia
 Collapsible("Settings", settings_dom; expanded=false)
 Collapsible("Details", () -> expensive_dom(); expanded=false)   # built on first open
+CollapsibleList([Collapsible(name, () -> rows(name); expanded=false) for name in names])  # one script for all
 ```
 
 ### FloatingWindow
