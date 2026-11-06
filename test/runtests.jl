@@ -168,11 +168,75 @@ BonitoWidgets.row(::Squares, x) = DOM.li(string(x); class = "sq")
     end
 
     @testset "Collapsible" begin
-        c = Collapsible("Title", DOM.div("content"); expanded=false)
+        c = Collapsible("Title", DOM.div("the content"); expanded=false)
         @test !c.expanded[]
         html = render_html(c)
+        @test occursin("<details", html)
         @test occursin("bw-collapsible", html)
-        @test occursin("0fr", html)
+        @test !occursin(r"<details[^>]* open", html)
+        @test occursin("the content", html)     # mounted while collapsed
+
+        @test occursin(r"<details[^>]* open", render_html(Collapsible("Title", "x"; expanded=true)))
+
+        @testset "a class replaces the default look" begin
+            html = render_html(Collapsible("Title", "x"; class="my-section", header_class="my-head"))
+            @test occursin(r"<details[^>]*class=\"my-section", html)
+            @test occursin(r"<summary[^>]*class=\"my-head", html)
+            @test !occursin("class=\"bw-collapsible\"", html)
+        end
+
+        @testset "states" begin
+            html = render_html(Collapsible("Title", "x"; states=["summary", "full"], state="full"))
+            @test occursin("data-state=\"full\"", html)
+            @test occursin("data-state=\"summary\"", render_html(Collapsible("Title", "x"; states=["summary", "full"])))
+            @test !occursin("data-state", render_html(Collapsible("Title", "x")))
+        end
+
+        @testset "a function is built on the first open, once" begin
+            calls = Ref(0)
+            build() = (calls[] += 1; DOM.div("built content"))
+            c = Collapsible("Title", build; expanded=false)
+            html = render_html(c)
+            @test calls[] == 0
+            @test !occursin("built content", html)
+            c.expanded[] = true
+            @test calls[] == 1
+            c.expanded[] = false
+            c.expanded[] = true
+            @test calls[] == 1
+        end
+
+        @testset "a page that's gone builds nothing" begin
+            calls = Ref(0)
+            c = Collapsible("Title", () -> (calls[] += 1; DOM.div("built content")); expanded=false)
+            session = Session(Bonito.NoConnection(); asset_server=Bonito.NoServer())
+            Bonito.session_dom(session, App(() -> DOM.div(c)))
+            close(session)
+            c.expanded[] = true
+            @test calls[] == 0
+        end
+
+        @testset "a list shares one script" begin
+            scripts(n) = count("<script", render_html(CollapsibleList(
+                [Collapsible("Section $i", () -> DOM.div(); expanded=false) for i in 1:n])))
+            @test scripts(5) == scripts(1)
+            calls = Ref(0)
+            sections = [Collapsible("Section $i", () -> (calls[] += 1; DOM.div("built $i")); expanded=false) for i in 1:5]
+            html = render_html(CollapsibleList(sections; class="my-list"))
+            @test count("<details", html) == 5
+            @test occursin(r"<div[^>]*class=\"my-list", html)
+            @test calls[] == 0
+            sections[3].expanded[] = true
+            @test calls[] == 1
+            @test !sections[2].expanded[]
+        end
+
+        @testset "a function that starts open is built with the page" begin
+            calls = Ref(0)
+            html = render_html(Collapsible("Title", () -> (calls[] += 1; DOM.div("built content"))))
+            @test calls[] == 1
+            @test occursin("built content", html)
+        end
     end
 
     @testset "FloatingWindow" begin
@@ -246,7 +310,7 @@ BonitoWidgets.row(::Squares, x) = DOM.li(string(x); class = "sq")
     end
 
     @testset "InfiniteList" begin
-        using BonitoWidgets: items, row, handle_request!
+        using BonitoWidgets: items, row, handle_request!, row_nodes
         @test items(1:10 |> collect, 3:5) == [3, 4, 5]
         @test items(collect(1:10), 9:20) == [9, 10]           # fewer at the end
         @test isempty(items(collect(1:10), 11:20))
@@ -265,6 +329,13 @@ BonitoWidgets.row(::Squares, x) = DOM.li(string(x); class = "sq")
         handle_request!(list, Dict{String,Any}("type" => "request", "epoch" => 3, "req" => 8,
                                                "start" => 1, "stop" => 4))
         @test list.to_js[]["rows"] == ["<div>c</div>"]
+        # The first chunk is in the render, as a request would answer it.
+        @test string.(row_nodes(list, 1:list.chunk)) == ["<div>a&#60;b</div>", "<div>c</div>"]
+        # One child per row: the browser takes the rows' children as the first chunk.
+        @test occursin(r"<div [^>]*>a&#60;b</div><div [^>]*>c</div>", render_html(list))
+        @test !occursin("Row 3", render_html(InfiniteList(["Row \$i" for i in 1:3]; chunk = 2, window = 8)))
+        @test isempty(row_nodes(InfiniteList(String[]), 1:50))
+        @test string.(row_nodes(InfiniteList(collect(1:5); chunk = 2, window = 8), 1:2)) == ["<div>1</div>", "<div>2</div>"]
         # A new source starts the list over.
         list.source[] = ["x"]
         @test list.to_js[]["type"] == "reset"

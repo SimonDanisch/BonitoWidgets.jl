@@ -461,13 +461,25 @@ export class InfiniteList {
     constructor(scroller, rows, toJulia, toJs, opts) {
         this.scroller = scroller;
         this.template = document.createElement('template');
+        // The first chunk came with the page, as the rows' children: taking
+        // those saves a trip to the server before the first row shows.
+        let first = Array.from(rows.children);
         this.block = new RowBlock(scroller,
             { parent: rows, chunk: opts.chunk, window: opts.window, start: 'top', epoch: opts.epoch },
             {
-                request: (msg) => toJulia.notify({ type: 'request', epoch: msg.epoch, req: msg.req,
-                                                   start: msg.range[0], stop: msg.range[1] }),
-                makeRow: (_key, html) => {
-                    this.template.innerHTML = html;
+                request: (msg) => {
+                    if (first !== null) {
+                        const items = first;
+                        first = null;
+                        this.block.onRange({ epoch: msg.epoch, req: msg.req, start: msg.range[0], items });
+                        return;
+                    }
+                    toJulia.notify({ type: 'request', epoch: msg.epoch, req: msg.req,
+                                     start: msg.range[0], stop: msg.range[1] });
+                },
+                makeRow: (_key, row) => {
+                    if (row instanceof Element) return row;
+                    this.template.innerHTML = row;
                     return this.template.content.firstElementChild;
                 },
             });
